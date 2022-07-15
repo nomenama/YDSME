@@ -1,0 +1,2 @@
+export const MainNavigation = ["Home", "Visitors", "Calendar", "Gallery", "Club History", "Hire Us", "Contacts", "Membership"];
+export const MemberNavigation = ["Dashboard", "Agenda", "Minutes", "Bioler Guides", "Club Rules", "Club News", "Admin", "Logout"];
