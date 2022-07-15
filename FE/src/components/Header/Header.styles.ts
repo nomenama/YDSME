@@ -27,6 +27,10 @@ export const Button = styled.button<ButtonProps>`
   border: none;
   border-bottom: 3px solid transparent;
   cursor: pointer;
+  transition: border-bottom-color 300ms ease-in-out,
+  color 300ms ease-in-out, 
+  font-size 300ms ease-in-out
+;
 
   
   ${({selected}) => selected && css`
@@ -35,7 +39,7 @@ export const Button = styled.button<ButtonProps>`
   
     :hover {
       border-bottom: ${({theme}) => `3px solid ${theme.buttons.primary}`};
-      transition: border-bottom-color 300ms ease-in-out;
+      transform: scale(1.1);
     }
   
   :disabled {
