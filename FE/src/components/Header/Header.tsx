@@ -13,6 +13,7 @@ import {
 import {MainNavigation} from "./Navigation";
 import {Link, useLocation} from "react-router-dom";
 import {Flex} from "../../pages/index.styles";
+import {useTheme} from "styled-components";
 
 interface HeaderProps {
     logo: string;
@@ -21,6 +22,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
     const location = useLocation();
+    const theme = useTheme();
     const [displayMobileNavBar, setDisplayMobileNavBar] = useState<boolean>(false);
 
     const onToggleSideBar = () => {
@@ -47,12 +49,12 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                     </Link>
                 </NavContainer>
 
-                <Hamburger size={30} color="#ffffff" onClick={onToggleSideBar}/>
-                
+                <Hamburger size={30} color={theme.colors.white} onClick={onToggleSideBar}/>
+
                 {displayMobileNavBar && (
                     <MobileNavContainer>
                     <Flex justify="flex-end">
-                        <CloseNavBar size={30} color={"#ffffff"} onClick={onToggleSideBar}/>
+                        <CloseNavBar size={30} color={theme.colors.white} onClick={onToggleSideBar}/>
                     </Flex>
 
                     {Object.entries(navigations).map(([key, value]) => {

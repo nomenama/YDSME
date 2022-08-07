@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import {theme, device} from "../../styles/theme";
+import {device} from "../../styles/theme";
 import {IoIosMenu, IoMdClose} from "react-icons/io";
 
 interface ButtonProps {

@@ -1,3 +1,25 @@
+import {DefaultTheme} from "styled-components";
+
+declare module "styled-components" {
+    export interface DefaultTheme {
+        colors: {
+            primary: string,
+            secondary: string,
+            white: string,
+            black: string,
+            black_90: string,
+
+            positive: string,
+            negative: string
+        };
+        buttons: {
+            primary: string,
+            secondary: string
+        };
+        fontSizes: string[];
+    }
+}
+
 export interface BaseTheme {
     colors: object;
     buttons: object;
@@ -14,7 +36,7 @@ export interface Device {
     desktopL: string;
 }
 
-export const theme: BaseTheme = {
+export const theme: DefaultTheme = {
     colors: {
         primary: "#525252",
         secondary: "#abaaaa",
