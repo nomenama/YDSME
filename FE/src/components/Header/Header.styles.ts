@@ -103,6 +103,7 @@ export const MobileNavContainer = styled.nav`
 
 export const Button = styled.button<ButtonProps>`
   padding: 10px 0;
+  font-family: Roboto, sans-serif;
   font-size: 2rem;
   font-weight: bold;
   color: ${({color, theme}) => color ? color : theme.colors.white};
@@ -139,6 +140,7 @@ export const Button = styled.button<ButtonProps>`
 
 export const LoginButton = styled.button`
   padding: 2px 15px;
+  font-family: Roboto, sans-serif;
   font-size: 2rem;
   font-weight: bold;
   color: ${({theme}) => theme.colors.white};
