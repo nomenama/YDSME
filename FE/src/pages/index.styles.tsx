@@ -29,6 +29,7 @@ export const InnerContainer = styled.div<InnerContainerProps>`
   width: 90%;
   height: 100%;
   margin: 0 auto;
+  padding: 20px 0;
   display: flex;
   gap: ${({gap}) => gap ? `${gap}px` : undefined};
   flex-direction: ${({direction}) => direction ? direction : "row"};

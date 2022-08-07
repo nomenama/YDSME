@@ -1,12 +1,12 @@
 import React from 'react'
-import Header from "../../components/Header/Header";
-import {PageContainer} from "../index.styles";
-import {MainNavigation} from "../../components/Header/Navigation";
+import {PageContainer, InnerContainer} from "../index.styles";
 
 const MainPage = () => {
   return (
       <PageContainer>
-
+        <InnerContainer>
+            Welcome to YDSME
+        </InnerContainer>
       </PageContainer>
   )
 }

@@ -7,6 +7,7 @@ import GlobalStyles from "./styles/Global";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {MainNavigation} from "./components/Header/Navigation";
 import Header from "./components/Header/Header";
+import Announcement from "./components/Announcement/Announcement";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
           <GlobalStyles />
               <Router>
                   <Header logo={"Logo"} navigations={MainNavigation}/>
+                  <Announcement />
                   <Routes>
                       <Route path="/" element={<MainPage/>} />
                       <Route path="/visitor" element={<Visitors/>} />
