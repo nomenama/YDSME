@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ae14bf5-4f8c-4b88-b11f-323481fcd64e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/FE/public/images/web-logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/src/pages/Visitors/index.styles.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/src/pages/Visitors/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/FE/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/public/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/FE/public/logo512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FE/public/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Header.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Header.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Navigation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/pages/index.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/index.styles.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/MainPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/styles/Global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/styles/Global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/styles/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/styles/theme.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../irrelon-pos-server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/FE/public/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -45,7 +59,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Development\YDSME\FE\public\images" />
+      <recent name="D:\Development\YDSME\FE\public" />
+      <recent name="D:\Development\YDSME\FE\src\pages\Visitors" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Development\YDSME\FE\src\pages" />
+      <recent name="D:\Development\YDSME\FE\src\pages\MainPage" />
       <recent name="D:\Development\YDSME\FE\src\styles" />
     </key>
   </component>
@@ -98,12 +119,25 @@
       <workItem from="1657830077754" duration="13000" />
       <workItem from="1657830093005" duration="6330000" />
       <workItem from="1657901577026" duration="18955000" />
-      <workItem from="1657921712200" duration="307000" />
+      <workItem from="1657921712200" duration="365000" />
+      <workItem from="1659867293006" duration="9836000" />
+      <workItem from="1659878250743" duration="2979000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

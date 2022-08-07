@@ -1,8 +1,17 @@
 export interface BaseTheme {
     colors: object;
     buttons: object;
-    breakpoints: string[];
     fontSizes: string[];
+}
+
+export interface Device {
+    mobileS: string;
+    mobileM: string;
+    mobileL: string;
+    tablet: string;
+    laptop: string;
+    desktop: string;
+    desktopL: string;
 }
 
 export const theme: BaseTheme = {
@@ -20,7 +29,16 @@ export const theme: BaseTheme = {
         primary: "#0863be",
         secondary: "#4e98f5"
     },
-    breakpoints: ['31.25em', '43.75em', '46.875em'],
-    fontSizes: ['1.2rem', '1.4rem', '1.6rem', '1.8rem', '2.4rem', '2.8rem', '3.2rem', '4.0rem', '4.8rem', '6.4rem']
+    fontSizes: ['1.2rem', '1.4rem', '1.6rem', '1.8rem', '2.4rem', '2.8rem', '3.2rem', '4.0rem', '4.8rem', '6.4rem'],
+}
+
+export const device: Device = {
+    mobileS: `(max-width: 320px)`,
+    mobileM: `(max-width: 452px)`,
+    mobileL: `(max-width: 768px)`,
+    tablet: `(max-width: 1024px)`,
+    laptop: `(max-width: 1200px)`,
+    desktop: `(max-width: 1920px)`,
+    desktopL: `(min-width: 1920px)`,
 }
 

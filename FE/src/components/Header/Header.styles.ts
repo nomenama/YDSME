@@ -1,4 +1,6 @@
 import styled, {css} from "styled-components";
+import {theme, device} from "../../styles/theme";
+import {IoIosMenu, IoMdClose} from "react-icons/io";
 
 interface ButtonProps {
     selected?: boolean;
@@ -11,16 +13,97 @@ export const Container = styled.header`
   width: 100%;
   height: 100px;
   background-color: ${({theme}) => theme.colors.primary};
+
+  @media only screen and ${device.laptop} {
+    height: 80px;
+  }
+
+  @media only screen and ${device.mobileL} {
+    height: 60px;
+  }
+`
+
+export const InnerContainer = styled.div`
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  @media only screen and ${device.desktopL} {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
 `
 
 export const NavContainer = styled.nav`
   display: flex;
   gap: 25px;
+  align-items: center;
+  
+  @media only screen and ${device.laptop} {
+    gap: 15px;
+  }
+
+  @media only screen and ${device.tablet} {
+    display: none;
+  }
+`
+
+export const Logo = styled.img`
+  width: 100%;
+  max-width: 80px;
+  height: 100%;
+  max-height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  @media only screen and ${device.laptop} {
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  @media only screen and ${device.mobileL} {
+    max-width: 40px;
+    max-height: 40px;
+  }
+`
+
+export const CloseNavBar = styled(IoMdClose)<{onClick: () => void}>``
+
+export const Hamburger = styled(IoIosMenu)<{onClick: () => void}>`
+  display: none;
+
+  @media only screen and ${device.tablet} {
+    display: block;
+  }
+`
+
+export const MobileNavContainer = styled.nav`
+  width: 100%;
+  height: 100vh;
+  display: none;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: ${({theme}) => theme.colors.primary};
+  
+  @media only screen and ${device.tablet} {
+    display: flex;
+  }
 `
 
 export const Button = styled.button<ButtonProps>`
   padding: 10px 0;
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: bold;
   color: ${({color, theme}) => color ? color : theme.colors.white};
   background-color: ${({backgroundColor}) => backgroundColor ? backgroundColor : "transparent"};
@@ -31,7 +114,6 @@ export const Button = styled.button<ButtonProps>`
   color 300ms ease-in-out, 
   font-size 300ms ease-in-out
 ;
-
   
   ${({selected}) => selected && css`
     border-bottom: ${({theme}) => `3px solid ${theme.buttons.primary}`};
@@ -45,11 +127,19 @@ export const Button = styled.button<ButtonProps>`
   :disabled {
     opacity: 0.5;
   }
+
+  @media only screen and ${device.laptop} {
+    font-size: 1.6rem;
+  }
+
+  @media only screen and ${device.tablet} {
+    font-size: 2rem;
+  }
 `
 
 export const LoginButton = styled.button`
   padding: 2px 15px;
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: bold;
   color: ${({theme}) => theme.colors.white};
   background-color: ${({theme}) => theme.buttons.primary};
@@ -62,5 +152,13 @@ export const LoginButton = styled.button`
     color: ${({theme}) => theme.buttons.primary};
     background-color: ${({theme}) => theme.colors.white};
     border: 3px solid transparent;
+  }
+
+  @media only screen and ${device.laptop} {
+    font-size: 1.6rem;
+  }
+
+  @media only screen and ${device.tablet} {
+    font-size: 2rem;
   }
 `

@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
   
-  html * {
+  html {
     font-size: 10px;
   }
 
