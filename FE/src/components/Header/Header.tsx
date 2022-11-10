@@ -12,7 +12,7 @@ import {
 } from "./Header.styles";
 import {MainNavigation} from "./Navigation";
 import {Link, useLocation} from "react-router-dom";
-import {Flex} from "../../pages/index.styles";
+import {Flex} from "../../common/index.styles";
 import {useTheme} from "styled-components";
 
 interface HeaderProps {

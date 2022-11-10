@@ -3,13 +3,13 @@ import {theme} from "./theme";
 
 type ThemeType = typeof theme;
 
-const GlobalStyles = createGlobalStyle<{theme: ThemeType}>`
+const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
-  
+
   html {
     font-size: 10px;
   }
@@ -43,6 +43,5 @@ const GlobalStyles = createGlobalStyle<{theme: ThemeType}>`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
   }
-  
 `
 export default GlobalStyles;
