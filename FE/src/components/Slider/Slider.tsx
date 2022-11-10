@@ -11,11 +11,13 @@ export const Slider = () => {
             showThumbs={false}
             showStatus={false}
             dynamicHeight={true}
+            showArrows={false}
         >
-            <S.Image> <S.Img src="sliders/1.jpg" alt=""/></S.Image>
-            <S.Image><S.Img src="sliders/2.jpg" alt=""/></S.Image>
-            <S.Image><S.Img src="sliders/3.jpg" alt=""/></S.Image>
-            <S.Image><S.Img src="sliders/6.jpg" alt=""/></S.Image>
+            <div><S.Img src="sliders/1.jpg" alt="" width={600} height={600}/></div>
+            <div><S.Img src="sliders/2.jpg" alt="" width={600} height={600}/></div>
+            <div><S.Img src="sliders/3.jpg" alt="" width={600} height={600}/></div>
+            <div><S.Img src="sliders/6.jpg" alt="" width={600} height={600}/></div>
         </Carousel>
+
     )
 }
