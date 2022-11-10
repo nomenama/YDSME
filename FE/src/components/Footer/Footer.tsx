@@ -13,7 +13,7 @@ const Footer = () => {
                     Health and Safety Information
                 </S.SafetyLink>
             </P1>
-            <P1>All Rights Reserved - &copy; YDSME {getYear}</P1>
+            <S.FooterText>All Rights Reserved - &copy; YDSME {getYear}</S.FooterText>
 
         </S.Container>
     )
