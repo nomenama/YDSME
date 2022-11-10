@@ -1,36 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ae14bf5-4f8c-4b88-b11f-323481fcd64e" name="Changes" comment="Add fonts and meta">
-      <change afterPath="$PROJECT_DIR$/FE/public/docs/visitor-safety-guide.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/hornsby.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/sliders/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/sliders/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/sliders/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/sliders/4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/sliders/5.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/sliders/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/components/Footer/Footer.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/components/Footer/Footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/components/SideBar/SideBar.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/components/SideBar/SideBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/components/Slider/Slider.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/components/Slider/Slider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/hooks/useDevice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/pages/MainPage/Main.styles.ts" afterDir="false" />
+    <list default="true" id="4ae14bf5-4f8c-4b88-b11f-323481fcd64e" name="Changes" comment="Big changes">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/YDSME.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/YDSME.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FE/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/FE/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/pages/MainPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/MainPage/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/pages/Visitors/index.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/Visitors/Visitors.styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/pages/Visitors/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/Visitors/Visitors.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/pages/index.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/common/index.styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/react-app-env.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/styles/Global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/styles/Global.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +136,7 @@
       <workItem from="1659878250743" duration="11059000" />
       <workItem from="1668075468229" duration="7000" />
       <workItem from="1668075834597" duration="231000" />
-      <workItem from="1668076174586" duration="28417000" />
+      <workItem from="1668076174586" duration="28754000" />
     </task>
     <task id="LOCAL-00001" summary="Add routes and media query to Header component.">
       <created>1659881405244</created>
@@ -191,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659889346836</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Big changes">
+      <created>1668106607574</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668106607574</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +193,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add routes and media query to Header component." />
     <MESSAGE value="Add fonts and meta" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add fonts and meta" />
+    <MESSAGE value="Big changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Big changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
