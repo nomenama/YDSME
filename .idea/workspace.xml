@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ae14bf5-4f8c-4b88-b11f-323481fcd64e" name="Changes" comment="Add static pages">
+    <list default="true" id="4ae14bf5-4f8c-4b88-b11f-323481fcd64e" name="Changes" comment="Change background color and membership to external link">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/styles/Global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/styles/Global.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/styles/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/styles/theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Header.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Header.styles.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,7 @@
       <recent name="D:\Development\YDSME\FE\src\styles" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start-dev">
+  <component name="RunManager" selected="npm.build">
     <configuration name="BE-dev" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/BE/package.json" />
       <command value="run" />
@@ -82,6 +81,16 @@
       <command value="run" />
       <scripts>
         <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/FE/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -108,10 +117,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="npm.start-dev" />
+      <item itemvalue="npm.build" />
       <item itemvalue="npm.BE-dev" />
       <item itemvalue="npm.BE-start" />
       <item itemvalue="npm.dev" />
-      <item itemvalue="npm.start-dev" />
     </list>
     <recent_temporary>
       <list>
@@ -202,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668109472352</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Change background color and membership to external link">
+      <created>1668179588840</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668179588840</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +242,8 @@
     <MESSAGE value="Big changes" />
     <MESSAGE value="refactor image sliders" />
     <MESSAGE value="refactor footer color" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor footer color" />
+    <MESSAGE value="Change background color and membership to external link" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change background color and membership to external link" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
