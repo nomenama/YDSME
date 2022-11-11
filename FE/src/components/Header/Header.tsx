@@ -14,6 +14,7 @@ import {MainNavigation} from "./Navigation";
 import {Link, useLocation} from "react-router-dom";
 import {Flex} from "../../common/index.styles";
 import {useTheme} from "styled-components";
+import {Link as Link_} from "../../common/index.styles";
 
 interface HeaderProps {
     logo: string;
@@ -44,6 +45,10 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                             </Link>
                         )
                     })}
+
+                    <Link_ href="https://membermojo.co.uk/york-model-engineers">
+                        <Button>Membership</Button>
+                    </Link_>
                     <Link to="/login">
                         <LoginButton>Login</LoginButton>
                     </Link>
@@ -53,21 +58,21 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
 
                 {displayMobileNavBar && (
                     <MobileNavContainer>
-                    <Flex justify="flex-end">
-                        <CloseNavBar size={30} color={theme.colors.white} onClick={onToggleSideBar}/>
-                    </Flex>
+                        <Flex justify="flex-end">
+                            <CloseNavBar size={30} color={theme.colors.white} onClick={onToggleSideBar}/>
+                        </Flex>
 
-                    {Object.entries(navigations).map(([key, value]) => {
-                        return (
-                            <Link to={value} key={key}>
-                                <Button onClick={() => setDisplayMobileNavBar(false)}>{key}</Button>
-                            </Link>
-                        )
-                    })}
-                    <Link to="/login">
-                        <LoginButton>Login</LoginButton>
-                    </Link>
-                </MobileNavContainer>)}
+                        {Object.entries(navigations).map(([key, value]) => {
+                            return (
+                                <Link to={value} key={key}>
+                                    <Button onClick={() => setDisplayMobileNavBar(false)}>{key}</Button>
+                                </Link>
+                            )
+                        })}
+                        <Link to="/login">
+                            <LoginButton>Login</LoginButton>
+                        </Link>
+                    </MobileNavContainer>)}
             </InnerContainer>
         </Container>
     )

@@ -6,7 +6,6 @@ export const MainNavigation = {
     "Club History": "/club-history",
     "Hire Us": "/hire-us",
     Contacts: "/contact",
-    Membership: "/membership"
 };
 
 export const MemberNavigation = {

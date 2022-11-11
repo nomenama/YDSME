@@ -47,6 +47,7 @@ export const InnerContainer = styled.div<InnerContainerProps>`
 export const Flex = styled.div<FlexContainer>`
   width: ${({width}) => width ? `${width}px` : "100%"};
   display: flex;
+  flex-direction: ${({direction}) => direction ? direction : "column"};
   align-items: ${({align}) => align ? align : "center"};
   justify-content: ${({justify}) => justify ? justify : "space-between"};
   gap: ${({gap}) => gap ? `${gap}px` : null};
@@ -108,10 +109,28 @@ export const H3 = styled.h3`
   }
 `
 
-export const P1 = styled.p`
+export const H4 = styled.h4`
   width: 100%;
+  font-size: 25px;
+  text-align: center;
+
+  @media only screen and ${device.laptop} {
+    font-size: 20px;
+  }
+
+  @media only screen and ${device.mobileL} {
+    font-size: 18px;
+  }
+
+  @media only screen and ${device.mobileM} {
+    font-size: 16px;
+  }
+`
+
+export const P1 = styled.p<{ textAlign?: "center" | "justify" | "start" | "end" }>`
   font-size: 20px;
   line-height: 30px;
+  text-align: ${({textAlign}) => textAlign ? textAlign : "inherit"};
 
   @media only screen and ${device.laptop} {
     font-size: 18px;

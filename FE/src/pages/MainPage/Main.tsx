@@ -65,7 +65,6 @@ const MainPage = () => {
                     )}
                 </Divider>
             </S.InnerContainer>
-            <Footer/>
         </S.PageContainer>
     )
 }
