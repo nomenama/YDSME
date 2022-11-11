@@ -1,22 +1,20 @@
-const {Router} = require("express");
-const db = require("../../src/database");
+import {pool as db} from "../database.js";
 
-const router = Router();
+export async function getUser(id) {
+    const [rows] = await db.query(`
+    SELECT *
+    FROM users
+    WHERE id = ?
+    `, [id])
+    return rows[0];
+}
 
-router.post("/create-user", async (req, res) => {
-    const {name, username, password, role} = req.body;
+export async function createUser(firstName, lastName, username, password) {
+    const [result] = await db.query(`
+       INSERT INTO users (firstName, lastName, username, password)
+       VALUES (? , ?, ?, ?)
+    `, [firstName, lastName, username, password])
+    const id = result.insertId;
 
-    if (name && username && password && role) {
-        try {
-            const response = await db.promise().query(`INSERT INTO users VALUES('${name}', '${username}', '${password}', '${role}')`)
-            console.log(response);
-            return res.status(200).json({msg: "user created"});
-        } catch (e) {
-            return res.send(e);
-        }
-    }
-
-    return res.sendStatus(400);
-});
-
-module.exports = router;
+    return getUser(id);
+}

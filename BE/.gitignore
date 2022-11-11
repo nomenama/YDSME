@@ -2,3 +2,7 @@
 .gitignore
 .idea
 /.idea/
+
+.env
+/logs/
+/src/schema.sql
