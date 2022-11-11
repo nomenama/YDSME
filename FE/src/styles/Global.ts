@@ -16,13 +16,15 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
 
   body {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
-    background-color: #ffffff;
+    background: #3e5c8a;
+    background: -webkit-linear-gradient(to right top, #7b9bd7, #89aec4, #f5efd3);
+    background: linear-gradient(to right top, #80a4d9, #89aec4, #f5efd3);
   }
 
   body::-webkit-scrollbar {

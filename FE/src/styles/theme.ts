@@ -4,6 +4,7 @@ declare module "styled-components" {
     export interface DefaultTheme {
         colors: {
             primary: string,
+            primary_10: string;
             secondary: string,
             white: string,
             black: string,
@@ -38,8 +39,10 @@ export interface Device {
 
 export const theme: DefaultTheme = {
     colors: {
-        primary: "#525252",
+        primary: "#343A40",
+        primary_10: "#525252",
         secondary: "#abaaaa",
+
         white: "#ffffff",
         black: "#000000",
         black_90: "#191919",

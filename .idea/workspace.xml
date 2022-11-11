@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ae14bf5-4f8c-4b88-b11f-323481fcd64e" name="Changes" comment="refactor footer color">
-      <change afterPath="$PROJECT_DIR$/FE/public/docs/ydsme-1929-1982.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/entrance.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/hired1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/public/ycdsme-black-and-white.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/pages/ClubHistory/ClubHistory.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/pages/Contacts/Contact.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/pages/Contacts/Contact.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/src/pages/HireUs/HireUs.tsx" afterDir="false" />
+    <list default="true" id="4ae14bf5-4f8c-4b88-b11f-323481fcd64e" name="Changes" comment="Add static pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/common/index.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/common/index.styles.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/components/Header/Navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/components/Header/Navigation.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/pages/MainPage/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/MainPage/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/pages/Visitors/Visitors.styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/Visitors/Visitors.styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FE/src/pages/Visitors/Visitors.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/pages/Visitors/Visitors.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/styles/Global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/styles/Global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/src/styles/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/src/styles/theme.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,10 +108,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="npm.start-dev" />
       <item itemvalue="npm.BE-dev" />
       <item itemvalue="npm.BE-start" />
       <item itemvalue="npm.dev" />
+      <item itemvalue="npm.start-dev" />
     </list>
     <recent_temporary>
       <list>

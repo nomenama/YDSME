@@ -69,6 +69,9 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                                 </Link>
                             )
                         })}
+                        <Link_ href="https://membermojo.co.uk/york-model-engineers">
+                            <Button>Membership</Button>
+                        </Link_>
                         <Link to="/login">
                             <LoginButton>Login</LoginButton>
                         </Link>
