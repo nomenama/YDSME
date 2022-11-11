@@ -14,7 +14,7 @@ import {MainNavigation} from "./Navigation";
 import {Link, useLocation} from "react-router-dom";
 import {Flex} from "../../common/index.styles";
 import {useTheme} from "styled-components";
-import {Link as Link_} from "../../common/index.styles";
+import {Link as ExternalLink} from "../../common/index.styles";
 
 interface HeaderProps {
     logo: string;
@@ -46,9 +46,9 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                         )
                     })}
 
-                    <Link_ href="https://membermojo.co.uk/york-model-engineers">
+                    <ExternalLink href="https://membermojo.co.uk/york-model-engineers">
                         <Button>Membership</Button>
-                    </Link_>
+                    </ExternalLink>
                     <Link to="/login">
                         <LoginButton>Login</LoginButton>
                     </Link>
@@ -69,9 +69,9 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                                 </Link>
                             )
                         })}
-                        <Link_ href="https://membermojo.co.uk/york-model-engineers">
+                        <ExternalLink href="https://membermojo.co.uk/york-model-engineers">
                             <Button>Membership</Button>
-                        </Link_>
+                        </ExternalLink>
                         <Link to="/login">
                             <LoginButton>Login</LoginButton>
                         </Link>

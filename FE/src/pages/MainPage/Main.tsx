@@ -1,4 +1,3 @@
-import Footer from 'components/Footer/Footer';
 import {Slider} from 'components/Slider/Slider';
 import React from 'react';
 import * as S from "../../common/index.styles";
@@ -48,6 +47,7 @@ const MainPage = () => {
                                 height="600"
                                 allowFullScreen={true}
                                 loading="lazy"
+                                title="google map"
                         />
 
                         <S.H2 color="grey">Twinned With</S.H2>

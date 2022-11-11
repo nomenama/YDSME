@@ -8,7 +8,7 @@ export const ClubHistory = () => {
                 <H1>YCDSME - A Brief History</H1>
                 <H2>1929 to Present Day</H2>
                 <Flex justify="center">
-                    <img src="ycdsme-black-and-white.jpg" alt="old image" width={300} height={200} loading="lazy"/>
+                    <img src="ycdsme-black-and-white.jpg" alt="black and white" width={300} height={200} loading="lazy"/>
                 </Flex>
                 <P1>The first attempt to form a model engineering society in York was made in February 1923 when Mr. H. P. Jackson,
                     who had a shop in Micklegate catering for modellers’ needs, placed an advertisement in the Model Engineer for

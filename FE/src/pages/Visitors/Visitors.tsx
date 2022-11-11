@@ -1,5 +1,5 @@
 import React from 'react'
-import {PageContainer, InnerContainer, P1, H3, H4, UL, LI} from "../../common/index.styles";
+import {PageContainer, InnerContainer, P1, H4, UL, LI} from "../../common/index.styles";
 import * as S from "../../common/index.styles";
 import {useDevice} from "../../hooks/useDevice";
 
