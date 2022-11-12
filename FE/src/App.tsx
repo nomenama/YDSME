@@ -13,6 +13,7 @@ import ClubHistory from "./pages/ClubHistory/ClubHistory";
 import Footer from 'components/Footer/Footer';
 import HireUs from "./pages/HireUs/HireUs";
 import Contact from "./pages/Contacts/Contact";
+import Login from "./pages/Login/Login";
 
 function App() {
     const {isDesktop} = useDevice();
@@ -31,7 +32,7 @@ function App() {
                     <Route path="/club-history" element={<ClubHistory/>}/>
                     <Route path="/hire-us" element={<HireUs/>}/>
                     <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/login"/>
+                    <Route path="/login" element={<Login />}/>
                 </Routes>
             </Router>
             <Footer/>

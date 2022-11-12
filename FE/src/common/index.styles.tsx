@@ -28,6 +28,7 @@ export const PageContainer = styled.div`
 export const InnerContainer = styled.div<InnerContainerProps>`
   width: 90%;
   height: 100%;
+  min-height: calc(100vh - 180px);
   margin: 0 auto;
   padding: 20px 0;
   display: flex;
@@ -42,6 +43,14 @@ export const InnerContainer = styled.div<InnerContainerProps>`
     max-width: 1920px;
     margin: 0 auto;
   }
+
+  @media only screen and ${device.laptop} {
+    min-height: calc(100vh - 198px);
+  }
+
+  @media only screen and ${device.mobileL} {
+    min-height: calc(100vh - 178px);
+  }
 `
 
 export const Flex = styled.div<FlexContainer>`
@@ -51,7 +60,7 @@ export const Flex = styled.div<FlexContainer>`
   align-items: ${({align}) => align ? align : "center"};
   justify-content: ${({justify}) => justify ? justify : "space-between"};
   gap: ${({gap}) => gap ? `${gap}px` : null};
-  padding: ${({padding}) => padding ? `${padding}px` : "20px"};
+  padding: ${({padding}) => padding ? `${padding}px` : null};
 `
 
 export const H1 = styled.h1`
@@ -109,7 +118,8 @@ export const H3 = styled.h3`
   }
 `
 
-export const H4 = styled.h4`
+export const H4 = styled.h4<{color?: string}>`
+  color: ${({color}) => color ? color : null};
   width: 100%;
   font-size: 25px;
   text-align: center;
@@ -127,10 +137,11 @@ export const H4 = styled.h4`
   }
 `
 
-export const P1 = styled.p<{ textAlign?: "center" | "justify" | "start" | "end" }>`
+export const P1 = styled.p<{ color?: string, textAlign?: "center" | "justify" | "start" | "end" }>`
   font-size: 20px;
   line-height: 30px;
   text-align: ${({textAlign}) => textAlign ? textAlign : "inherit"};
+  color: ${({color}) => color ? color : "inherit"};
 
   @media only screen and ${device.laptop} {
     font-size: 18px;
@@ -159,4 +170,24 @@ export const UL = styled.ul`
 
 export const LI = styled.li`
   padding: 10px;
+`
+
+export const Spinner = styled.div<{width?: number, height?: number}>`
+    animation: 1.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px #cfd0d1;
+    border-bottom-color: #1c87c9;
+    border-radius: 50%;
+    height: ${({height}) => height ? `${height}px` : "20px"};
+    width: ${({width}) => width ? `${width}px` : "20px"};
+    will-change: transform;
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `
