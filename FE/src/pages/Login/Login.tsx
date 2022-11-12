@@ -8,7 +8,6 @@ export const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [data, setData] = useState<any>();
 
     const handleLogin = async (e: any) => {
         setIsLoading(true);
@@ -19,9 +18,22 @@ export const Login = () => {
             return;
         }
 
-        const {data} = await axios.get("http://localhost:8080/user");
-        setData(data)
-        setIsLoading(false);
+        try {
+            const {status} = await axios.post("http://localhost:8080/user", {username, password});
+
+            if (status === 201) {
+                //redirect user to member page
+                setUsername("");
+                setPassword("");
+                setIsLoading(false);
+            }
+
+        } catch (err: any) {
+            setError(err?.response?.data?.error);
+            setIsLoading(false);
+        }
+
+
     }
 
     useEffect(() => {
@@ -35,19 +47,18 @@ export const Login = () => {
             <InnerContainer>
                 <LoginForm>
                     <H4>Member Login</H4>
-                    {data && <P1>{data?.firstName}</P1>}
                     {Boolean(error) && <P1 textAlign="center" color="red">{error}</P1>}
                     <GroupContainer>
                         <Label htmlFor="username">
                             Username
                         </Label>
-                        <Input id="username" type="text" onChange={(e) => setUsername(e.target.value)}/>
+                        <Input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
                     </GroupContainer>
                     <GroupContainer>
                         <Label htmlFor="password">
                             Password
                         </Label>
-                        <Input id="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                        <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     </GroupContainer>
                     <LoginButton type="button" onClick={handleLogin}>{isLoading ? <Spinner width={20} height={20}/> : "Login"}</LoginButton>
                 </LoginForm>
