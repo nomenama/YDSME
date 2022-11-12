@@ -58,7 +58,7 @@ export const Login = () => {
                         </Label>
                         <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     </GroupContainer>
-                    <LoginButton type="button" onClick={handleLogin}>{isLoading ? <Spinner width={20} height={20}/> : "Login"}</LoginButton>
+                    <LoginButton type="submit" hidden onClick={handleLogin}>{isLoading ? <Spinner width={20} height={20}/> : "Login"}</LoginButton>
                 </LoginForm>
             </InnerContainer>
         </PageContainer>
