@@ -2,6 +2,7 @@ import {Router} from "express";
 import {getUser, createUser, deleteUser} from "../database.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import {useAuth} from "../middleware/useAuth.js";
 
 const router = Router();
 
@@ -12,6 +13,7 @@ router.post("/", async (req, res) => {
 	const user = await getUser(username);
 	if (!user) {
 		res.status(404).json({"error": "User not found"});
+		return;
 	}
 	const isMatch = await bcrypt.compare(password, user.password);
 	if (isMatch) {
@@ -22,14 +24,13 @@ router.post("/", async (req, res) => {
 			httpOnly: true,
 			maxAge: 24 * 60 * 60 * 1000 //1 day
 		});
-		
-		return res.status(200).json({id, firstName, lastName, roles});
+		res.status(200).json({id, firstName, lastName, roles});
 	} else {
-		return res.status(401).json({error: "Unauthorised"});
+		res.status(401).json({error: "Unauthorised"});
 	}
 });
 
-router.post("/create-user", async (req, res) => {
+router.post("/create-user", useAuth([5050]), async (req, res) => {
 	const {firstName, lastName, username, password, roles} = req.body;
 	const salt = bcrypt.genSaltSync(10);
 	const hashPassword = await bcrypt.hash(password, salt);
