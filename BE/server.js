@@ -4,8 +4,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 import {logger} from "./src/logger.js";
-import {getUser} from "./src/routes/users.js";
 import cors from "cors";
+import userRoutes from "./src/routes/users.js";
 
 dotenv.config();
 const app = express();
@@ -13,10 +13,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/user", async (req, res) => {
-    const user = await getUser(1);
-    res.status(201).send(user);
-})
+app.use("/user", userRoutes);
 
 
 //error handling and logging

@@ -1,20 +1,38 @@
-import {pool as db} from "../database.js";
+import {Router} from "express";
+import {getUser, createUser, deleteUser} from "../database.js";
+import bcrypt from "bcrypt";
 
-export async function getUser(id) {
-    const [rows] = await db.query(`
-    SELECT *
-    FROM users
-    WHERE id = ?
-    `, [id])
-    return rows[0];
-}
+const router = Router();
 
-export async function createUser(firstName, lastName, username, password) {
-    const [result] = await db.query(`
-       INSERT INTO users (firstName, lastName, username, password)
-       VALUES (? , ?, ?, ?)
-    `, [firstName, lastName, username, password])
-    const id = result.insertId;
+router.post("/", async (req, res) => {
+	const {username, password} = req.body;
 
-    return getUser(id);
-}
+	const user = await getUser(username);
+	if (!user) {
+		res.status(404).json({"error": "User not found"});
+	}
+
+	const isMatch = await bcrypt.compare(password, user.password);
+	if (isMatch) {
+		//sent jwt http only cookie here
+		res.status(201).send(user);
+	} else {
+		res.status(401).json({error: "Unauthorised"});
+	}
+});
+
+router.post("/create-user", async (req, res) => {
+	const {firstName, lastName, username, password, roles} = req.body;
+	const salt = bcrypt.genSaltSync(10);
+	const hashPassword = await bcrypt.hash(password, salt);
+
+	const user = await createUser(firstName, lastName, username, hashPassword, roles);
+	res.status(201).send(user);
+});
+
+/*router.delete("/delete-user", async (req, res) => {
+	const user = await deleteUser(3);
+	res.status(201)
+});*/
+
+export default router;
