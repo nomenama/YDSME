@@ -22,13 +22,8 @@ router.post("/", async (req, res) => {
 			httpOnly: true,
 			maxAge: 24 * 60 * 60 * 1000 //1 day
 		});
-
-		res.cookie("user", {id, firstName, lastName, roles}, {
-			httpOnly: false,
-			maxAge: 24 * 60 * 60 * 1000
-		});
-
-		return res.status(200).json({"message": "Success"});
+		
+		return res.status(200).json({id, firstName, lastName, roles});
 	} else {
 		return res.status(401).json({error: "Unauthorised"});
 	}

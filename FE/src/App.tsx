@@ -14,6 +14,7 @@ import Footer from 'components/Footer/Footer';
 import HireUs from "./pages/HireUs/HireUs";
 import Contact from "./pages/Contacts/Contact";
 import Login from "./pages/Login/Login";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
     const {isDesktop} = useDevice();
@@ -32,7 +33,10 @@ function App() {
                     <Route path="/club-history" element={<ClubHistory/>}/>
                     <Route path="/hire-us" element={<HireUs/>}/>
                     <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/login" element={<Login />}/>
+                    <Route path="/login" element={<Login/>}/>
+
+                    //member only routes
+                    <Route path="/dashboard" element={<Dashboard/>}/>
                 </Routes>
             </Router>
             <Footer/>

@@ -2,8 +2,10 @@ import React, {useEffect, useState} from "react";
 import {H4, InnerContainer, P1, PageContainer, Spinner} from "../../common/index.styles";
 import {GroupContainer, Input, Label, LoginButton, LoginForm} from "./Login.styles";
 import {postLogin} from "../../api/api";
+import {useNavigate} from "react-router-dom";
 
 export const Login = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -19,21 +21,17 @@ export const Login = () => {
         }
 
         try {
-            const {status} = await postLogin(username, password);
-
-            if (status === 200) {
-                //redirect user to member page
-                setUsername("");
-                setPassword("");
-                setIsLoading(false);
-            }
-
+            const {data} = await postLogin(username, password);
+            sessionStorage.setItem("user", JSON.stringify(data));
+            setUsername("");
+            setPassword("");
+            setIsLoading(false);
+            return navigate("/dashboard");
         } catch (err: any) {
             setError(err?.response?.data?.error);
             setIsLoading(false);
         }
-
-
+        return;
     }
 
     useEffect(() => {
