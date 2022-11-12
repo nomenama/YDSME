@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {H4, InnerContainer, P1, PageContainer, Spinner} from "../../common/index.styles";
 import {GroupContainer, Input, Label, LoginButton, LoginForm} from "./Login.styles";
-import axios from "axios";
+import {postLogin} from "../../api/api";
 
 export const Login = () => {
     const [username, setUsername] = useState("");
@@ -19,9 +19,9 @@ export const Login = () => {
         }
 
         try {
-            const {status} = await axios.post("http://localhost:8080/user", {username, password});
+            const {status} = await postLogin(username, password);
 
-            if (status === 201) {
+            if (status === 200) {
                 //redirect user to member page
                 setUsername("");
                 setPassword("");
@@ -37,7 +37,7 @@ export const Login = () => {
     }
 
     useEffect(() => {
-        if(error) {
+        if (error) {
             setError("")
         }
     }, [username, password])
