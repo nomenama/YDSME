@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                             <Button>Membership</Button>
                         </ExternalLink>
                         <Link to="/login">
-                            <LoginButton>Login</LoginButton>
+                            <LoginButton onClick={() => setDisplayMobileNavBar(false)}>Login</LoginButton>
                         </Link>
                     </MobileNavContainer>)}
             </InnerContainer>
