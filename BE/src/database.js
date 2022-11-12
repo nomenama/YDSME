@@ -6,39 +6,41 @@ export const db = mysql.createPool({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
+    database: process.env.MYSQL_DATABASE
 }).promise();
 
-export async function getUser(username) {
+export async function getUser (username) {
     const [rows] = await db.query(`
     SELECT *
     FROM users
     WHERE username = ?
-    `, [username])
+    `, [username]);
     return rows[0];
 }
 
-export async function getUserById(id) {
+export async function getUserById (id) {
     const [rows] = await db.query(`
     SELECT *
     FROM users
     WHERE id = ?
-    `, [id])
+    `, [id]);
     return rows[0];
 }
 
-export async function createUser(firstName, lastName, username, password, roles) {
+export async function createUser (firstName, lastName, username, password, roles) {
     const [result] = await db.query(`
        INSERT INTO users (firstName, lastName, username, password, roles)
        VALUES (? , ?, ?, ?, ?)
-    `, [firstName, lastName, username, password, JSON.stringify(roles)])
+    `, [firstName, lastName, username, password, JSON.stringify(roles)]);
 
     const id = result.insertId;
     return await getUserById(id);
 }
 
-export async function deleteUser(id) {
-    await db.query(`
+export async function deleteUser (id) {
+    const response = await db.query(`
        DELETE FROM users WHERE id = ${id}
-    `)
+    `);
+
+    return response[0];
 }

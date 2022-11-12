@@ -37,12 +37,18 @@ router.post("/create-user", useAuth([5048]), async (req, res) => {
 	const hashPassword = await bcrypt.hash(password, salt);
 
 	const user = await createUser(firstName, lastName, username, hashPassword, roles);
-	res.status(201).send(user);
+	res.status(201).send({message: "User created"});
 });
 
-/*router.delete("/delete-user", async (req, res) => {
-	const user = await deleteUser(3);
-	res.status(201)
-});*/
+router.delete("/delete-user/:id", useAuth([5048]), async (req, res) => {
+	const {id} = req.params;
+
+	const response = await deleteUser(id);
+	if (response?.affectedRows >= 1) {
+		res.status(201).send({message: "User deleted"});
+	} else {
+		res.status(201).send({message: "success"});
+	}
+});
 
 export default router;
