@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
+//Only admin can create new user
 router.post("/create-user", useAuth([5048]), async (req, res) => {
 	const {firstName, lastName, username, password, roles} = req.body;
 	const salt = bcrypt.genSaltSync(10);
