@@ -7,10 +7,11 @@ import {logger} from "./src/logger.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRoutes from "./src/routes/users.js";
+import {allowedCors} from "./src/allowedCors/index.js";
 
 dotenv.config();
 const app = express();
-app.use(cors({origin: process.env.REQUEST_ORIGIN, credentials: true}));
+app.use(cors(allowedCors));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
