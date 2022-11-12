@@ -8,6 +8,7 @@ export const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [data, setData] = useState();
 
     const handleLogin = async (e: any) => {
         setIsLoading(true);
@@ -19,7 +20,7 @@ export const Login = () => {
         }
 
         const {data} = await axios.get("http://localhost:8080/user");
-        console.log(data);
+        setData(data)
         setIsLoading(false);
     }
 
@@ -34,6 +35,7 @@ export const Login = () => {
             <InnerContainer>
                 <LoginForm>
                     <H4>Member Login</H4>
+                    {data && <P1>{data.firstName}</P1>}
                     {Boolean(error) && <P1 textAlign="center" color="red">{error}</P1>}
                     <GroupContainer>
                         <Label htmlFor="username">
