@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.post("/create-user", useAuth([5050]), async (req, res) => {
+router.post("/create-user", useAuth([5048]), async (req, res) => {
 	const {firstName, lastName, username, password, roles} = req.body;
 	const salt = bcrypt.genSaltSync(10);
 	const hashPassword = await bcrypt.hash(password, salt);
