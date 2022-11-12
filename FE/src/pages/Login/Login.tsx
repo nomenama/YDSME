@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {H4, InnerContainer, P1, PageContainer, Spinner} from "../../common/index.styles";
 import {GroupContainer, Input, Label, LoginButton, LoginForm} from "./Login.styles";
+import axios from "axios";
 
 export const Login = () => {
     const [username, setUsername] = useState("");
@@ -8,13 +9,18 @@ export const Login = () => {
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleLogin = (e: any) => {
+    const handleLogin = async (e: any) => {
         setIsLoading(true);
         e.preventDefault();
         if (!username || !password) {
             setError("Username or password cannot be empty");
             setIsLoading(false);
+            return;
         }
+
+        const {data} = await axios.get("http://localhost:8080/user");
+        console.log(data);
+        setIsLoading(false);
     }
 
     useEffect(() => {
