@@ -5,10 +5,11 @@ import bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 import {logger} from "./src/logger.js";
 import {getUser} from "./src/routes/users.js";
-import {transports, format} from "winston";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
