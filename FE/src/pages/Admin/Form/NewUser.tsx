@@ -4,6 +4,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {LoadingProps, User} from 'types';
 import {Form, Select, Label, Input, CheckboxLabel, ButtonGroup} from "../Admin.styles";
 import {createUser} from "../../../api/api";
+import {ToastError, ToastSuccess} from "../../../common/Toast";
 
 const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
     //Member role added by default
@@ -49,10 +50,7 @@ const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
         const isMemberRoleSelected = userDetail.roles.some((role) => role === "MEMBER");
 
         if (!isMemberRoleSelected) {
-            setUserDetail({
-                ...userDetail,
-                roles: [...userDetail.roles, "MEMBER"]
-            })
+            userDetail.roles.push("MEMBER")
         }
 
         try {
@@ -61,13 +59,13 @@ const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
 
             if (status === 201) {
                 setIsLoading(false);
-                setUserDetail(initialState);
-                console.log(data.message)
+                /*setUserDetail(initialState);*/
+                ToastSuccess(data.message);
             }
 
         } catch (err: any) {
-            console.log(err);
             setIsLoading(false);
+            ToastError();
         }
     }
 
