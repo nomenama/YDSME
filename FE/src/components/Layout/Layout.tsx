@@ -1,7 +1,7 @@
 import Announcement from 'components/Announcement/Announcement';
 import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
-import {MainNavigation} from 'components/Header/Navigation';
+import {MainNavigation, MemberNavigation} from 'components/Header/Navigation';
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import {ThemeProvider} from "styled-components";
@@ -15,7 +15,7 @@ export const DefaultLayout = () => {
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyles/>
-            <Header logo={"Logo"} navigations={MainNavigation}/>
+            <Header navigations={MainNavigation} includeLoginButton={true}/>
             {!isDesktop && <Announcement/>}
             <Outlet/>
             <Footer/>
@@ -26,6 +26,7 @@ export const DefaultLayout = () => {
 export const MemberLayout = () => {
     return (
         <ThemeProvider theme={theme}>
+            <Header navigations={MemberNavigation} includeLogoutButton={true}/>
             <GlobalStyles/>
             <Outlet/>
             <Footer/>

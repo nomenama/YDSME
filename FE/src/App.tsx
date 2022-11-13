@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
 import Admin from "./pages/Admin/Admin";
 import Unauthorised from "./pages/Unauthorised/Unauthorised";
+import Editor from "./pages/Editor/Editor";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/hire-us" element={<HireUs/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/unauthorised" element={<Unauthorised/>}/>
             </Route>
 
             <Route path="/" element={<MemberLayout/>}>
@@ -34,7 +36,7 @@ function App() {
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["EDITOR", "ADMIN"]}/>}>
-                    <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path="/editor" element={<Editor/>}/>
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>
@@ -44,7 +46,6 @@ function App() {
 
             <Route path="/" element={<UnhandledLayout/>}>
                 <Route path="*" element={<NotFound/>}/>
-                <Route path="/unauthorised" element={<Unauthorised/>}/>
             </Route>
         </Routes>
     )

@@ -1,33 +1,42 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Button,
     Container,
     InnerContainer,
     Hamburger,
-    LoginButton,
     MobileNavContainer,
     NavContainer,
     CloseNavBar,
-    Logo
+    Logo,
+    PrimaryButton
 } from "./Header.styles";
-import {MainNavigation} from "./Navigation";
-import {Link, useLocation} from "react-router-dom";
+import {MainNavigation, MemberNavigation} from "./Navigation";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Flex} from "../../common/index.styles";
 import {useTheme} from "styled-components";
 import {Link as ExternalLink} from "../../common/index.styles";
 
 interface HeaderProps {
-    logo: string;
-    navigations: typeof MainNavigation;
+    includeLoginButton?: boolean;
+    includeLogoutButton?: boolean;
+    navigations: typeof MainNavigation | typeof MemberNavigation;
 }
 
-const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
+const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false, includeLogoutButton = false}) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const theme = useTheme();
     const [displayMobileNavBar, setDisplayMobileNavBar] = useState<boolean>(false);
 
     const onToggleSideBar = () => {
         setDisplayMobileNavBar((prev) => !prev);
+    }
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        /*Cookies.remove("token", {path: "/"})*/
+
+        navigate("/", {replace: true})
     }
 
     return (
@@ -46,12 +55,20 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                         )
                     })}
 
-                    <ExternalLink href="https://membermojo.co.uk/york-model-engineers">
-                        <Button>Membership</Button>
-                    </ExternalLink>
-                    <Link to="/login">
-                        <LoginButton>Login</LoginButton>
-                    </Link>
+                    {includeLoginButton && (
+                        <>
+                            <ExternalLink href="https://membermojo.co.uk/york-model-engineers">
+                                <Button>Membership</Button>
+                            </ExternalLink>
+                            <Link to="/login">
+                                <PrimaryButton>Login</PrimaryButton>
+                            </Link>
+                        </>
+                    )}
+
+                    {includeLogoutButton && (
+                        <PrimaryButton onClick={handleLogout}>Logout</PrimaryButton>
+                    )}
                 </NavContainer>
 
                 <Hamburger size={30} color={theme.colors.white} onClick={onToggleSideBar}/>
@@ -69,12 +86,24 @@ const Header: React.FC<HeaderProps> = ({logo, navigations}) => {
                                 </Link>
                             )
                         })}
-                        <ExternalLink href="https://membermojo.co.uk/york-model-engineers">
-                            <Button>Membership</Button>
-                        </ExternalLink>
-                        <Link to="/login">
-                            <LoginButton onClick={() => setDisplayMobileNavBar(false)}>Login</LoginButton>
-                        </Link>
+
+                        {includeLoginButton && (
+                            <>
+                                <ExternalLink href="https://membermojo.co.uk/york-model-engineers">
+                                    <Button>Membership</Button>
+                                </ExternalLink>
+                                <Link to="/login">
+                                    <PrimaryButton onClick={() => setDisplayMobileNavBar(false)}>Login</PrimaryButton>
+                                </Link>
+                            </>
+                        )}
+
+                        {includeLogoutButton && (
+                            <PrimaryButton onClick={() => {
+                                handleLogout();
+                                setDisplayMobileNavBar(false);
+                            }}>Logout</PrimaryButton>
+                        )}
                     </MobileNavContainer>)}
             </InnerContainer>
         </Container>

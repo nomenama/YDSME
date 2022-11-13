@@ -32,7 +32,7 @@ export const InnerContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
+
   @media only screen and ${device.desktopL} {
     max-width: 1920px;
     margin: 0 auto;
@@ -43,7 +43,7 @@ export const NavContainer = styled.nav`
   display: flex;
   gap: 25px;
   align-items: center;
-  
+
   @media only screen and ${device.laptop} {
     gap: 15px;
   }
@@ -72,9 +72,9 @@ export const Logo = styled.img`
   }
 `
 
-export const CloseNavBar = styled(IoMdClose)<{onClick: () => void}>``
+export const CloseNavBar = styled(IoMdClose)<{ onClick: () => void }>``
 
-export const Hamburger = styled(IoIosMenu)<{onClick: () => void}>`
+export const Hamburger = styled(IoIosMenu)<{ onClick: () => void }>`
   display: none;
 
   @media only screen and ${device.tablet} {
@@ -95,7 +95,7 @@ export const MobileNavContainer = styled.nav`
   left: 0;
   z-index: 100;
   background-color: ${({theme}) => theme.colors.primary};
-  
+
   @media only screen and ${device.tablet} {
     display: flex;
   }
@@ -112,19 +112,18 @@ export const Button = styled.button<ButtonProps>`
   border-bottom: 3px solid transparent;
   cursor: pointer;
   transition: border-bottom-color 300ms ease-in-out,
-  color 300ms ease-in-out, 
-  font-size 300ms ease-in-out
-;
-  
+  color 300ms ease-in-out,
+  font-size 300ms ease-in-out;
+
   ${({selected}) => selected && css`
     border-bottom: ${({theme}) => `3px solid ${theme.buttons.primary}`};
   `};
-  
-    :hover {
-      border-bottom: ${({theme}) => `3px solid ${theme.buttons.primary}`};
-      transform: scale(1.1);
-    }
-  
+
+  :hover {
+    border-bottom: ${({theme}) => `3px solid ${theme.buttons.primary}`};
+    transform: scale(1.1);
+  }
+
   :disabled {
     opacity: 0.5;
   }
@@ -138,7 +137,7 @@ export const Button = styled.button<ButtonProps>`
   }
 `
 
-export const LoginButton = styled.button`
+export const PrimaryButton = styled.button`
   padding: 2px 15px;
   font-family: Roboto, sans-serif;
   font-size: 2rem;
@@ -149,7 +148,7 @@ export const LoginButton = styled.button`
   border-radius: 5px;
   transition: all 200ms ease-in-out;
   cursor: pointer;
-  
+
   :hover {
     color: ${({theme}) => theme.buttons.primary};
     background-color: ${({theme}) => theme.colors.white};
