@@ -2,10 +2,11 @@ import {H4, P1, Spinner} from 'common/index.styles';
 import {SecondaryButton} from 'pages/Login/Login.styles';
 import React, {ChangeEvent, useState} from 'react';
 import {LoadingProps, User} from 'types';
-import {Form, Select, Label, Input, CheckboxLabel} from "../Admin.styles";
+import {Form, Select, Label, Input, CheckboxLabel, ButtonGroup} from "../Admin.styles";
 import {createUser} from "../../../api/api";
 
-const NewUser = ({isLoading, setIsLoading}: LoadingProps) => {
+const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
+    //Member role added by default
     const newRoles = ["ADMIN", "COMMITTEE", "EDITOR", "MEMBER"];
     const initialState = {
         firstName: "",
@@ -38,8 +39,21 @@ const NewUser = ({isLoading, setIsLoading}: LoadingProps) => {
         }
     }
 
+    const handleGoBack = () => {
+        setUserDetail(initialState);
+        setWhichForm("");
+    }
+
     const handleOnSubmit = async (e: any) => {
         e.preventDefault();
+        const isMemberRoleSelected = userDetail.roles.some((role) => role === "MEMBER");
+
+        if (!isMemberRoleSelected) {
+            setUserDetail({
+                ...userDetail,
+                roles: [...userDetail.roles, "MEMBER"]
+            })
+        }
 
         try {
             setIsLoading(true);
@@ -55,7 +69,6 @@ const NewUser = ({isLoading, setIsLoading}: LoadingProps) => {
             console.log(err);
             setIsLoading(false);
         }
-
     }
 
     return (
@@ -139,7 +152,11 @@ const NewUser = ({isLoading, setIsLoading}: LoadingProps) => {
                     ))}
                 </Select>
             </Label>
-            <SecondaryButton>{isLoading ? <Spinner/> : "Submit"}</SecondaryButton>
+            <ButtonGroup>
+                <SecondaryButton type="button" onClick={handleGoBack}>Back</SecondaryButton>
+                <SecondaryButton>{isLoading ? <Spinner/> : "Submit"}</SecondaryButton>
+            </ButtonGroup>
+
         </Form>
     );
 };

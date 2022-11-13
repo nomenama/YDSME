@@ -41,3 +41,10 @@ export const CheckboxLabel = styled(Label_)`
   justify-content: flex-start;
   gap: 30px;
 `
+
+export const ButtonGroup = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+`

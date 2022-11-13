@@ -29,6 +29,7 @@ export enum FORM_TYPE {
 }
 
 export interface LoadingProps {
-    isLoading: boolean,
-    setIsLoading: Dispatch<SetStateAction<boolean>>
+    isLoading: boolean;
+    setIsLoading: Dispatch<SetStateAction<boolean>>;
+    setWhichForm: Dispatch<SetStateAction<string>>;
 }
