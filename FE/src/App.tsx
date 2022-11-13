@@ -1,47 +1,50 @@
 import React from 'react';
-import {ThemeProvider} from "styled-components";
+import Layout from "./components/Layout/Layout";
 import MainPage from './pages/MainPage/Main';
 import Visitors from "./pages/Visitors/Visitors";
-import {theme} from "./styles/theme";
-import GlobalStyles from "./styles/Global";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import {MainNavigation} from "./components/Header/Navigation";
-import Header from "./components/Header/Header";
-import Announcement from "./components/Announcement/Announcement";
-import {useDevice} from "./hooks/useDevice";
+import {Routes, Route} from "react-router-dom";
+import RequireUser from "./components/RequireAuth/RequireUser";
 import ClubHistory from "./pages/ClubHistory/ClubHistory";
-import Footer from 'components/Footer/Footer';
 import HireUs from "./pages/HireUs/HireUs";
 import Contact from "./pages/Contacts/Contact";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import NotFound from "./pages/NotFound/NotFound";
+import Admin from "./pages/Admin/Admin";
+import Unauthorised from "./pages/Unauthorised/Unauthorised";
 
 function App() {
-    const {isDesktop} = useDevice();
-
     return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyles/>
-            <Router>
-                <Header logo={"Logo"} navigations={MainNavigation}/>
-                {!isDesktop && <Announcement/>}
-                <Routes>
-                    <Route path="/" element={<MainPage/>}/>
-                    <Route path="/visitor" element={<Visitors/>}/>
-                    <Route path="/calendar"/>
-                    <Route path="/gallery"/>
-                    <Route path="/club-history" element={<ClubHistory/>}/>
-                    <Route path="/hire-us" element={<HireUs/>}/>
-                    <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/login" element={<Login/>}/>
+        <Routes>
+            <Route path="/" element={<Layout/>}>
+                <Route path="/" element={<MainPage/>}/>
+                <Route path="/visitor" element={<Visitors/>}/>
+                <Route path="/calendar"/>
+                <Route path="/gallery"/>
+                <Route path="/club-history" element={<ClubHistory/>}/>
+                <Route path="/hire-us" element={<HireUs/>}/>
+                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/unauthorised" element={<Unauthorised/>}/>
 
-                    //member only routes
+                {/*Member only page*/}
+                <Route element={<RequireUser allowedRoles={["MEMBER"]}/>}>
                     <Route path="/dashboard" element={<Dashboard/>}/>
-                </Routes>
-            </Router>
-            <Footer/>
-        </ThemeProvider>
+                </Route>
+
+                <Route element={<RequireUser allowedRoles={["EDITOR", "ADMIN"]}/>}>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
+                </Route>
+
+                <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>
+                    <Route path="/admin" element={<Admin/>}/>
+                </Route>
+
+                {/*Catch unhandled page*/}
+                <Route path="*" element={<NotFound/>}/>
+            </Route>
+        </Routes>
     )
 }
 
-export default App
+export default App;

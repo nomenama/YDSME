@@ -9,7 +9,7 @@ const router = Router();
 router.post("/", async (req, res) => {
 	const {username, password} = req.body;
 	const privateKey = process.env.ACCESS_TOKEN_SECRET;
-
+	
 	const user = await getUser(username);
 	if (!user) {
 		res.status(404).json({"error": "User not found"});

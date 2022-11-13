@@ -2,10 +2,13 @@ import React, {useEffect, useState} from "react";
 import {H4, InnerContainer, P1, PageContainer, Spinner} from "../../common/index.styles";
 import {GroupContainer, Input, Label, LoginButton, LoginForm} from "./Login.styles";
 import {postLogin} from "../../api/api";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 export const Login = () => {
+    const {setUser} = useUser();
     const navigate = useNavigate();
+    const location = useLocation();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -22,11 +25,13 @@ export const Login = () => {
 
         try {
             const {data} = await postLogin(username, password);
-            sessionStorage.setItem("user", JSON.stringify(data));
+            // @ts-ignore
+            const from = location.state?.from?.pathname || "/dashboard";
+            setUser(data);
             setUsername("");
             setPassword("");
             setIsLoading(false);
-            return navigate("/dashboard");
+            return navigate(from, {replace: true});
         } catch (err: any) {
             setError(err?.response?.data?.error);
             setIsLoading(false);
