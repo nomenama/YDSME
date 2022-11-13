@@ -24,8 +24,7 @@ export interface userAuthContextProps {
 
 export enum FORM_TYPE {
     "NEW_USER" = "New User",
-    "DELETE_USER" = "Delete User",
-    "UPDATE_USER" = "Update User"
+    "MANAGE_USER" = "Manage User"
 }
 
 export interface LoadingProps {

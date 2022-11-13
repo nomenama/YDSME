@@ -6,6 +6,7 @@ import NewUser from './Form/NewUser';
 import {Greeting} from "../Dashboard/Dashboard.styles";
 import {useTheme} from "styled-components";
 import useUser from "../../hooks/useUser";
+import ManageUser from "./Form/ManageUser";
 
 const Admin = () => {
     const theme = useTheme();
@@ -27,11 +28,9 @@ const Admin = () => {
                 <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.NEW_USER)}>Create New User</SecondaryButton>
                 {whichForm === FORM_TYPE.NEW_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
 
-                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.DELETE_USER)}>Delete User</SecondaryButton>
-                {whichForm === FORM_TYPE.DELETE_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
+                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.MANAGE_USER)}>Manage User</SecondaryButton>
+                {whichForm === FORM_TYPE.MANAGE_USER && <ManageUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
 
-                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.UPDATE_USER)}>Update User</SecondaryButton>
-                {whichForm === FORM_TYPE.UPDATE_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
 
             </InnerContainer>
         </PageContainer>
