@@ -18,6 +18,15 @@ export async function getUser (username) {
 	return rows[0];
 }
 
+export async function getUserByName (firstName) {
+	const [rows] = await db.query(`
+    SELECT *
+    FROM users
+    WHERE firstName = ?
+    `, [firstName]);
+	return rows[0];
+}
+
 export async function getUserById (id) {
 	const [rows] = await db.query(`
     SELECT *

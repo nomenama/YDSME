@@ -6,6 +6,12 @@ export const Form = styled.form`
   width: 100%;
   border: 1px solid ${({theme}) => theme.colors.primary};
   border-radius: 2px;
+`
+
+export const FieldSet = styled.fieldset`
+  width: 100%;
+  border: none;
+  border-radius: 2px;
   padding: 20px;
   display: flex;
   flex-direction: column;

@@ -2,12 +2,8 @@ import {SecondaryButton} from 'pages/Login/Login.styles';
 import React, {useState} from 'react';
 import {SearchBarContainer, SearchInput} from "./SearchBar.styles";
 
-const SearchBar = () => {
+const SearchBar = ({handleOnSearch}: { handleOnSearch: any }) => {
     const [search, setSearch] = useState("");
-
-    const handleOnSearch = () => {
-        console.log(search)
-    }
 
     return (
         <SearchBarContainer>
@@ -16,7 +12,10 @@ const SearchBar = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={"search user by first name"}
             />
-            <SecondaryButton onClick={handleOnSearch}>Search</SecondaryButton>
+            <SecondaryButton onClick={() => {
+                handleOnSearch(search);
+                setSearch("");
+            }}>Search</SecondaryButton>
         </SearchBarContainer>
     );
 };

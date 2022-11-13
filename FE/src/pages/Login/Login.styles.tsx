@@ -59,4 +59,9 @@ export const SecondaryButton = styled.button`
   @media only screen and ${device.laptop} {
     font-size: 16px;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 `

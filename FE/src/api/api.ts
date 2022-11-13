@@ -15,6 +15,16 @@ export const createUser = async (user: User) => {
     }
 };
 
+export const getUser = async (name: User["firstName"]) => {
+    const rawResponse = await api.get(`/user/get-user`, {params: {name}, withCredentials: true});
+    const {data, status} = rawResponse;
+
+    return {
+        data,
+        status
+    }
+};
+
 export const deleteUser = async (userId: number) => {
     const rawResponse = await api.delete(`/user/delete-user/${userId}`, {withCredentials: true});
     const {data, status} = rawResponse;

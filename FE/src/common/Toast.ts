@@ -4,8 +4,8 @@ export const ToastSuccess = (message: string) => {
     return toast.success(message, {position: toast.POSITION.BOTTOM_CENTER, autoClose: 4000})
 }
 
-export const ToastError = () => {
-    return toast.error("Error. Try again!", {position: toast.POSITION.BOTTOM_CENTER, autoClose: 4000})
+export const ToastError = (error?: string | undefined) => {
+    return toast.error(error ? error : "Error. Try again!", {position: toast.POSITION.BOTTOM_CENTER, autoClose: 4000})
 }
 
 export const ToastInfo = (message: string) => {

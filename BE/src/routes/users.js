@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {getUser, createUser, deleteUser} from "../database.js";
+import {getUser, createUser, deleteUser, getUserByName} from "../database.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Auth} from "../middleware/Auth.js";
@@ -30,6 +30,17 @@ router.post("/", async (req, res) => {
 	}
 });
 
+router.get("/get-user", Auth(["ADMIN"]), async (req, res) => {
+	const name = req.query.name;
+	const user = await getUserByName(name);
+	if (!user) {
+		res.status(404).json({"error": "User not found"});
+	} else {
+		const {id, firstName, lastName, email, username, roles} = user;
+		res.status(200).json({id, firstName, lastName, email, username, roles});
+	}
+});
+
 //Only admin can create new user
 router.post("/create-user", Auth(["ADMIN"]), async (req, res) => {
 	const {firstName, lastName, username, password, email, roles} = req.body;
@@ -45,9 +56,9 @@ router.delete("/delete-user/:id", Auth(["ADMIN"]), async (req, res) => {
 
 	const response = await deleteUser(id);
 	if (response?.affectedRows >= 1) {
-		res.status(201).send({message: "User deleted"});
+		res.status(200).send({message: "User deleted"});
 	} else {
-		res.status(201).send({message: "success"});
+		res.status(200).send({message: "success"});
 	}
 });
 
