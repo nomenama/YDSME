@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from "./components/Layout/Layout";
+import {DefaultLayout, MemberLayout, UnhandledLayout} from "./components/Layout/Layout";
 import MainPage from './pages/MainPage/Main';
 import Visitors from "./pages/Visitors/Visitors";
 import {Routes, Route} from "react-router-dom";
@@ -16,7 +16,7 @@ import Unauthorised from "./pages/Unauthorised/Unauthorised";
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<DefaultLayout/>}>
                 <Route path="/" element={<MainPage/>}/>
                 <Route path="/visitor" element={<Visitors/>}/>
                 <Route path="/calendar"/>
@@ -25,8 +25,9 @@ function App() {
                 <Route path="/hire-us" element={<HireUs/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/unauthorised" element={<Unauthorised/>}/>
+            </Route>
 
+            <Route path="/" element={<MemberLayout/>}>
                 {/*Member only page*/}
                 <Route element={<RequireUser allowedRoles={["MEMBER"]}/>}>
                     <Route path="/dashboard" element={<Dashboard/>}/>
@@ -39,9 +40,11 @@ function App() {
                 <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>
                     <Route path="/admin" element={<Admin/>}/>
                 </Route>
+            </Route>
 
-                {/*Catch unhandled page*/}
+            <Route path="/" element={<UnhandledLayout/>}>
                 <Route path="*" element={<NotFound/>}/>
+                <Route path="/unauthorised" element={<Unauthorised/>}/>
             </Route>
         </Routes>
     )

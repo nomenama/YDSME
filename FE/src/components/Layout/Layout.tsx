@@ -9,7 +9,7 @@ import GlobalStyles from 'styles/Global';
 import {theme} from 'styles/theme';
 import {useDevice} from "../../hooks/useDevice";
 
-const Layout = () => {
+export const DefaultLayout = () => {
     const {isDesktop} = useDevice();
 
     return (
@@ -23,4 +23,21 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export const MemberLayout = () => {
+    return (
+        <ThemeProvider theme={theme}>
+            <GlobalStyles/>
+            <Outlet/>
+            <Footer/>
+        </ThemeProvider>
+    );
+};
+
+export const UnhandledLayout = () => {
+    return (
+        <ThemeProvider theme={theme}>
+            <GlobalStyles/>
+            <Outlet/>
+        </ThemeProvider>
+    );
+};
