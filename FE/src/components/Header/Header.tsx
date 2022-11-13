@@ -35,8 +35,8 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
     const handleLogout = () => {
         sessionStorage.clear();
         /*Cookies.remove("token", {path: "/"})*/
-
-        navigate("/", {replace: true})
+        navigate("/", {replace: true});
+        window.location.reload();
     }
 
     return (
