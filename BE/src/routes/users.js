@@ -9,7 +9,7 @@ const router = Router();
 router.post("/", async (req, res) => {
 	const {username, password} = req.body;
 	const privateKey = process.env.ACCESS_TOKEN_SECRET;
-	
+
 	const user = await getUser(username);
 	if (!user) {
 		res.status(404).json({"error": "User not found"});
@@ -17,14 +17,14 @@ router.post("/", async (req, res) => {
 	}
 	const isMatch = await bcrypt.compare(password, user.password);
 	if (isMatch) {
-		const {id, firstName, lastName, roles} = user;
-		const token = jwt.sign({id, firstName, lastName, roles}, privateKey, {expiresIn: "12h"}, {});
+		const {id, firstName, lastName, email, roles} = user;
+		const token = jwt.sign({id, firstName, lastName, email, roles}, privateKey, {expiresIn: "12h"}, {});
 
 		res.cookie("token", token, {
 			httpOnly: true,
 			maxAge: 24 * 60 * 60 * 1000 //1 day
 		});
-		res.status(200).json({id, firstName, lastName, roles});
+		res.status(200).json({id, firstName, lastName, email, roles});
 	} else {
 		res.status(401).json({error: "Unauthorised"});
 	}
@@ -32,11 +32,11 @@ router.post("/", async (req, res) => {
 
 //Only admin can create new user
 router.post("/create-user", Auth(["ADMIN"]), async (req, res) => {
-	const {firstName, lastName, username, password, roles} = req.body;
+	const {firstName, lastName, username, password, email, roles} = req.body;
 	const salt = bcrypt.genSaltSync(10);
 	const hashPassword = await bcrypt.hash(password, salt);
 
-	const user = await createUser(firstName, lastName, username, hashPassword, roles);
+	const user = await createUser(firstName, lastName, username, hashPassword, email, roles);
 	res.status(201).send({message: "User created"});
 });
 

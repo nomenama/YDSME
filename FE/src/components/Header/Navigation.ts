@@ -10,11 +10,11 @@ export const MainNavigation = {
 
 export const MemberNavigation = {
     Dashboard: "/dashboard",
-    Agenda: "/agendas",
-    Minutes: "/minutes",
-    "Boiler Guides": "/boiler-guides",
-    "Club Rules": "/club-rules",
-    "Club News": "/club-news",
+    /*    Agenda: "/agendas",
+        Minutes: "/minutes",
+        "Boiler Guides": "/boiler-guides",
+        "Club Rules": "/club-rules",
+        "Club News": "/club-news",*/
     Editor: "/editor",
     Admin: "/admin"
 };

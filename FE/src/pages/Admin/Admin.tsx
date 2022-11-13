@@ -10,6 +10,7 @@ const Admin = () => {
         lastName: "Account",
         username: "test",
         password: "testUser1",
+        email: "test@ydsme.com",
         roles: ["MEMBER"]
     }
 
