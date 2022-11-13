@@ -10,7 +10,7 @@ const RequireUser = ({allowedRoles}: { allowedRoles: UserRoles }) => {
     return (
         user?.roles.find((role: UserRole) => allowedRoles?.includes(role))
             ? <Outlet/>
-            : user?.roles
+            : user?.roles.length > 0
                 ? <Navigate to="/unauthorised" state={{from: location}} replace/>
                 : <Navigate
                     to="/login"
