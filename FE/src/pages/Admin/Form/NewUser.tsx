@@ -1,4 +1,4 @@
-import {H4, P1} from 'common/index.styles';
+import {H4, P1, Spinner} from 'common/index.styles';
 import {SecondaryButton} from 'pages/Login/Login.styles';
 import React, {ChangeEvent, useState} from 'react';
 import {LoadingProps, User} from 'types';
@@ -139,7 +139,7 @@ const NewUser = ({isLoading, setIsLoading}: LoadingProps) => {
                     ))}
                 </Select>
             </Label>
-            <SecondaryButton>Submit</SecondaryButton>
+            <SecondaryButton>{isLoading ? <Spinner/> : "Submit"}</SecondaryButton>
         </Form>
     );
 };
