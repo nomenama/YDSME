@@ -3,7 +3,7 @@ export interface User {
     lastName: string;
     username: string;
     password?: string;
-    roles: number[];
+    roles: string[];
 }
 
 export interface UserWithId extends User {

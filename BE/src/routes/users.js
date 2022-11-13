@@ -2,7 +2,7 @@ import {Router} from "express";
 import {getUser, createUser, deleteUser} from "../database.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {useAuth} from "../middleware/useAuth.js";
+import {Auth} from "../middleware/Auth.js";
 
 const router = Router();
 
@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 });
 
 //Only admin can create new user
-router.post("/create-user", useAuth([5048]), async (req, res) => {
+router.post("/create-user", Auth(["ADMIN"]), async (req, res) => {
 	const {firstName, lastName, username, password, roles} = req.body;
 	const salt = bcrypt.genSaltSync(10);
 	const hashPassword = await bcrypt.hash(password, salt);
@@ -40,7 +40,7 @@ router.post("/create-user", useAuth([5048]), async (req, res) => {
 	res.status(201).send({message: "User created"});
 });
 
-router.delete("/delete-user/:id", useAuth([5048]), async (req, res) => {
+router.delete("/delete-user/:id", Auth(["ADMIN"]), async (req, res) => {
 	const {id} = req.params;
 
 	const response = await deleteUser(id);

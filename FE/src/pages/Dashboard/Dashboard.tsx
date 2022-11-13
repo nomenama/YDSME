@@ -7,11 +7,11 @@ import {LoginButton} from "../Login/Login.styles";
 const Dashboard = () => {
 
     const user: User = {
-        firstName: "testing",
-        lastName: "testing",
-        username: "unknown10",
-        password: "hell yeah",
-        roles: [1024, 2804]
+        firstName: "Test",
+        lastName: "Account",
+        username: "test",
+        password: "testUser1",
+        roles: ["MEMBER"]
     }
 
     return (
