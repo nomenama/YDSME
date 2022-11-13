@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "styles/theme";
+import {device} from "styles/theme";
 
 export const LoginForm = styled.form`
   width: 100%;
@@ -42,7 +42,7 @@ export const Input = styled.input`
   }
 `
 
-export const LoginButton = styled.button`
+export const SecondaryButton = styled.button`
   font-family: inherit;
   font-size: 18px;
   background-color: ${({theme}) => theme.buttons.primary};
@@ -55,7 +55,7 @@ export const LoginButton = styled.button`
   justify-content: center;
   align-items: center;
   outline-color: ${({theme}) => theme.buttons.secondary};
-  
+
   @media only screen and ${device.laptop} {
     font-size: 16px;
   }

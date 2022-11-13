@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {H4, InnerContainer, P1, PageContainer, Spinner} from "../../common/index.styles";
-import {GroupContainer, Input, Label, LoginButton, LoginForm} from "./Login.styles";
+import {GroupContainer, Input, Label, LoginForm, SecondaryButton} from "./Login.styles";
 import {postLogin} from "../../api/api";
 import {useNavigate} from "react-router-dom";
 import useUser from "../../hooks/useUser";
@@ -24,6 +24,7 @@ export const Login = () => {
 
         try {
             const {data} = await postLogin(username, password);
+            sessionStorage.setItem("user", JSON.stringify(data));
             setUser(data);
             setUsername("");
             setPassword("");
@@ -65,7 +66,7 @@ export const Login = () => {
                         </Label>
                         <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     </GroupContainer>
-                    <LoginButton type="submit" hidden onClick={handleLogin}>{isLoading ? <Spinner width={20} height={20}/> : "Login"}</LoginButton>
+                    <SecondaryButton type="submit" hidden onClick={handleLogin}>{isLoading ? <Spinner width={20} height={20}/> : "Login"}</SecondaryButton>
                 </LoginForm>
             </InnerContainer>
         </PageContainer>

@@ -21,3 +21,14 @@ export interface userAuthContextProps {
     user: User;
     setUser: Dispatch<SetStateAction<User>>
 }
+
+export enum FORM_TYPE {
+    "NEW_USER" = "New User",
+    "DELETE_USER" = "Delete User",
+    "UPDATE_USER" = "Update User"
+}
+
+export interface LoadingProps {
+    isLoading: boolean,
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+}

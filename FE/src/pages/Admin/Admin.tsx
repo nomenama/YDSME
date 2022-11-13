@@ -1,25 +1,38 @@
-import React from 'react';
-import {H1, InnerContainer, PageContainer} from "../../common/index.styles";
-import {LoginButton} from "../Login/Login.styles";
-import {createUser, deleteUser} from "../../api/api";
-import {User} from "../../types";
+import React, {useState} from 'react';
+import {H1, H3, InnerContainer, P1, PageContainer} from "../../common/index.styles";
+import {FORM_TYPE} from "../../types";
+import {SecondaryButton} from "../Login/Login.styles";
+import NewUser from './Form/NewUser';
+import {Greeting} from "../Dashboard/Dashboard.styles";
+import {useTheme} from "styled-components";
+import useUser from "../../hooks/useUser";
 
 const Admin = () => {
-    const user: User = {
-        firstName: "Test",
-        lastName: "Account",
-        username: "test",
-        password: "testUser1",
-        email: "test@ydsme.com",
-        roles: ["MEMBER"]
+    const theme = useTheme();
+    const {user} = useUser();
+    const [whichForm, setWhichForm] = useState<string | boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const handleWhichFormToRender = (form: FORM_TYPE) => {
+        setWhichForm(form);
     }
 
     return (
         <PageContainer>
             <InnerContainer>
-                <H1>DASHBOARD</H1>
-                <LoginButton onClick={() => createUser(user)}>Create New User</LoginButton>
-                <LoginButton onClick={() => deleteUser(108)}>Delete User</LoginButton>
+                <Greeting>
+                    <P1 color={theme.colors.primary}>Welcome, {user.firstName}</P1>
+                </Greeting>
+
+                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.NEW_USER)}>Create New User</SecondaryButton>
+                {whichForm === FORM_TYPE.NEW_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading}/>}
+
+                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.DELETE_USER)}>Delete User</SecondaryButton>
+                {whichForm === FORM_TYPE.DELETE_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading}/>}
+
+                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.UPDATE_USER)}>Update User</SecondaryButton>
+                {whichForm === FORM_TYPE.UPDATE_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading}/>}
+
             </InnerContainer>
         </PageContainer>
     );
