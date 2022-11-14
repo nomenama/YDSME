@@ -1,5 +1,5 @@
 import api from "./baseApi";
-import {User} from "../types";
+import {User, UserWithId} from "../types";
 
 export const postLogin = (username: string, password: string) => {
     return api.post("/user", {username, password}, {withCredentials: true})
@@ -7,6 +7,16 @@ export const postLogin = (username: string, password: string) => {
 
 export const createUser = async (user: User) => {
     const rawResponse = await api.post("/user/create-user", user, {withCredentials: true});
+    const {data, status} = rawResponse;
+
+    return {
+        data,
+        status
+    }
+};
+
+export const updateUser = async (user: UserWithId) => {
+    const rawResponse = await api.put("/user/update-user", user, {withCredentials: true});
     const {data, status} = rawResponse;
 
     return {

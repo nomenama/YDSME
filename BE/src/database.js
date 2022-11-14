@@ -46,6 +46,20 @@ export async function createUser (firstName, lastName, username, password, email
 	return await getUserById(id);
 }
 
+export async function updateUser (firstName, lastName, email, roles, username) {
+	const [result] = await db.query(`
+	UPDATE users
+	SET
+		firstName = ?,
+		lastName = ?,
+		email = ?,
+		roles = ?
+	WHERE username = ?
+    `, [firstName, lastName, email, JSON.stringify(roles), username]);
+
+	return await getUser(username);
+}
+
 export async function deleteUser (id) {
 	const response = await db.query(`
        DELETE FROM users WHERE id = ${id}

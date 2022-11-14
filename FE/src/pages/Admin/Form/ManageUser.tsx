@@ -3,7 +3,7 @@ import {SecondaryButton} from 'pages/Login/Login.styles';
 import React, {ChangeEvent, useState} from 'react';
 import {LoadingProps, UserWithId} from 'types';
 import {Form, Select, Label, Input, CheckboxLabel, ButtonGroup, FieldSet} from "../Admin.styles";
-import {createUser, deleteUser, getUser} from "../../../api/api";
+import {createUser, deleteUser, getUser, updateUser} from "../../../api/api";
 import {ToastError, ToastSuccess} from "../../../common/Toast";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 
@@ -85,11 +85,11 @@ const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
 
         try {
             setIsLoading(true);
-            const {status, data} = await createUser(userDetail);
+            const {status, data} = await updateUser(userDetail);
 
-            if (status === 201) {
+            if (status === 200) {
                 setIsLoading(false);
-                /*setUserDetail(initialState);*/
+                setUserDetail(initialState);
                 ToastSuccess(data.message);
             }
 
@@ -151,14 +151,9 @@ const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
                     <Label htmlFor="username">
                         Username
                         <Input
-                            onChange={handleOnChange}
-                            value={userDetail.username}
                             type="text"
-                            id="username"
-                            name="username"
-                            placeholder={"required"}
-                            required
-                            minLength={6}
+                            placeholder={userDetail.username}
+                            readOnly
                         />
                     </Label>
 

@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {getUser, createUser, deleteUser, getUserByName} from "../database.js";
+import {getUser, createUser, deleteUser, getUserByName, updateUser} from "../database.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Auth} from "../middleware/Auth.js";
@@ -49,6 +49,17 @@ router.post("/create-user", Auth(["ADMIN"]), async (req, res) => {
 
 	const user = await createUser(firstName, lastName, username, hashPassword, email, roles);
 	res.status(201).send({message: "User created"});
+});
+
+router.put("/update-user", Auth(["ADMIN"]), async (req, res) => {
+	const {firstName, lastName, username, email, roles} = req.body;
+
+	const user = await updateUser(firstName, lastName, email, roles, username);
+	if (user) {
+		res.status(200).send({message: "User updated"});
+	} else {
+		res.status(500).send({error: "Something wrong!"});
+	}
 });
 
 router.delete("/delete-user/:id", Auth(["ADMIN"]), async (req, res) => {
