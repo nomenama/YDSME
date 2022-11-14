@@ -5,6 +5,9 @@ export const postLogin = (username: string, password: string) => {
     return api.post("/user", {username, password}, {withCredentials: true})
 };
 
+/*editor routes*/
+
+
 /*admin routes*/
 export const createUser = async (user: User) => {
     const rawResponse = await api.post("/user/create-user", user, {withCredentials: true});
