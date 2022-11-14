@@ -118,7 +118,7 @@ export const H3 = styled.h3`
   }
 `
 
-export const H4 = styled.h4<{color?: string}>`
+export const H4 = styled.h4<{ color?: string }>`
   color: ${({color}) => color ? color : null};
   width: 100%;
   font-size: 25px;
@@ -172,15 +172,15 @@ export const LI = styled.li`
   padding: 10px;
 `
 
-export const Spinner = styled.div<{width?: number, height?: number}>`
-    animation: 1.5s linear infinite spinner;
-    animation-play-state: inherit;
-    border: solid 5px #cfd0d1;
-    border-bottom-color: #1c87c9;
-    border-radius: 50%;
-    height: ${({height}) => height ? `${height}px` : "20px"};
-    width: ${({width}) => width ? `${width}px` : "20px"};
-    will-change: transform;
+export const Spinner = styled.div<{ width?: number, height?: number }>`
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  height: ${({height}) => height ? `${height}px` : "20px"};
+  width: ${({width}) => width ? `${width}px` : "20px"};
+  will-change: transform;
 
   @keyframes spinner {
     0% {
@@ -190,4 +190,11 @@ export const Spinner = styled.div<{width?: number, height?: number}>`
       transform: rotate(360deg);
     }
   }
+`
+
+export const Divider = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 20px 0;
 `

@@ -1,32 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Marquee from "react-fast-marquee";
 import {AnnouncementContainer, Span} from "./Announcement.styles";
-import {getAnnouncement} from "../../api/api";
+import useContent from "../../hooks/useContent";
 
 const Announcement = () => {
-    const [announcements, setAnnouncements] = useState<string[]>([]);
-
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        const asyncProcess = async () => {
-            try {
-                const {status, data} = await getAnnouncement(signal);
-                if (status === 200) {
-                    setAnnouncements(data);
-                }
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        void asyncProcess();
-
-        return () => controller.abort();
-    }, [])
+    const {announcements} = useContent();
 
     return (
         <Marquee speed={60} gradient={false} pauseOnHover={true} delay={1}>
-            {announcements.map((announcement, index) => {
+            {announcements.map((announcement: any, index: any) => {
                 return (
                     <AnnouncementContainer key={announcement + index}>
                         <Span>{announcement}</Span>

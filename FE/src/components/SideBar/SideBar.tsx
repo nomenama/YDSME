@@ -1,10 +1,12 @@
-import {H3, P1} from "../../common/index.styles";
+import {Divider, H4, P1} from "../../common/index.styles";
 import React, {useEffect, useState} from "react";
 import * as S from "./SideBar.styles";
+import useContent from "../../hooks/useContent";
 
 export const SideBar = () => {
     const [sideBarWidth, setSideBarWidth] = useState<number | undefined>(undefined);
     const [sideBarTop, setSideBarTop] = useState<number | undefined>(undefined);
+    const {announcements} = useContent();
 
     useEffect(() => {
         const sideBarElement = document.querySelector(".sideBar")!.getBoundingClientRect();
@@ -35,9 +37,12 @@ export const SideBar = () => {
 
     return (
         <S.SideBar width={sideBarWidth} className="sideBar">
-            <H3>Announcements</H3>
-            <P1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, nisi.</P1>
-            <P1>Lorem ipsum dolor sit amet.</P1>
+            <H4>Exciting Events</H4>
+            {announcements.map((announcement: string, index: number) => (
+                <Divider key={index}>
+                    <P1>{announcement}</P1>
+                </Divider>
+            ))}
         </S.SideBar>
     )
 }
