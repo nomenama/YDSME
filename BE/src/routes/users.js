@@ -3,12 +3,13 @@ import {getUser, createUser, deleteUser, getUserByName, updateUser} from "../dat
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Auth} from "../middleware/Auth.js";
+import fs from "fs";
 
 const router = Router();
 
 router.post("/", async (req, res) => {
 	const {username, password} = req.body;
-	const privateKey = process.env.ACCESS_TOKEN_SECRET;
+	const privateKey = fs.readFileSync("./certs/private.pem");
 
 	const user = await getUser(username);
 	if (!user) {
@@ -18,7 +19,12 @@ router.post("/", async (req, res) => {
 	const isMatch = await bcrypt.compare(password, user.password);
 	if (isMatch) {
 		const {id, firstName, lastName, email, roles} = user;
-		const token = jwt.sign({id, firstName, lastName, email, roles}, privateKey, {expiresIn: "1m"}, {});
+		const token = jwt.sign(
+			{id, firstName, lastName, email, roles},
+			privateKey,
+			{expiresIn: "6h", algorithm: "RS256"},
+			{}
+		);
 
 		res.cookie("token", token, {
 			httpOnly: true,
@@ -30,6 +36,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
+//Only admin can create new user
 router.get("/get-user", Auth(["ADMIN"]), async (req, res) => {
 	const name = req.query.name;
 	const user = await getUserByName(name);
@@ -41,7 +48,6 @@ router.get("/get-user", Auth(["ADMIN"]), async (req, res) => {
 	}
 });
 
-//Only admin can create new user
 router.post("/create-user", Auth(["ADMIN"]), async (req, res) => {
 	const {firstName, lastName, username, password, email, roles} = req.body;
 	const salt = bcrypt.genSaltSync(10);

@@ -65,7 +65,6 @@ const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
 
         } catch (err: any) {
             setIsLoading(false);
-            console.log(err)
             ToastError(err.response.data.message);
         }
     }

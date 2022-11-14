@@ -24,7 +24,7 @@ app.use("/user", userRoutes);
 //error handling and logging
 app.use((err, req, res, next) => {
 	logger.log("error", err.stack);
-	res.status(500).send("Something broke! Please try again or contact administrator.");
+	res.status(500).send({message: "Something broke! Please try again or contact administrator."});
 });
 
 app.listen(process.env.PORT, () => {
