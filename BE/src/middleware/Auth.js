@@ -6,13 +6,13 @@ export const Auth = (roles) => {
 		const token = req?.cookies?.token;
 
 		jwt.verify(token, privateKey, {}, (err, decodedToken) => {
-			if (err) return res.status(401).json({error: "Unauthorised"});
+			if (err) return res.status(401).json({message: "Unauthorised"});
 			const isMatched = decodedToken.roles.some((role) => roles.includes(role));
 
 			if (isMatched) {
 				next();
 			} else {
-				res.status(401).json({error: "Unauthorised"});
+				res.status(401).json({message: "Unauthorised"});
 			}
 		});
 	};
