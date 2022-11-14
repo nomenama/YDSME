@@ -5,6 +5,7 @@ export const postLogin = (username: string, password: string) => {
     return api.post("/user", {username, password}, {withCredentials: true})
 };
 
+/*admin routes*/
 export const createUser = async (user: User) => {
     const rawResponse = await api.post("/user/create-user", user, {withCredentials: true});
     const {data, status} = rawResponse;
@@ -37,6 +38,18 @@ export const getUser = async (name: User["firstName"]) => {
 
 export const deleteUser = async (userId: number) => {
     const rawResponse = await api.delete(`/user/delete-user/${userId}`, {withCredentials: true});
+    const {data, status} = rawResponse;
+
+    return {
+        data,
+        status
+    }
+};
+
+
+/*public routes*/
+export const getAnnouncement = async (signal: AbortSignal) => {
+    const rawResponse = await api.get(`/public/announcement`, {signal});
     const {data, status} = rawResponse;
 
     return {

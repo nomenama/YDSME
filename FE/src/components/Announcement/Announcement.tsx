@@ -1,9 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Marquee from "react-fast-marquee";
 import {AnnouncementContainer, Span} from "./Announcement.styles";
+import {getAnnouncement} from "../../api/api";
 
 const Announcement = () => {
-    const announcements = ["Welcome to York District Society of Model Engineering - Follow us on Facebook for latest updates", "Don't miss out Christmas Day celebration. Open to public. Book now!"]
+    const [announcements, setAnnouncements] = useState<string[]>([]);
+
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        const asyncProcess = async () => {
+            try {
+                const {status, data} = await getAnnouncement(signal);
+                if (status === 200) {
+                    setAnnouncements(data);
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        void asyncProcess();
+
+        return () => controller.abort();
+    }, [])
 
     return (
         <Marquee speed={60} gradient={false} pauseOnHover={true} delay={1}>

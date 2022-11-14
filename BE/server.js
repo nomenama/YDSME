@@ -7,6 +7,7 @@ import {logger} from "./src/logger.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRoutes from "./src/routes/users.js";
+import publicRoutes from "./src/routes/public.js";
 import {allowedCors} from "./src/allowedCors/index.js";
 
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use("/public", publicRoutes);
 app.use("/user", userRoutes);
 
 

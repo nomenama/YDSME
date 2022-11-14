@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {getUser, createUser, deleteUser, getUserByName, updateUser} from "../database.js";
+import {getUser, createUser, deleteUser, getUserByName, updateUser} from "../database/userQuery.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Auth} from "../middleware/Auth.js";
