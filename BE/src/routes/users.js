@@ -12,13 +12,13 @@ router.post("/", async (req, res) => {
 
 	const user = await getUser(username);
 	if (!user) {
-		res.status(404).json({"error": "User not found"});
+		res.status(404).json({"message": "User not found"});
 		return;
 	}
 	const isMatch = await bcrypt.compare(password, user.password);
 	if (isMatch) {
 		const {id, firstName, lastName, email, roles} = user;
-		const token = jwt.sign({id, firstName, lastName, email, roles}, privateKey, {expiresIn: "12h"}, {});
+		const token = jwt.sign({id, firstName, lastName, email, roles}, privateKey, {expiresIn: "1m"}, {});
 
 		res.cookie("token", token, {
 			httpOnly: true,
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 		});
 		res.status(200).json({id, firstName, lastName, email, roles});
 	} else {
-		res.status(401).json({error: "Unauthorised"});
+		res.status(401).json({message: "Unauthorised"});
 	}
 });
 
@@ -34,7 +34,7 @@ router.get("/get-user", Auth(["ADMIN"]), async (req, res) => {
 	const name = req.query.name;
 	const user = await getUserByName(name);
 	if (!user) {
-		res.status(404).json({"error": "User not found"});
+		res.status(404).json({"message": "User not found"});
 	} else {
 		const {id, firstName, lastName, email, username, roles} = user;
 		res.status(200).json({id, firstName, lastName, email, username, roles});
@@ -58,7 +58,7 @@ router.put("/update-user", Auth(["ADMIN"]), async (req, res) => {
 	if (user) {
 		res.status(200).send({message: "User updated"});
 	} else {
-		res.status(500).send({error: "Something wrong!"});
+		res.status(500).send({message: "Something wrong!"});
 	}
 });
 
