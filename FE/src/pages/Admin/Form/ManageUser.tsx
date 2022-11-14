@@ -3,7 +3,7 @@ import {SecondaryButton} from 'pages/Login/Login.styles';
 import React, {ChangeEvent, useState} from 'react';
 import {LoadingProps, UserWithId} from 'types';
 import {Form, Select, Label, Input, CheckboxLabel, ButtonGroup, FieldSet} from "../Admin.styles";
-import {createUser, deleteUser, getUser, updateUser} from "../../../api/api";
+import {deleteUser, getUser, updateUser} from "../../../api/api";
 import {ToastError, ToastSuccess} from "../../../common/Toast";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {H1, H3, InnerContainer, P1, PageContainer} from "../../common/index.styles";
+import {InnerContainer, P1, PageContainer} from "../../common/index.styles";
 import {FORM_TYPE} from "../../types";
 import {SecondaryButton} from "../Login/Login.styles";
 import NewUser from './Form/NewUser';
