@@ -19,5 +19,5 @@ export const Column = styled.article`
   box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
   border-radius: 2px;
   padding: 20px;
-  border: 1px solid ${({theme}) => theme.colors.primary};
+  border: 0.5px solid ${({theme}) => theme.colors.primary};
 `

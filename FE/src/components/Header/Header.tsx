@@ -15,6 +15,7 @@ import {Link as ExternalLink} from "../../common/index.styles";
 import Drawer from "../Drawer/Drawer";
 import MobileNavigation from "./MobileNavigation/MobileNavigation";
 import {Logout} from "../../api/api";
+import useUser from "../../hooks/useUser";
 
 interface HeaderProps {
     includeLoginButton?: boolean;
@@ -28,6 +29,7 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
     const navigate = useNavigate();
     const [displayMobileNavBar, setDisplayMobileNavBar] = useState<boolean>(false);
     const [displayDrawer, setDisplayDrawer] = useState(false);
+    const {isLoggedIn} = useUser();
 
     const onToggleSideBar = () => {
         setDisplayMobileNavBar((prev) => !prev);
@@ -62,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
                                 <Button>Membership</Button>
                             </ExternalLink>
                             <Link to="/login">
-                                <PrimaryButton>Login</PrimaryButton>
+                                <PrimaryButton>{isLoggedIn ? "Dashboard" : "Login"}</PrimaryButton>
                             </Link>
                         </>
                     )}

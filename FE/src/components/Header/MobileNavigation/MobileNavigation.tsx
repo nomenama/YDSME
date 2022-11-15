@@ -6,6 +6,7 @@ import {Button, CloseNavBar} from "../Header.styles";
 import {Link} from "react-router-dom";
 import {useTheme} from "styled-components";
 import {MainNavigation, MemberNavigation} from "../Navigation";
+import useUser from "../../../hooks/useUser";
 
 export interface MobileNavigationProps {
     navigations: typeof MainNavigation | typeof MemberNavigation;
@@ -28,6 +29,7 @@ const MobileNavigation = ({
                               handleOnLogout
                           }: MobileNavigationProps) => {
     const theme = useTheme();
+    const {isLoggedIn} = useUser();
 
     return ReactDOM.createPortal(
         <MobileNavContainer>
@@ -49,7 +51,7 @@ const MobileNavigation = ({
                         <Button>Membership</Button>
                     </ExternalLink>
                     <Link to="/login">
-                        <MobileNavButton onClick={() => setDisplayMobileNavBar(false)}>Login</MobileNavButton>
+                        <MobileNavButton onClick={() => setDisplayMobileNavBar(false)}>{isLoggedIn ? "Dashboard" : "Login"}</MobileNavButton>
                     </Link>
                 </>
             )}

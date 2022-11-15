@@ -12,8 +12,10 @@ export const UserProvider = ({children}: any) => {
     const isEditor = user?.roles.some((role: string) => role === "EDITOR");
     const isAdmin = user?.roles.some((role: string) => role === "ADMIN");
 
+    const isLoggedIn = isMember || isCommittee || isEditor || isAdmin;
+
     return (
-        <UserContext.Provider value={{user, setUser, isMember, isCommittee, isEditor, isAdmin}}>
+        <UserContext.Provider value={{user, setUser, isMember, isCommittee, isEditor, isAdmin, isLoggedIn}}>
             {children}
         </UserContext.Provider>
     )

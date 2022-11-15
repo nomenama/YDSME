@@ -30,9 +30,9 @@ const EventTile = ({id, title, content, startDate, endDate, time, handleOnDelete
                         </>
                     ) : (
                         <>
-                            <h2>{`${formattedStartDate?.day} ${formattedStartDate?.month}`}</h2>
+                            <H3>{`${formattedStartDate?.day} ${formattedStartDate?.month}`}</H3>
                             <H4>-</H4>
-                            <h2>{`${formattedEndDate?.day} ${formattedEndDate?.month}`}</h2>
+                            <H3>{`${formattedEndDate?.day} ${formattedEndDate?.month}`}</H3>
                         </>
                     )}
             </LeftSection>

@@ -6,12 +6,16 @@ import {Column, EventContainer} from './Events.styles';
 import {CalendarEvent} from "../../types";
 import EventTile from "../../components/EventTile/EventTile";
 import {ToastError, ToastSuccess} from "../../common/Toast";
+import {PrimaryButton} from 'components/Header/Header.styles';
+import useUser from "../../hooks/useUser";
 
 
 const Events = () => {
     const {isDesktop} = useDevice();
+    const {isEditor, isAdmin} = useUser();
     const getYear = new Date().getFullYear();
     const [events, setEvents] = useState<CalendarEvent[]>([]);
+    const [newEvent, setNewEvent] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     let publicEvents: CalendarEvent[] = [];
     let memberEvents: CalendarEvent[] = [];
@@ -69,6 +73,7 @@ const Events = () => {
             {!isLoading && Boolean(events?.length) && (
                 <InnerContainer>
                     <H1>Upcoming events {getYear}</H1>
+                    {(isEditor || isAdmin) && <PrimaryButton onClick={() => setNewEvent((prevState) => !prevState)}>Create New Event</PrimaryButton>}
 
                     <EventContainer>
 
