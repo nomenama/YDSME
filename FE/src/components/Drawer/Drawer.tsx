@@ -1,8 +1,6 @@
 import React from 'react';
 import {AnchorTag, CloseButton, DrawerButton, DrawerContainer, DrawerGroup, Overlay} from "./Drawer.styles";
 import ReactDOM from "react-dom";
-import {Link} from "react-router-dom";
-import {SecondaryButton} from 'pages/Login/Login.styles';
 
 import {useDevice} from "../../hooks/useDevice";
 import {P1} from "../../common/index.styles";

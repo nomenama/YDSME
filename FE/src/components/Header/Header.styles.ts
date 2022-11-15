@@ -87,25 +87,6 @@ export const Hamburger = styled(GiHamburgerMenu)<{ onClick: () => void }>`
   }
 `
 
-export const MobileNavContainer = styled.nav`
-  width: 100%;
-  height: 100vh;
-  display: none;
-  padding: 20px;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background-color: ${({theme}) => theme.colors.primary};
-
-  @media only screen and ${device.tablet} {
-    display: flex;
-  }
-`
-
 export const Button = styled.button<ButtonProps>`
   padding: 10px 0;
   font-family: Roboto, sans-serif;
