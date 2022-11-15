@@ -8,27 +8,29 @@ import {
     NavContainer,
     CloseNavBar,
     Logo,
-    PrimaryButton
+    PrimaryButton, DrawerHamburger
 } from "./Header.styles";
 import {MainNavigation, MemberNavigation} from "./Navigation";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Flex} from "../../common/index.styles";
 import {useTheme} from "styled-components";
 import {Link as ExternalLink} from "../../common/index.styles";
+import {GiHamburgerMenu} from "react-icons/gi";
 import {Logout} from "../../api/api";
-import {ToastError, ToastSuccess} from "../../common/Toast";
+import Drawer from "../Drawer/Drawer";
 
 interface HeaderProps {
     includeLoginButton?: boolean;
-    includeLogoutButton?: boolean;
+    includeDrawerButton?: boolean;
     navigations: typeof MainNavigation | typeof MemberNavigation;
 }
 
-const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false, includeLogoutButton = false}) => {
+const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false, includeDrawerButton = false}) => {
     const location = useLocation();
     const navigate = useNavigate();
     const theme = useTheme();
     const [displayMobileNavBar, setDisplayMobileNavBar] = useState<boolean>(false);
+    const [displayDrawer, setDisplayDrawer] = useState(false);
 
     const onToggleSideBar = () => {
         setDisplayMobileNavBar((prev) => !prev);
@@ -68,8 +70,9 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
                         </>
                     )}
 
-                    {includeLogoutButton && (
-                        <PrimaryButton onClick={handleLogout}>Logout</PrimaryButton>
+                    {includeDrawerButton && (
+                        <DrawerHamburger size={25} onClick={() => setDisplayDrawer((prevState) => !prevState)}/>
+
                     )}
                 </NavContainer>
 
@@ -100,14 +103,16 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
                             </>
                         )}
 
-                        {includeLogoutButton && (
+                        {includeDrawerButton && (
                             <PrimaryButton onClick={() => {
-                                handleLogout();
+                                setDisplayDrawer((prevState) => !prevState);
                                 setDisplayMobileNavBar(false);
-                            }}>Logout</PrimaryButton>
+                            }}>Menu</PrimaryButton>
                         )}
                     </MobileNavContainer>)}
             </InnerContainer>
+
+            {displayDrawer && <Drawer onClose={() => setDisplayDrawer(false)}/>}
         </Container>
     )
 }

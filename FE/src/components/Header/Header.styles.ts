@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
 import {device} from "../../styles/theme";
-import {IoIosMenu, IoMdClose} from "react-icons/io";
+import {IoMdClose} from "react-icons/io";
+import {GiHamburgerMenu} from "react-icons/gi";
 
 interface ButtonProps {
     selected?: boolean;
@@ -72,9 +73,13 @@ export const Logo = styled.img`
   }
 `
 
+export const DrawerHamburger = styled(GiHamburgerMenu)`
+  color: ${({theme}) => theme.colors.white};
+`
+
 export const CloseNavBar = styled(IoMdClose)<{ onClick: () => void }>``
 
-export const Hamburger = styled(IoIosMenu)<{ onClick: () => void }>`
+export const Hamburger = styled(GiHamburgerMenu)<{ onClick: () => void }>`
   display: none;
 
   @media only screen and ${device.tablet} {

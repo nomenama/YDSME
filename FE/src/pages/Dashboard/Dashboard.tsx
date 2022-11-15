@@ -14,8 +14,6 @@ const Dashboard = () => {
                 <Greeting>
                     <P1 color={theme.colors.primary}>Welcome, {user.firstName}</P1>
                 </Greeting>
-
-                <H1>DASHBOARD</H1>
             </InnerContainer>
         </PageContainer>
     )
