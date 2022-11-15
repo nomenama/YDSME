@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-//Only admin can create new user
+//Only admin can get and create new user
 router.get("/get-user", Auth(["ADMIN"]), async (req, res) => {
 	const name = req.query.name;
 	const user = await getUserByName(name);

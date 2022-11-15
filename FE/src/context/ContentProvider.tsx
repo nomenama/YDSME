@@ -16,7 +16,7 @@ export const ContentProvider = ({children}: any) => {
         const asyncProcess = async () => {
             try {
                 const {status, data} = await getAnnouncement(signal);
-                console.log(data)
+
                 if (status === 200) {
                     setAnnouncements(data as string[]);
                 }

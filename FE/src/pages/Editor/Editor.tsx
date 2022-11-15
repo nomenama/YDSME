@@ -6,7 +6,7 @@ const Editor = () => {
     return (
         <PageContainer>
             <InnerContainer>
-                <FileUpload/>
+                <FileUpload folderName="Minutes"/>
             </InnerContainer>
 
         </PageContainer>

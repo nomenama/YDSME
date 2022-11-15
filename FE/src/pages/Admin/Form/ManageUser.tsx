@@ -29,8 +29,8 @@ const NewUser = ({isLoading, setIsLoading, setWhichForm}: LoadingProps) => {
             if (status === 200) {
                 setUserDetail(data);
             }
-        } catch (err) {
-            ToastError("No user found");
+        } catch (err: any) {
+            ToastError(err.message);
         }
     }
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
