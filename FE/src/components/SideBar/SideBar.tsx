@@ -80,7 +80,7 @@ export const SideBar = () => {
         <S.SideBar width={sideBarWidth} className="sideBar">
             <H4>Exciting Events</H4>
             {announcements.map(({id, title, content}: any) => (
-                <S.Divider key={id}>
+                <S.Divider key={id} authorised={isEditor || isAdmin}>
                     {(isEditor || isAdmin) && <DeleteIcon size={25} onClick={() => handleDelete(id)}/>}
                     <P1 textAlign="center" fontWeight={500}>{title}</P1>
                     <P1>{content}</P1>
