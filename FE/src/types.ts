@@ -42,3 +42,13 @@ export interface Announcements extends NewAnnouncement {
     id: number;
     created: string;
 }
+
+export interface CalendarEvent {
+    id: number;
+    title: string;
+    content: string;
+    startDate: string;
+    endDate: string;
+    time: number;
+    audience?: string;
+}

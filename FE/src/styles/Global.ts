@@ -41,6 +41,10 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     border: 3px solid #42abcc;
   }
 
+  .Toastify__toast-container {
+    font-size: 16px !important;
+  }
+
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

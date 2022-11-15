@@ -173,14 +173,14 @@ export const LI = styled.li`
   padding: 10px;
 `
 
-export const Spinner = styled.div<{ width?: number, height?: number }>`
+export const Spinner = styled.div<{ size?: number }>`
   animation: 1.5s linear infinite spinner;
   animation-play-state: inherit;
   border: solid 5px #cfd0d1;
-  border-bottom-color: #1c87c9;
+  border-bottom-color: ${({theme}) => theme.buttons.primary};
   border-radius: 50%;
-  height: ${({height}) => height ? `${height}px` : "20px"};
-  width: ${({width}) => width ? `${width}px` : "20px"};
+  height: ${({size}) => size ? `${size}px` : "20px"};
+  width: ${({size}) => size ? `${size}px` : "20px"};
   will-change: transform;
 
   @keyframes spinner {

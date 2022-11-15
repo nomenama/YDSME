@@ -9,6 +9,16 @@ export const Logout = async () => {
     return await api.post("/user/logout", {}, {withCredentials: true});
 };
 
+export const deleteEvent = async (id: number) => {
+    const rawResponse = await api.post("/public/delete-event", {id}, {withCredentials: true});
+    const {status, data} = rawResponse;
+
+    return {
+        status,
+        data
+    }
+};
+
 export const deleteAnnouncement = async (id: number) => {
     const rawResponse = await api.post("/public/delete-announcement", {id}, {withCredentials: true});
     const {status, data} = rawResponse;
@@ -75,6 +85,16 @@ export const deleteUser = async (userId: number) => {
 /*public routes*/
 export const getAnnouncement = async (signal: AbortSignal) => {
     const rawResponse = await api.get(`/public/announcement`, {signal});
+    const {data, status} = rawResponse;
+
+    return {
+        data,
+        status
+    }
+};
+
+export const getEvents = async (signal: AbortSignal) => {
+    const rawResponse = await api.get(`/public/get-events`, {signal});
     const {data, status} = rawResponse;
 
     return {
