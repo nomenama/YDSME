@@ -6,4 +6,3 @@
 .env
 /logs/
 /src/schema.sql
-/certs/
