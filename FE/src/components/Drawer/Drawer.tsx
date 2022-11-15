@@ -1,30 +1,21 @@
 import React from 'react';
 import {AnchorTag, CloseButton, DrawerButton, DrawerContainer, DrawerGroup, Overlay} from "./Drawer.styles";
 import ReactDOM from "react-dom";
-
 import {useDevice} from "../../hooks/useDevice";
 import {P1} from "../../common/index.styles";
 import {useTheme} from "styled-components";
 import useUser from "../../hooks/useUser";
-import {Logout} from "../../api/api";
-import {useNavigate} from "react-router-dom";
 
 export interface DrawerProps {
     onClose: () => void;
+    handleLogout: () => void;
 }
 
-const Drawer = ({onClose}: DrawerProps) => {
+const Drawer = ({onClose, handleLogout}: DrawerProps) => {
     const {isDesktop} = useDevice();
-    const navigate = useNavigate();
     const theme = useTheme();
     const {user, isEditor, isAdmin} = useUser();
 
-    const handleLogout = () => {
-        void Logout();
-        sessionStorage.clear();
-        navigate("/", {replace: true});
-        window.location.reload();
-    }
 
     return ReactDOM.createPortal(
         <>

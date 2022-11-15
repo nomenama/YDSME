@@ -3,9 +3,8 @@ import {MobileNavButton, MobileNavContainer} from './MobileNavigation.styles';
 import ReactDOM from "react-dom";
 import {Flex, Link as ExternalLink} from "../../../common/index.styles";
 import {Button, CloseNavBar} from "../Header.styles";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useTheme} from "styled-components";
-import {Logout} from "../../../api/api";
 import {MainNavigation, MemberNavigation} from "../Navigation";
 
 export interface MobileNavigationProps {
@@ -15,6 +14,7 @@ export interface MobileNavigationProps {
     includeLoginButton: boolean;
     includeDrawerButton: boolean;
     setDisplayDrawer: Dispatch<SetStateAction<boolean>>;
+    handleOnLogout: () => void;
 
 }
 
@@ -24,17 +24,10 @@ const MobileNavigation = ({
                               setDisplayMobileNavBar,
                               includeLoginButton,
                               includeDrawerButton,
-                              setDisplayDrawer
+                              setDisplayDrawer,
+                              handleOnLogout
                           }: MobileNavigationProps) => {
     const theme = useTheme();
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        void Logout();
-        sessionStorage.clear();
-        navigate("/", {replace: true});
-        window.location.reload();
-    }
 
     return ReactDOM.createPortal(
         <MobileNavContainer>
@@ -69,7 +62,7 @@ const MobileNavigation = ({
                     }}>Menu</MobileNavButton>
 
                     <MobileNavButton onClick={() => {
-                        handleLogout();
+                        handleOnLogout();
                         setDisplayMobileNavBar(false);
                     }}>Logout</MobileNavButton>
                 </>
