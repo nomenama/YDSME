@@ -32,3 +32,13 @@ export interface LoadingProps {
     setIsLoading: Dispatch<SetStateAction<boolean>>;
     setWhichForm: Dispatch<SetStateAction<string>>;
 }
+
+export interface NewAnnouncement {
+    title: string;
+    content: string;
+}
+
+export interface Announcements extends NewAnnouncement {
+    id: number;
+    created: string;
+}

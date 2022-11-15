@@ -1,14 +1,12 @@
 import React, {createContext, useEffect, useState} from "react";
 import {getAnnouncement} from "../api/api";
-
-interface ContentProps {
-    announcements: string[] | undefined;
-}
+import {Announcements} from "../types";
 
 const ContentContext = createContext<any>({});
 
 export const ContentProvider = ({children}: any) => {
-    const [announcements, setAnnouncements] = useState<string[]>([]);
+    const [announcements, setAnnouncements] = useState<Announcements[]>([]);
+    const [refreshAnnouncements, setRefreshAnnouncements] = useState(false);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -18,7 +16,8 @@ export const ContentProvider = ({children}: any) => {
                 const {status, data} = await getAnnouncement(signal);
 
                 if (status === 200) {
-                    setAnnouncements(data as string[]);
+                    setAnnouncements(data);
+                    setRefreshAnnouncements(false);
                 }
             } catch (err) {
                 console.log(err)
@@ -27,10 +26,10 @@ export const ContentProvider = ({children}: any) => {
         void asyncProcess();
 
         return () => controller.abort();
-    }, []);
+    }, [refreshAnnouncements]);
 
     return (
-        <ContentContext.Provider value={{announcements}}>
+        <ContentContext.Provider value={{announcements, setRefreshAnnouncements}}>
             {children}
         </ContentContext.Provider>
     )

@@ -137,11 +137,12 @@ export const H4 = styled.h4<{ color?: string }>`
   }
 `
 
-export const P1 = styled.p<{ color?: string, textAlign?: "center" | "justify" | "start" | "end" }>`
+export const P1 = styled.p<{ color?: string, fontWeight?: 400 | 500 | 600, textAlign?: "center" | "justify" | "start" | "end" }>`
   font-size: 20px;
   line-height: 30px;
   text-align: ${({textAlign}) => textAlign ? textAlign : "inherit"};
   color: ${({color}) => color ? color : "inherit"};
+  font-weight: ${({fontWeight}) => fontWeight ? fontWeight : "inherit"};
 
   @media only screen and ${device.laptop} {
     font-size: 18px;
@@ -190,11 +191,4 @@ export const Spinner = styled.div<{ width?: number, height?: number }>`
       transform: rotate(360deg);
     }
   }
-`
-
-export const Divider = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin: 20px 0;
 `

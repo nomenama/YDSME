@@ -1,5 +1,5 @@
 import api from "./baseApi";
-import {User, UserWithId} from "../types";
+import {NewAnnouncement, User, UserWithId} from "../types";
 
 export const postLogin = (username: string, password: string) => {
     return api.post("/user", {username, password}, {withCredentials: true})
@@ -8,6 +8,27 @@ export const postLogin = (username: string, password: string) => {
 export const Logout = async () => {
     return await api.post("/user/logout", {}, {withCredentials: true});
 };
+
+export const deleteAnnouncement = async (id: number) => {
+    const rawResponse = await api.post("/public/delete-announcement", {id}, {withCredentials: true});
+    const {status, data} = rawResponse;
+
+    return {
+        status,
+        data
+    }
+};
+
+export const createAnnouncement = async (newAnnouncementObj: NewAnnouncement) => {
+    const rawResponse = await api.post("/public/create-announcement", newAnnouncementObj, {withCredentials: true});
+    const {status, data} = rawResponse;
+
+    return {
+        status,
+        data
+    }
+};
+
 
 /*admin routes*/
 export const createUser = async (user: User) => {

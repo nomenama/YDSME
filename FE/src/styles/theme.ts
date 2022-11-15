@@ -47,8 +47,8 @@ export const theme: DefaultTheme = {
         black: "#000000",
         black_90: "#191919",
 
-        positive: "#be0808",
-        negative: "#20be08"
+        negative: "#be0808",
+        positive: "#20be08"
     },
     buttons: {
         primary: "#0863be",
