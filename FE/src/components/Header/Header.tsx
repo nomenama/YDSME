@@ -15,6 +15,8 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Flex} from "../../common/index.styles";
 import {useTheme} from "styled-components";
 import {Link as ExternalLink} from "../../common/index.styles";
+import {Logout} from "../../api/api";
+import {ToastError, ToastSuccess} from "../../common/Toast";
 
 interface HeaderProps {
     includeLoginButton?: boolean;
@@ -33,8 +35,8 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
     }
 
     const handleLogout = () => {
+        void Logout();
         sessionStorage.clear();
-        /*Cookies.remove("token", {path: "/"})*/
         navigate("/", {replace: true});
         window.location.reload();
     }

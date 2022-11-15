@@ -5,6 +5,10 @@ export const postLogin = (username: string, password: string) => {
     return api.post("/user", {username, password}, {withCredentials: true})
 };
 
+export const Logout = async () => {
+    return await api.post("/user/logout", {}, {withCredentials: true});
+};
+
 /*admin routes*/
 export const createUser = async (user: User) => {
     const rawResponse = await api.post("/user/create-user", user, {withCredentials: true});

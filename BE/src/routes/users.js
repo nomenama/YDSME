@@ -28,12 +28,16 @@ router.post("/", async (req, res) => {
 
 		res.cookie("token", token, {
 			httpOnly: true,
-			maxAge: 24 * 60 * 60 * 1000 //1 day
+			maxAge: 6 * 60 * 60 * 1000
 		});
 		res.status(200).json({id, firstName, lastName, email, roles});
 	} else {
 		res.status(401).json({message: "Unauthorised"});
 	}
+});
+
+router.post("/logout", async (req, res) => {
+	res.clearCookie("token");
 });
 
 //Only admin can get and create new user
