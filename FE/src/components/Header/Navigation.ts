@@ -1,7 +1,7 @@
 export const MainNavigation = {
     Home: "/",
     Visitors: "/visitor",
-    Calendar: "/calendar",
+    Events: "/events",
     Gallery: "/gallery",
     "Club History": "/club-history",
     "Hire Us": "/hire-us",

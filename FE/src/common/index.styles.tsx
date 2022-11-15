@@ -45,11 +45,11 @@ export const InnerContainer = styled.div<InnerContainerProps>`
   }
 
   @media only screen and ${device.laptop} {
-    min-height: calc(100vh - 198px);
+    min-height: calc(100vh - 178px);
   }
 
   @media only screen and ${device.mobileL} {
-    min-height: calc(100vh - 178px);
+    min-height: calc(100vh - 158px);
   }
 `
 

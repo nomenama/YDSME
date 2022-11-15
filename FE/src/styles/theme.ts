@@ -51,7 +51,8 @@ export const theme: DefaultTheme = {
         positive: "#20be08"
     },
     buttons: {
-        primary: "#0863be",
+        //"#0863be"
+        primary: "#117aec",
         secondary: "#4e98f5"
     },
     fontSizes: ['1.2rem', '1.4rem', '1.6rem', '1.8rem', '2.4rem', '2.8rem', '3.2rem', '4.0rem', '4.8rem', '6.4rem'],

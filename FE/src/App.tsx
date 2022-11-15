@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound/NotFound";
 import Admin from "./pages/Admin/Admin";
 import Unauthorised from "./pages/Unauthorised/Unauthorised";
 import Editor from "./pages/Editor/Editor";
+import Events from "./pages/Events/Events";
+import Gallery from "./pages/Gallery/Gallery";
 
 function App() {
     return (
@@ -20,8 +22,8 @@ function App() {
             <Route path="/" element={<DefaultLayout/>}>
                 <Route path="/" element={<MainPage/>}/>
                 <Route path="/visitor" element={<Visitors/>}/>
-                <Route path="/calendar"/>
-                <Route path="/gallery"/>
+                <Route path="/events" element={<Events/>}/>
+                <Route path="/gallery" element={<Gallery/>}/>
                 <Route path="/club-history" element={<ClubHistory/>}/>
                 <Route path="/hire-us" element={<HireUs/>}/>
                 <Route path="/contact" element={<Contact/>}/>
