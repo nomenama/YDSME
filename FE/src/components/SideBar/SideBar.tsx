@@ -75,17 +75,17 @@ export const SideBar = () => {
             setAddNew(false);
         }
     }
-    console.log(announcements)
+
     return (
         <S.SideBar width={sideBarWidth} className="sideBar">
             <H4>Exciting Events</H4>
-            {Boolean(announcements.length) && announcements.map((announcement: any) => (
+            {/*            {Boolean(announcements.length) && announcements.map((announcement: any) => (
                 <S.Divider key={announcement.id} authorised={isEditor || isAdmin}>
                     {(isEditor || isAdmin) && <DeleteIcon size={25} onClick={() => handleDelete(announcement.id)}/>}
                     <P1 textAlign="center" fontWeight={500}>{announcement.title}</P1>
                     <P1>{announcement.content}</P1>
                 </S.Divider>
-            ))}
+            ))}*/}
 
             {(isEditor || isAdmin) && (
                 <SecondaryButton
