@@ -6,7 +6,11 @@ export async function getAnnouncement () {
 		FROM announcements
 		ORDER BY created DESC
 	`);
-	return data;
+	if (data.length) {
+		return data;
+	} else {
+		return [];
+	}
 }
 
 export async function deleteAnnouncement (id) {
