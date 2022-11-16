@@ -32,5 +32,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(process.env.PORT, () => {
-	logger.log("info", `Server listening on port ${process.env.PORT}`);
+	process.env.NODE_ENV === "development"
+		? console.log(`Server listening on port ${process.env.PORT}`)
+		: logger.log("info", `Server listening on port ${process.env.PORT}`);
 });
