@@ -43,6 +43,7 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
 
   .Toastify__toast-container {
     font-size: 16px !important;
+    font-family: "Roboto", sans-serif;
   }
 
   code {
