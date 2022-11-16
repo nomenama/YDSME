@@ -5,7 +5,7 @@ export const MainNavigation = {
     Gallery: "/gallery",
     "Club History": "/club-history",
     "Hire Us": "/hire-us",
-    Contacts: "/contact",
+    Committee: "/committee",
 };
 
 export const MemberNavigation = {

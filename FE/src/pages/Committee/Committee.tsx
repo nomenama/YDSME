@@ -1,7 +1,7 @@
 import React from "react";
 import {H1, InnerContainer, PageContainer} from "../../common/index.styles";
 
-export const Contact = () => {
+export const Committee = () => {
     return (
         <PageContainer>
             <InnerContainer justifyContent="center">
@@ -11,4 +11,4 @@ export const Contact = () => {
     )
 }
 
-export default Contact;
+export default Committee;

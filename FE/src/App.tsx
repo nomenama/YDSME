@@ -6,7 +6,7 @@ import {Routes, Route} from "react-router-dom";
 import RequireUser from "./components/RequireAuth/RequireUser";
 import ClubHistory from "./pages/ClubHistory/ClubHistory";
 import HireUs from "./pages/HireUs/HireUs";
-import Contact from "./pages/Contacts/Contact";
+import Committee from "./pages/Committee/Committee";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
@@ -26,7 +26,7 @@ function App() {
                 <Route path="/gallery" element={<Gallery/>}/>
                 <Route path="/club-history" element={<ClubHistory/>}/>
                 <Route path="/hire-us" element={<HireUs/>}/>
-                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/committee" element={<Committee/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/unauthorised" element={<Unauthorised/>}/>
             </Route>
