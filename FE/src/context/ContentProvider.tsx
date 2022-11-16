@@ -7,7 +7,6 @@ const ContentContext = createContext<any>({});
 export const ContentProvider = ({children}: any) => {
     const [announcements, setAnnouncements] = useState<Announcements[]>([]);
 
-
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
@@ -15,11 +14,12 @@ export const ContentProvider = ({children}: any) => {
             try {
                 const {status, data} = await getAnnouncement(signal);
 
-                if (status === 200) {
+                if (status >= 200 && status < 300) {
                     setAnnouncements(data);
                 }
             } catch (err) {
-                console.log(err)
+                console.log(err);
+                setAnnouncements([])
             }
         }
         void asyncProcess();

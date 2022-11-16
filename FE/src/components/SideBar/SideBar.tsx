@@ -25,7 +25,7 @@ export const SideBar = () => {
         setSideBarWidth(sideBarElement.width);
         setSideBarTop(sideBarElement.top);
     }, []);
-    console.log(announcements)
+
     useEffect(() => {
         if (!sideBarTop) return;
 
