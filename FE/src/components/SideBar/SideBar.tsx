@@ -79,14 +79,14 @@ export const SideBar = () => {
     return (
         <S.SideBar width={sideBarWidth} className="sideBar">
             <H4>Exciting Events</H4>
-            {announcements.map(({id, title, content}: any) => (
+            {Boolean(announcements.length) && announcements.map(({id, title, content}: any) => (
                 <S.Divider key={id} authorised={isEditor || isAdmin}>
                     {(isEditor || isAdmin) && <DeleteIcon size={25} onClick={() => handleDelete(id)}/>}
                     <P1 textAlign="center" fontWeight={500}>{title}</P1>
                     <P1>{content}</P1>
                 </S.Divider>
             ))}
-            
+
             {(isEditor || isAdmin) && (
                 <SecondaryButton
                     style={{width: "100%", backgroundColor: `${addNew ? "grey" : theme.buttons.primary}`, borderColor: `${addNew ? "grey" : theme.buttons.primary}`}}
