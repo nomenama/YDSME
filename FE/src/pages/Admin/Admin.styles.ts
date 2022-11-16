@@ -27,18 +27,18 @@ export const Label = styled(Label_)`
 `
 
 export const Input = styled(Input_)`
-  width: 90%;
+  width: 80%;
 
   @media only screen and ${device.laptop} {
-    width: 80%;
+    width: 70%;
   }
 `
 
 export const Select = styled.div`
-  width: 90%;
+  width: 80%;
 
   @media only screen and ${device.laptop} {
-    width: 80%;
+    width: 70%;
   }
 `
 
@@ -51,6 +51,6 @@ export const CheckboxLabel = styled(Label_)`
 export const ButtonGroup = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 20px;
 `

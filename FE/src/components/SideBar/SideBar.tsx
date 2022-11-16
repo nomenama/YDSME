@@ -16,7 +16,7 @@ export const SideBar = () => {
     const [sideBarTop, setSideBarTop] = useState<number | undefined>(undefined);
     const [addNew, setAddNew] = useState(false);
     const [newAnnouncement, setNewAnnouncement] = useState(initialValues);
-    const {announcements, setRefreshAnnouncements} = useContent();
+    const {announcements, setAnnouncements} = useContent();
     const {isEditor, isAdmin} = useUser();
     const theme = useTheme();
 
@@ -52,7 +52,7 @@ export const SideBar = () => {
             const {status, data} = await deleteAnnouncement(id);
             if (status >= 200 && status <= 300) {
                 ToastSuccess(data.message);
-                setRefreshAnnouncements(true);
+                setAnnouncements(data);
             }
         } catch (err: any) {
             ToastError(err.message)
@@ -68,7 +68,7 @@ export const SideBar = () => {
                 ToastSuccess(data.message);
                 setAddNew(false);
                 setNewAnnouncement(initialValues);
-                setRefreshAnnouncements(true);
+                setAnnouncements(data);
             }
         } catch (err: any) {
             ToastError(err?.message);
@@ -86,7 +86,7 @@ export const SideBar = () => {
                     <P1>{content}</P1>
                 </S.Divider>
             ))}
-
+            
             {(isEditor || isAdmin) && (
                 <SecondaryButton
                     style={{width: "100%", backgroundColor: `${addNew ? "grey" : theme.buttons.primary}`, borderColor: `${addNew ? "grey" : theme.buttons.primary}`}}

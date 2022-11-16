@@ -71,7 +71,7 @@ export const AnnouncementInput = styled.input`
 `
 
 export const TextArea = styled.textarea`
-  width: 100%;
+  width: 80%;
   font-family: inherit;
   padding: 5px;
   border-radius: 2px;
@@ -81,6 +81,7 @@ export const TextArea = styled.textarea`
   resize: none;
 
   @media only screen and ${device.laptop} {
+    width: 70%;
     font-size: 16px;
   }
 `

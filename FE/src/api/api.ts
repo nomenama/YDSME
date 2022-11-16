@@ -1,5 +1,5 @@
 import api from "./baseApi";
-import {NewAnnouncement, User, UserWithId} from "../types";
+import {NewAnnouncement, NewEvent, User, UserWithId} from "../types";
 
 export const postLogin = (username: string, password: string) => {
     return api.post("/user", {username, password}, {withCredentials: true})
@@ -11,6 +11,16 @@ export const Logout = async () => {
 
 export const deleteEvent = async (id: number) => {
     const rawResponse = await api.post("/public/delete-event", {id}, {withCredentials: true});
+    const {status, data} = rawResponse;
+
+    return {
+        status,
+        data
+    }
+};
+
+export const createEvent = async (eventObj: NewEvent) => {
+    const rawResponse = await api.post("/public/create-event", eventObj, {withCredentials: true});
     const {status, data} = rawResponse;
 
     return {

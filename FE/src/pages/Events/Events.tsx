@@ -8,6 +8,7 @@ import EventTile from "../../components/EventTile/EventTile";
 import {ToastError, ToastSuccess} from "../../common/Toast";
 import {PrimaryButton} from 'components/Header/Header.styles';
 import useUser from "../../hooks/useUser";
+import FormModal from "../../components/FormModal/FormModal";
 
 
 const Events = () => {
@@ -119,7 +120,7 @@ const Events = () => {
                     <H1>No events</H1>
                 </InnerContainer>
             )}
-
+            {newEvent && <FormModal setNewEvent={setNewEvent} setEvents={setEvents} onClose={() => setNewEvent(false)}/>}
         </PageContainer>
     );
 };

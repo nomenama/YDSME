@@ -15,7 +15,7 @@ export async function deleteAnnouncement (id) {
        DELETE FROM announcements WHERE id = ?
     `, [id]);
 
-	return response[0];
+	return await getAnnouncement();
 }
 
 export async function createAnnouncement (title, content) {
@@ -25,7 +25,7 @@ export async function createAnnouncement (title, content) {
     `, [title, content]);
 
 	const id = result.insertId;
-	return await getUserById(id);
+	return await getAnnouncement();
 }
 
 export async function getEvents () {
@@ -46,4 +46,14 @@ export async function deleteEvent (id) {
 	if (response[0].affectedRows) {
 		return await getEvents();
 	}
+}
+
+export async function createEvent (title, content, startDate, endDate, time, audience) {
+	const [result] = await db.query(`
+       INSERT INTO events (title, content, startDate, endDate, time, audience)
+       VALUES (? , ?, ?, ?, ?, ?)
+    `, [title, content, startDate, endDate, time, audience]);
+
+	const id = result.insertId;
+	return await getEvents();
 }
