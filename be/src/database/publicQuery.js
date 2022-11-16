@@ -1,5 +1,4 @@
 import {db} from "./database.js";
-import {getUserById} from "./userQuery.js";
 
 export async function getAnnouncement () {
 	const [data] = await db.query(`
@@ -15,7 +14,11 @@ export async function deleteAnnouncement (id) {
        DELETE FROM announcements WHERE id = ?
     `, [id]);
 
-	return await getAnnouncement();
+	if (response[0].affectedRows) {
+		return await getAnnouncement();
+	} else {
+		return [];
+	}
 }
 
 export async function createAnnouncement (title, content) {
@@ -45,6 +48,8 @@ export async function deleteEvent (id) {
 
 	if (response[0].affectedRows) {
 		return await getEvents();
+	} else {
+		return [];
 	}
 }
 

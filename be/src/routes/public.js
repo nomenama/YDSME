@@ -7,7 +7,7 @@ const router = Router();
 router.get("/announcement", async (req, res) => {
 	const content = await getAnnouncement();
 
-	if (content?.length) {
+	if (content) {
 		res.status(200).send(content);
 	} else {
 		res.status(404).send("No announcements at the moment.");
@@ -37,7 +37,7 @@ router.get("/get-events", async (req, res) => {
 
 	const content = await getEvents();
 
-	if (content?.length) {
+	if (content) {
 		res.status(200).send(content);
 	} else {
 		res.status(404).send("No events at the moment.");
@@ -49,7 +49,7 @@ router.post("/delete-event", Auth(["EDITOR", "ADMIN"]), async (req, res) => {
 
 	const response = await deleteEvent(id);
 
-	if (response?.length) {
+	if (response) {
 		res.status(200).send(response);
 	} else {
 		res.status(400).send({message: "Error deleting event"});
