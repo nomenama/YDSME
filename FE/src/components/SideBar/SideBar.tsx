@@ -51,7 +51,7 @@ export const SideBar = () => {
         try {
             const {status, data} = await deleteAnnouncement(id);
             if (status >= 200 && status <= 300) {
-                ToastSuccess(data.message);
+                ToastSuccess("Success");
                 setAnnouncements(data);
             }
         } catch (err: any) {
@@ -65,10 +65,10 @@ export const SideBar = () => {
         try {
             const {status, data} = await createAnnouncement(newAnnouncement);
             if (status >= 200 && status <= 300) {
-                ToastSuccess(data.message);
+                setAnnouncements(data);
+                ToastSuccess("Success");
                 setAddNew(false);
                 setNewAnnouncement(initialValues);
-                setAnnouncements(data);
             }
         } catch (err: any) {
             ToastError(err?.message);
