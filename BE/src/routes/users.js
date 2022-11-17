@@ -38,6 +38,7 @@ router.post("/", async (req, res) => {
 
 router.post("/logout", async (req, res) => {
 	res.clearCookie("token");
+	res.status(200).send({message: "success"});
 });
 
 //Only admin can get and create new user

@@ -1,11 +1,16 @@
 import api from "./baseApi";
 import {NewAnnouncement, NewEvent, User, UserWithId} from "../types";
 
-export const postLogin = (username: string, password: string) => {
-    return api.post("/user", {username, password}, {withCredentials: true})
+export const postLogin = async (username: string, password: string) => {
+    const {status, data} = await api.post("/user", {username, password}, {withCredentials: true});
+
+    return {
+        status,
+        data
+    }
 };
 
-export const Logout = async () => {
+export const logout = async () => {
     return await api.post("/user/logout", {}, {withCredentials: true});
 };
 

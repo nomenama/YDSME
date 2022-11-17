@@ -31,7 +31,7 @@ export const Login = () => {
             setIsLoading(false);
             navigate("/dashboard");
         } catch (err: any) {
-            setError(err?.response?.data?.message);
+            setError(err?.message);
             setIsLoading(false);
         }
     }

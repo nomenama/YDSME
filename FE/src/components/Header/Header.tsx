@@ -14,7 +14,7 @@ import {useTheme} from "styled-components";
 import {Link as ExternalLink} from "../../common/index.styles";
 import Drawer from "../Drawer/Drawer";
 import MobileNavigation from "./MobileNavigation/MobileNavigation";
-import {Logout} from "../../api/api";
+import {logout} from "../../api/api";
 import useUser from "../../hooks/useUser";
 
 interface HeaderProps {
@@ -35,11 +35,19 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
         setDisplayMobileNavBar((prev) => !prev);
     }
 
-    const handleLogout = () => {
-        void Logout();
-        sessionStorage.clear();
-        navigate("/", {replace: true});
-        window.location.reload();
+    const handleLogout = async () => {
+        try {
+            const {status} = await logout();
+            if (status >= 200) {
+                sessionStorage.clear();
+                navigate("/", {replace: true});
+                window.location.reload();
+            }
+        } catch (err) {
+            sessionStorage.clear();
+            navigate("/", {replace: true});
+            window.location.reload();
+        }
     }
 
     return (
