@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(fileUpload({}));
 
-app.use("/public", publicRoutes);
-app.use("/user", userRoutes);
-app.use("/upload", mediaRoutes);
+app.use("/api/public", publicRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/upload", mediaRoutes);
 
 
 //error handling and logging
