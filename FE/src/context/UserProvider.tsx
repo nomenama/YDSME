@@ -1,16 +1,33 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 
 const UserContext = createContext<any>({});
 
 export const UserProvider = ({children}: any) => {
-    const userFromSession = sessionStorage.getItem("user") || JSON.stringify({firstName: "", lastName: "", username: "", roles: []});
+    const initialState = {
+        firstName: "",
+        lastName: "",
+        username: "",
+        email: "",
+        roles: []
+    }
+
+    const userFromSession = sessionStorage.getItem("user")
+        || JSON.stringify(initialState);
     const initialUser = JSON.parse(userFromSession);
     const [user, setUser] = useState(initialUser);
 
-    const isMember = user?.roles.some((role: string) => role === "MEMBER");
-    const isCommittee = user?.roles.some((role: string) => role === "COMMITTEE");
-    const isEditor = user?.roles.some((role: string) => role === "EDITOR");
-    const isAdmin = user?.roles.some((role: string) => role === "ADMIN");
+    useEffect(() => {
+        if (user?.roles?.length) {
+            sessionStorage.setItem("user", JSON.stringify(user));
+        } else {
+            sessionStorage.clear();
+        }
+    }, [user])
+
+    const isMember = user?.roles?.some((role: string) => role === "MEMBER");
+    const isCommittee = user?.roles?.some((role: string) => role === "COMMITTEE");
+    const isEditor = user?.roles?.some((role: string) => role === "EDITOR");
+    const isAdmin = user?.roles?.some((role: string) => role === "ADMIN");
 
     const isLoggedIn = isMember || isCommittee || isEditor || isAdmin;
 

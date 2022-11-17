@@ -24,7 +24,6 @@ export const Login = () => {
 
         try {
             const {data} = await postLogin(username, password);
-            sessionStorage.setItem("user", JSON.stringify(data));
             setUser(data);
             setUsername("");
             setPassword("");

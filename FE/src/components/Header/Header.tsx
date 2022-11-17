@@ -16,6 +16,7 @@ import Drawer from "../Drawer/Drawer";
 import MobileNavigation from "./MobileNavigation/MobileNavigation";
 import {logout} from "../../api/api";
 import useUser from "../../hooks/useUser";
+import {ToastInfo} from "../../common/Toast";
 
 interface HeaderProps {
     includeLoginButton?: boolean;
@@ -29,25 +30,17 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
     const navigate = useNavigate();
     const [displayMobileNavBar, setDisplayMobileNavBar] = useState<boolean>(false);
     const [displayDrawer, setDisplayDrawer] = useState(false);
-    const {isLoggedIn} = useUser();
+    const {isLoggedIn, setUser} = useUser();
 
     const onToggleSideBar = () => {
         setDisplayMobileNavBar((prev) => !prev);
     }
 
-    const handleLogout = async () => {
-        try {
-            const {status} = await logout();
-            if (status >= 200) {
-                sessionStorage.clear();
-                navigate("/", {replace: true});
-                window.location.reload();
-            }
-        } catch (err) {
-            sessionStorage.clear();
-            navigate("/", {replace: true});
-            window.location.reload();
-        }
+    const handleLogout = () => {
+        void logout();
+        setUser([]);
+        ToastInfo("Logged out")
+        navigate("/", {replace: true});
     }
 
     return (
