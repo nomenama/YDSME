@@ -94,7 +94,7 @@ export const deleteUser = async (userId: number) => {
 
 /*public routes*/
 export const getAnnouncement = async (signal: AbortSignal) => {
-    const rawResponse = await api.get(`/public/announcement`, {signal});
+    const rawResponse = await api.get(`/public/announcements`, {signal});
     const {data, status} = rawResponse;
 
     return {

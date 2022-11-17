@@ -4,7 +4,7 @@ import {Auth} from "../middleware/Auth.js";
 
 const router = Router();
 
-router.get("/announcement", async (req, res) => {
+router.get("/announcements", async (req, res) => {
 	const content = await getAnnouncement();
 
 	if (content) {
