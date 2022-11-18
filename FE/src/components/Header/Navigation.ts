@@ -9,6 +9,7 @@ export const MainNavigation = {
 };
 
 export const MemberNavigation = {
+    Home: "/",
     Dashboard: "/dashboard",
     Agenda: "/agendas",
     Minutes: "/minutes",

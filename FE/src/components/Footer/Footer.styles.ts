@@ -18,3 +18,8 @@ export const SafetyLink = styled.a`
   color: #ffc107;
   text-decoration: none;
 `
+
+export const Disclaimer = styled.span`
+  color: ${({theme}) => theme.colors.white};
+  font-size: 12px;
+`

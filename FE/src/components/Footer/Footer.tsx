@@ -14,6 +14,7 @@ const Footer = () => {
                 </S.SafetyLink>
             </P1>
             <S.FooterText>All Rights Reserved - &copy; YDSME {getYear}</S.FooterText>
+            <S.Disclaimer>Designed and developed by Nomen Ama</S.Disclaimer>
 
         </S.Container>
     )
