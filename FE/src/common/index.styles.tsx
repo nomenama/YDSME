@@ -28,7 +28,7 @@ export const PageContainer = styled.div`
 export const InnerContainer = styled.div<InnerContainerProps>`
   width: 90%;
   height: 100%;
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 194px);
   margin: 0 auto;
   padding: 20px 0;
   display: flex;
@@ -45,11 +45,11 @@ export const InnerContainer = styled.div<InnerContainerProps>`
   }
 
   @media only screen and ${device.laptop} {
-    min-height: calc(100vh - 178px);
+    min-height: calc(100vh - 192px);
   }
 
   @media only screen and ${device.mobileL} {
-    min-height: calc(100vh - 158px);
+    min-height: calc(100vh - 172px);
   }
 `
 
