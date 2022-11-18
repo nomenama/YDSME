@@ -26,6 +26,9 @@ export const formatDate = (date: string) => {
         case "03":
             day = "03rd";
             break;
+        case "31":
+            day = "31st";
+            break;
         default:
             day = `${rawDate}th`;
             break;
