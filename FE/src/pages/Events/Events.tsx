@@ -117,6 +117,7 @@ const Events = () => {
             {!isLoading && !Boolean(events?.length) && (
                 <InnerContainer justifyContent="center" alignItems="center">
                     <H1>No events</H1>
+                    {(isEditor || isAdmin) && <PrimaryButton onClick={() => setNewEvent((prevState) => !prevState)}>Create New Event</PrimaryButton>}
                 </InnerContainer>
             )}
             {newEvent && <FormModal setNewEvent={setNewEvent} setEvents={setEvents} onClose={() => setNewEvent(false)}/>}
