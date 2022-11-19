@@ -1,5 +1,5 @@
 import React from "react";
-import {H1, InnerContainer, P1, PageContainer} from "../../common/index.styles";
+import {InnerContainer, P1, PageContainer} from "../../common/index.styles";
 import {Greeting} from "./Dashboard.styles";
 import useUser from "../../hooks/useUser";
 import {useTheme} from "styled-components";
