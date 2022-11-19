@@ -4,7 +4,7 @@ import {device} from "styles/theme";
 
 export const SideBar = styled.div<{ width?: number }>`
   width: ${({width}) => width ? `${width}px` : "100%"} !important;
-  max-height: 60vh;
+  max-height: 80vh;
   padding: 20px;
   border: 1px solid grey;
   border-radius: 2px;
