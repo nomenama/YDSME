@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {H1, H3, InnerContainer, P1, PageContainer, Spinner} from "../../common/index.styles";
+import {H1, H3, InnerContainer, PageContainer, Spinner} from "../../common/index.styles";
 import {deleteEvent, getEvents} from "../../api/api";
 import {useDevice} from "../../hooks/useDevice";
 import {Column, EventContainer} from './Events.styles';
@@ -9,7 +9,6 @@ import {ToastError, ToastSuccess} from "../../common/Toast";
 import {PrimaryButton} from 'components/Header/Header.styles';
 import useUser from "../../hooks/useUser";
 import FormModal from "../../components/FormModal/FormModal";
-
 
 const Events = () => {
     const {isDesktop} = useDevice();

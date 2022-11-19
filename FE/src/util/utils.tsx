@@ -1,11 +1,10 @@
 export const formatDate = (date: string) => {
     if (!date) return;
-
-    const formattedDate = new Date(date).toLocaleDateString();
-    const localeDateArr = formattedDate.split("/");
-    const rawMonth: string = localeDateArr[0];
-    const rawDate: string = localeDateArr[1];
-    const year: string = localeDateArr[2];
+    
+    const formattedDate = date.split("-");
+    const year: string = formattedDate[0];
+    const rawMonth: string = formattedDate[1];
+    const rawDate: string = formattedDate[2];
 
     let day;
     let month;
