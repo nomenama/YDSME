@@ -35,6 +35,11 @@ function App() {
                 {/*Member only page*/}
                 <Route element={<RequireUser allowedRoles={["MEMBER"]}/>}>
                     <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path="/agenda" element={<Dashboard/>}/>
+                    <Route path="/minute" element={<Dashboard/>}/>
+                    <Route path="/boiler-guide" element={<Dashboard/>}/>
+                    <Route path="/club-rule" element={<Dashboard/>}/>
+                    <Route path="/newsletter" element={<Dashboard/>}/>
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["EDITOR", "ADMIN"]}/>}>
