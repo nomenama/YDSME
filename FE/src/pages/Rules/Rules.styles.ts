@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {device} from "styles/theme";
 import {PrimaryButton} from "../../components/Header/Header.styles";
 
-export const PDFContainer = styled.iframe`
+export const PDFContainer = styled.embed`
   height: calc(100vh - 234px);
   overflow: auto;
 

@@ -39,7 +39,7 @@ const Rules = () => {
             <InnerContainer>
 
                 {data?.length ? (
-                    <PDFContainer src={data[0].url} title={data[0].title} frameBorder={0}/>
+                    <PDFContainer src={data[0].url} title={data[0].title}/>
                 ) : (
                     <H1>No File to display</H1>
                 )}
