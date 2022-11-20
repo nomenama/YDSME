@@ -15,6 +15,7 @@ import Unauthorised from "./pages/Unauthorised/Unauthorised";
 import Editor from "./pages/Editor/Editor";
 import Events from "./pages/Events/Events";
 import Gallery from "./pages/Gallery/Gallery";
+import Rules from "./pages/Rules/Rules";
 
 function App() {
     return (
@@ -38,7 +39,7 @@ function App() {
                     <Route path="/agenda" element={<Dashboard/>}/>
                     <Route path="/minute" element={<Dashboard/>}/>
                     <Route path="/boiler-guide" element={<Dashboard/>}/>
-                    <Route path="/club-rule" element={<Dashboard/>}/>
+                    <Route path="/club-rule" element={<Rules/>}/>
                     <Route path="/newsletter" element={<Dashboard/>}/>
                 </Route>
 

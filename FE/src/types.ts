@@ -1,4 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
+import {strict} from "assert";
 
 export type UserRole = "MEMBER" | "EDITOR" | "ADMIN";
 
@@ -54,4 +55,15 @@ export interface NewEvent {
 
 export interface CalendarEvent extends NewEvent {
     id: number;
+}
+
+export interface UploadWidgetProps {
+    uploadPreset: "club_rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
+    databaseTable: "rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
+}
+
+export interface MediaMetadataObj {
+    title: string;
+    url: string;
+    databaseTable: "rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
 }

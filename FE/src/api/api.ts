@@ -1,5 +1,5 @@
 import api from "./baseApi";
-import {NewAnnouncement, NewEvent, User, UserWithId} from "../types";
+import {MediaMetadataObj, NewAnnouncement, NewEvent, User, UserWithId} from "../types";
 
 export const postLogin = async (username: string, password: string) => {
     const {status, data} = await api.post("/user", {username, password}, {withCredentials: true});
@@ -115,5 +115,23 @@ export const getEvents = async (signal: AbortSignal) => {
     return {
         data,
         status
+    }
+};
+
+export const getMediaMetadata = async (databaseTable: string, signal?: AbortSignal) => {
+    const {status, data} = await api.get("/media/get-metadata", {withCredentials: true, params: {databaseTable}, signal});
+
+    return {
+        status,
+        data
+    }
+}
+
+export const postMediaMetadata = async (mediaObj: MediaMetadataObj) => {
+    const {status, data} = await api.post("/media/post-metadata", mediaObj, {withCredentials: true});
+
+    return {
+        status,
+        data
     }
 };

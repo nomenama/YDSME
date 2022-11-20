@@ -5,7 +5,7 @@ import {postLogin} from "../../api/api";
 import {useNavigate} from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
-export const Login = () => {
+const Login = () => {
     const {user, setUser} = useUser();
     const navigate = useNavigate();
     const [username, setUsername] = useState("");

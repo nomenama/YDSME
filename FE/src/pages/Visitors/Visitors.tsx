@@ -11,7 +11,7 @@ const Visitors = () => {
             <InnerContainer>
                 <S.H1>Visitor Guide</S.H1>
                 <img src="entrance.jpg" alt="entrance to the club" height={isDesktop ? 600 : 400} loading={"lazy"}/>
-                <S.H2>Planning your visit - Check the Calendar</S.H2>
+                <S.H2>Planning your visit - Check the Events page</S.H2>
                 <H4>What3words - play.tasty.trim</H4>
                 <P1>If you would like to visit us, either to run your locomotive or just to see what we do, then this can usually be arranged without difficulty. First, look at our Calendar and pick a date when there is an open day, then contact the secretary. To run a loco, choose any of our open days but please contact our secretary beforehand to confirm that the event is on and to ensure there will be someone on site to welcome you.</P1>
 

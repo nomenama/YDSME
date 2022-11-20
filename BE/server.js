@@ -22,7 +22,7 @@ app.use(fileUpload({}));
 
 app.use("/api/public", publicRoutes);
 app.use("/api/user", userRoutes);
-app.use("/api/upload", mediaRoutes);
+app.use("/api/media", mediaRoutes);
 
 
 //error handling and logging

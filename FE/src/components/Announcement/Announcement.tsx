@@ -7,7 +7,7 @@ const Announcement = () => {
     const {announcements} = useContent();
 
     return (
-        <Marquee speed={60} gradient={false} pauseOnHover={true}>
+        <Marquee gradient={false} pauseOnHover={true}>
             {announcements.map(({id, content}: any) => {
                 return (
                     <AnnouncementContainer key={id}>
