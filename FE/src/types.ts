@@ -60,6 +60,7 @@ export interface CalendarEvent extends NewEvent {
 export interface UploadWidgetProps {
     uploadPreset: "club_rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
     databaseTable: "rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
+    onModalClose?: () => void;
 }
 
 export interface MediaMetadataObj {

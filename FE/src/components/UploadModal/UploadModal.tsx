@@ -14,7 +14,7 @@ const UploadModal = ({onClose, uploadPreset, databaseTable}: ModalProps) => {
         <>
             <Overlay onClick={onClose}/>
             <ModalContainer>
-                <UploadWidget uploadPreset={uploadPreset} databaseTable={databaseTable}/>
+                <UploadWidget uploadPreset={uploadPreset} databaseTable={databaseTable} onModalClose={onClose}/>
             </ModalContainer>
 
         </>,

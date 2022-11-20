@@ -1,22 +1,27 @@
 import React, {useState} from 'react';
-import {PrimaryButton} from "../Header/Header.styles";
 import axios from "axios";
 import {ToastError, ToastSuccess} from "../../common/Toast";
 import {postMediaMetadata} from "../../api/api";
 import {Input, Label} from 'pages/Admin/Admin.styles';
 import {UploadWidgetProps} from 'types';
 import {UploadWidgetForm} from "./UploadWidget.styles";
-import {P1} from 'common/index.styles';
+import {P1, Spinner} from 'common/index.styles';
 import {useTheme} from "styled-components";
+import {SecondaryButton} from "../../pages/Login/Login.styles";
 
-const UploadWidget = ({uploadPreset, databaseTable}: UploadWidgetProps) => {
+const UploadWidget = ({
+                          uploadPreset, databaseTable, onModalClose = () => {
+    }
+                      }: UploadWidgetProps) => {
     const theme = useTheme();
     const [files, setFile] = useState<FileList | null>(null);
     const [title, setTitle] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const uploadImage = async () => {
+        setIsLoading(true);
         const formData = new FormData();
-        if (!files) return;
+        if (!files || !title) return;
         formData.append("file", files[0]);
         formData.append("upload_preset", uploadPreset);
 
@@ -34,13 +39,15 @@ const UploadWidget = ({uploadPreset, databaseTable}: UploadWidgetProps) => {
             });
 
             if (serverStatus === 200) {
+                setIsLoading(false);
                 setTitle("");
                 setFile(null);
+                onModalClose();
                 ToastSuccess("File successfully uploaded");
                 return;
             }
-
-            ToastError("Error uploading file. Try again!")
+            setIsLoading(false);
+            ToastError("Error uploading file. Try again!");
         }
     }
 
@@ -66,7 +73,7 @@ const UploadWidget = ({uploadPreset, databaseTable}: UploadWidgetProps) => {
                 />
             </Label>
 
-            <PrimaryButton type="button" onClick={uploadImage}>Upload</PrimaryButton>
+            <SecondaryButton type="button" onClick={uploadImage}>{isLoading ? <Spinner size={20}/> : "Upload"} </SecondaryButton>
         </UploadWidgetForm>
     );
 };
