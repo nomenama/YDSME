@@ -61,6 +61,7 @@ const UploadWidget = ({uploadPreset, databaseTable}: UploadWidgetProps) => {
                 <input
                     id="file"
                     type="file"
+                    accept={"application/pdf"}
                     onChange={(event) => setFile(event.target.files)}
                 />
             </Label>

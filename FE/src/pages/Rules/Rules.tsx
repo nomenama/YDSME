@@ -48,10 +48,8 @@ const Rules = () => {
                     <UploadModal onClose={() => setIsOpen(false)} uploadPreset="club_rules" databaseTable="rules"/>
                 )}
 
-                {isEditor && <FloatingButton onClick={handleFloatingButton}>Upload PDF</FloatingButton>}
-
+                {isEditor && <FloatingButton onClick={handleFloatingButton}>Upload</FloatingButton>}
             </InnerContainer>
-
         </PageContainer>
     );
 };
