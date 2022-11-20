@@ -47,7 +47,7 @@ const Rules = () => {
                 )}
 
                 {isEditor && isOpen && (
-                    <Modal onClose={handleFloatingButton}>
+                    <Modal onClose={() => setIsOpen(false)}>
                         <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "20px"}}>
                             <UploadWidget uploadPreset="club_rules" databaseTable="rules"/>
                         </div>

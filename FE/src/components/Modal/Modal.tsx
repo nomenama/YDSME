@@ -17,7 +17,7 @@ const Modal = ({children, onClose}: ModalProps) => {
             </ModalContainer>
 
         </>,
-        document.getElementById("float") as Element
+        document.getElementById("portal") as Element
     );
 };
 
