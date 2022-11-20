@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {H1, InnerContainer, P1, PageContainer} from "../../common/index.styles";
+import {H1, InnerContainer, PageContainer} from "../../common/index.styles";
 import useUser from "../../hooks/useUser";
-import UploadWidget from "../../components/UploadWidget/UploadWidget";
 import {getMediaMetadata} from "../../api/api";
 import {MediaMetadataObj} from "../../types";
-import {ToastError} from "../../common/Toast";
 import {FloatingButton, PDFContainer} from "./Rules.styles";
-import Modal from "../../components/Modal/Modal";
+import UploadModal from "../../components/UploadModal/UploadModal";
 
 const Rules = () => {
     const {isEditor} = useUser();
@@ -47,14 +45,10 @@ const Rules = () => {
                 )}
 
                 {isEditor && isOpen && (
-                    <Modal onClose={() => setIsOpen(false)}>
-                        <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "20px"}}>
-                            <UploadWidget uploadPreset="club_rules" databaseTable="rules"/>
-                        </div>
-                    </Modal>
+                    <UploadModal onClose={() => setIsOpen(false)} uploadPreset="club_rules" databaseTable="rules"/>
                 )}
 
-                <FloatingButton onClick={handleFloatingButton}>Upload</FloatingButton>
+                {isEditor && <FloatingButton onClick={handleFloatingButton}>Upload</FloatingButton>}
 
             </InnerContainer>
 
