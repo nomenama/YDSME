@@ -3,11 +3,13 @@ import {H1, InnerContainer, PageContainer} from "../../common/index.styles";
 import useUser from "../../hooks/useUser";
 import {getMediaMetadata} from "../../api/api";
 import {MediaMetadataObj} from "../../types";
-import {FloatingButton, PDFContainer} from "./Rules.styles";
+import {FloatingButton, Icon, PDFContainer, PdfTag, TagContainer} from "./Rules.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
+import {useDevice} from "../../hooks/useDevice";
 
 const Rules = () => {
     const {isEditor} = useUser();
+    const {isDesktop} = useDevice();
     const [data, setData] = useState<MediaMetadataObj[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -37,9 +39,13 @@ const Rules = () => {
     return (
         <PageContainer>
             <InnerContainer>
-
                 {data?.length ? (
-                    <PDFContainer src={data[0].url} title={data[0].title}/>
+                    isDesktop ? (
+                        <PDFContainer src={data[0].url} title={data[0].title} frameBorder={0}/>
+                    ) : <TagContainer>
+                        <Icon size={30}/>
+                        <PdfTag href={data[0].url} target="_blank" rel="noreferrer">{data[0].title}</PdfTag>
+                    </TagContainer>
                 ) : (
                     <H1>No File to display</H1>
                 )}
