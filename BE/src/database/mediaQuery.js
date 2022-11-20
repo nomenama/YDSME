@@ -27,7 +27,8 @@ export async function createMediaMetadata (databaseTable, title, url) {
 export async function updateMediaMetadata (databaseTable, title, url) {
 	const [media] = await getMediaMetadata(databaseTable);
 
-	const [result] = await db.query(`
+	if (media.id) {
+		const [result] = await db.query(`
 		UPDATE ${databaseTable}
 		SET 
 			title = ?,
@@ -35,5 +36,10 @@ export async function updateMediaMetadata (databaseTable, title, url) {
 		WHERE id = ${media.id}
 	`, [title, url]);
 
-	return result.affectedRows;
+		return result.affectedRows;
+	} else {
+		return await createMediaMetadata(databaseTable, title, url);
+	}
+
+
 }
