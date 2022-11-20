@@ -4,6 +4,7 @@ import {PrimaryButton} from "../../components/Header/Header.styles";
 
 export const PDFContainer = styled.iframe`
   height: calc(100vh - 234px);
+  overflow: auto;
 
   @media only screen and ${device.laptop} {
     height: calc(100vh - 202px);
