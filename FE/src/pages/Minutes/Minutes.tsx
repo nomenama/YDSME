@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {H3, InnerContainer, PageContainer} from "../../common/index.styles";
-import {BoilerContainer, PDFContainer} from "../BoilerGuides/BoilerGuides.styles";
+import {BoilerContainer, PDFContainer, TileContainer} from "../BoilerGuides/BoilerGuides.styles";
 import {AiOutlineFilePdf} from "react-icons/ai";
 import {UploadButton} from "../Agenda/Agenda.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
 import useUser from "../../hooks/useUser";
 import {useDevice} from "../../hooks/useDevice";
 import {MediaWithUrl} from "../../types";
-import {getMediaMetadata} from "../../api/api";
+import {deleteMedia, getMediaMetadata} from "../../api/api";
 import {MinutesContainer} from "./Minutes.styles";
+import {DeleteIcon} from "../../components/SideBar/SideBar.styles";
+import {ToastInfo, ToastSuccess} from "../../common/Toast";
 
 const Minutes = () => {
     const {isEditor} = useUser();
@@ -33,7 +35,21 @@ const Minutes = () => {
         void asyncProcess();
 
         return () => controller.abort();
-    }, [isModalOpen])
+    }, [isModalOpen]);
+
+    const handleDelete = async (media: MediaWithUrl) => {
+        try {
+            const {status, data} = await deleteMedia(media);
+
+            if (status === 200) {
+                setFiles(data);
+                ToastSuccess("Deleted");
+            }
+
+        } catch (err: any) {
+            ToastInfo(err);
+        }
+    }
 
     return (
         <PageContainer>
@@ -41,11 +57,15 @@ const Minutes = () => {
                 <MinutesContainer>
                     {!Boolean(files?.length) && <H3>No files available</H3>}
 
-                    {files.map(({id, title, secure_url}) => (
-                        <PDFContainer key={id} href={secure_url} target="_blank">
-                            <AiOutlineFilePdf size={isDesktop ? 150 : 100}/>
-                            <H3>{title}</H3>
-                        </PDFContainer>
+                    {files.map((file) => (
+                        <TileContainer key={file.id}>
+                            <DeleteIcon size={isDesktop ? 30 : 20} onClick={(e) => handleDelete(file)}/>
+
+                            <PDFContainer href={file.secure_url} target="_blank">
+                                <AiOutlineFilePdf size={isDesktop ? 150 : 100}/>
+                                <H3>{file.title}</H3>
+                            </PDFContainer>
+                        </TileContainer>
                     ))}
                 </MinutesContainer>
 

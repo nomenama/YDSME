@@ -137,7 +137,14 @@ export const getMediaMetadata = async (uploadPreset: UploadWidgetProps["uploadPr
 }
 
 export const deleteMedia = async (media: Partial<MediaWithUrl>) => {
-    const {status, data} = await api.delete("/media/delete-media", {withCredentials: true, params: media});
+    const {status, data} = await api.delete("/media/delete-media", {
+        withCredentials: true,
+        params: {
+            folder: media.folder,
+            public_id: media.public_id,
+            signature: media.signature
+        }
+    });
 
     return {
         status,

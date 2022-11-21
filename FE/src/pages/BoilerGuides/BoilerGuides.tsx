@@ -58,13 +58,9 @@ const BoilerGuides = () => {
 
                     {files.map((file) => (
                         <TileContainer key={file.id}>
-                            <DeleteIcon size={isDesktop ? 30 : 20} onClick={(e) => {
-                                e.stopPropagation();
-                                handleDelete(file)
-                            }}/>
+                            <DeleteIcon size={isDesktop ? 30 : 20} onClick={(e) => handleDelete(file)}/>
 
                             <PDFContainer href={file.secure_url} target="_blank">
-
                                 <AiOutlineFilePdf size={isDesktop ? 150 : 100}/>
                                 <H3>{file.title}</H3>
                             </PDFContainer>

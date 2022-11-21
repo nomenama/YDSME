@@ -49,16 +49,10 @@ router.delete("/delete-media", Auth(["EDITOR", "ADMIN"]), async (req, res) => {
 	const {folder, public_id, signature} = req.query;
 	try {
 		const {result} = await cloudinary.uploader.destroy(public_id, signature);
+		const databaseResult = await deleteMediaMetadata(folder, public_id);
 
-		if (result === "ok") {
-			const result = await deleteMediaMetadata(folder, public_id);
+		res.status(200).send(databaseResult);
 
-			if (result) {
-				res.status(200).send(result);
-			} else {
-				res.status(500).send("Error deleting file from database");
-			}
-		}
 	} catch (err) {
 		res.status(500).send(err);
 	}

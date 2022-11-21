@@ -3,13 +3,13 @@ import {H3, H4, InnerContainer, PageContainer} from "../../common/index.styles";
 import useUser from "../../hooks/useUser";
 import {useDevice} from "../../hooks/useDevice";
 import {MediaWithUrl} from "../../types";
-import {getMediaMetadata} from "../../api/api";
-import {MinutesContainer} from "../Minutes/Minutes.styles";
-import {PDFContainer} from "../BoilerGuides/BoilerGuides.styles";
+import {deleteMedia, getMediaMetadata} from "../../api/api";
 import {AiOutlineFilePdf} from "react-icons/ai";
 import {UploadButton} from "../Agenda/Agenda.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
-import {List} from "./Newsletter.styles";
+import {List, NewsLetterContainer, TileWrapper} from "./Newsletter.styles";
+import {ToastInfo, ToastSuccess} from "../../common/Toast";
+import {DeleteIcon} from "../../components/SideBar/SideBar.styles";
 
 const Newsletter = () => {
     const {isEditor} = useUser();
@@ -34,21 +34,39 @@ const Newsletter = () => {
         void asyncProcess();
 
         return () => controller.abort();
-    }, [isModalOpen])
+    }, [isModalOpen]);
+
+    const handleDelete = async (media: MediaWithUrl) => {
+        try {
+            const {status, data} = await deleteMedia(media);
+
+            if (status === 200) {
+                setFiles(data);
+                ToastSuccess("Deleted");
+            }
+
+        } catch (err: any) {
+            ToastInfo(err);
+        }
+    }
 
     return (
         <PageContainer>
             <InnerContainer justifyContent="space-between" alignItems="center" gap={50}>
-                <MinutesContainer>
+                <NewsLetterContainer>
                     {!Boolean(files?.length) && <H3>No files available</H3>}
 
-                    {files.map(({id, title, secure_url}) => (
-                        <List key={id} href={secure_url} target="_parent">
-                            <AiOutlineFilePdf size={isDesktop ? 60 : 40}/>
-                            {isDesktop ? <H3>{title}</H3> : <H4>{title}</H4>}
-                        </List>
+                    {files.map((file) => (
+                        <TileWrapper key={file.id}>
+                            <DeleteIcon size={isDesktop ? 25 : 20} onClick={(e) => handleDelete(file)}/>
+
+                            <List href={file.secure_url} target="_parent">
+                                <AiOutlineFilePdf size={isDesktop ? 60 : 40}/>
+                                {isDesktop ? <H3>{file.title}</H3> : <H4>{file.title}</H4>}
+                            </List>
+                        </TileWrapper>
                     ))}
-                </MinutesContainer>
+                </NewsLetterContainer>
 
                 {isEditor && <UploadButton onClick={() => setIsModalOpen((prevState) => !prevState)}>Upload</UploadButton>}
                 {isEditor && isModalOpen && <UploadModal onClose={() => setIsModalOpen(false)} uploadPreset="Newsletters"/>}

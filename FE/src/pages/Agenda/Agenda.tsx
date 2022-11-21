@@ -35,7 +35,7 @@ const Agenda = () => {
 
     return (
         <PageContainer>
-            <InnerContainer>
+            <InnerContainer justifyContent="center" alignItems="center">
                 {!Boolean(files?.length) && <H1>No File to display</H1>}
 
                 {isDesktop && Boolean(files?.length === 1) && (
