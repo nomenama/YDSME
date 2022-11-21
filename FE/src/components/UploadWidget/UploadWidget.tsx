@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {ToastError, ToastSuccess} from "../../common/Toast";
 import {Input, Label} from 'pages/Admin/Admin.styles';
 import {UploadWidgetProps} from 'types';
-import {UploadWidgetForm} from "./UploadWidget.styles";
+import {UploadInput, UploadWidgetForm} from "./UploadWidget.styles";
 import {P1, Spinner} from 'common/index.styles';
 import {useTheme} from "styled-components";
 import {SecondaryButton} from "../../pages/Login/Login.styles";
@@ -18,7 +18,7 @@ const UploadWidget = ({onModalClose = () => null, uploadPreset}: UploadWidgetPro
         event.preventDefault();
         setIsLoading(true);
         if (!file || !title || !uploadPreset) return;
-        
+
         try {
             const {status} = await UploadMedia({
                 title,
@@ -61,7 +61,7 @@ const UploadWidget = ({onModalClose = () => null, uploadPreset}: UploadWidgetPro
 
             <Label htmlFor="file">
                 File
-                <input
+                <UploadInput
                     id="file"
                     type="file"
                     accept={"application/pdf"}
