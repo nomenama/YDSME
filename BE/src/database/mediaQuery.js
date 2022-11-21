@@ -10,10 +10,8 @@ export async function getMediaMetadata (uploadPreset) {
 	if (data.length) {
 		return data;
 	}
-
 	return [];
 }
-
 
 export async function createMediaMetadata (folder, title, public_id, asset_id, secure_url, signature) {
 	const [result] = await db.query(`
@@ -26,8 +24,6 @@ export async function createMediaMetadata (folder, title, public_id, asset_id, s
 
 export async function updateMediaMetadata (folder, title, public_id, asset_id, secure_url, signature) {
 	const [media] = await getMediaMetadata(folder);
-
-
 	if (media?.id) {
 
 		const [result] = await db.query(`
@@ -45,5 +41,16 @@ export async function updateMediaMetadata (folder, title, public_id, asset_id, s
 		return result.affectedRows;
 	} else {
 		return await createMediaMetadata(folder, title, public_id, asset_id, secure_url);
+	}
+}
+
+export async function deleteMediaMetadata (folder, public_id) {
+	const [result] = await db.query(`
+		DELETE FROM ${folder}
+		WHERE public_id = ?
+	`, [public_id]);
+
+	if (result.affectedRows) {
+		return await getMediaMetadata(folder);
 	}
 }

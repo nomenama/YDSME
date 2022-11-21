@@ -10,6 +10,11 @@ export const BoilerContainer = styled.main`
   flex-wrap: wrap;
 `
 
+export const TileContainer = styled.div`
+  position: relative;
+  padding: 20px;
+`
+
 export const PDFContainer = styled.a`
   color: ${({theme}) => theme.colors.primary_10};
   display: flex;
@@ -21,7 +26,7 @@ export const PDFContainer = styled.a`
   cursor: pointer;
   transition: color 300ms ease;
   text-decoration: none;
-  max-width: 250px;
+  min-width: 250px;
   overflow-wrap: break-word;
 
   &:hover {

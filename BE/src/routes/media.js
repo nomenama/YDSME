@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {Auth} from "../middleware/Auth.js";
-import {createMediaMetadata, getMediaMetadata, updateMediaMetadata} from "../database/mediaQuery.js";
+import {createMediaMetadata, deleteMediaMetadata, getMediaMetadata, updateMediaMetadata} from "../database/mediaQuery.js";
 import cloudinary from "../utils/cloudinary.js";
 
 const router = Router();
@@ -14,7 +14,7 @@ router.post("/upload", Auth(["EDITOR"]), async (req, res) => {
 			const {asset_id, public_id, secure_url, folder, signature} = await cloudinary.uploader.upload(file, {
 				upload_preset: uploadPreset
 			});
-			
+
 			const response = await updateMediaMetadata(folder, title, public_id, asset_id, secure_url, signature);
 			if (response) {
 				res.status(200).send({message: "File Updated"});
@@ -43,6 +43,25 @@ router.get("/get-media", Auth(["MEMBER", "EDITOR", "COMMITTEE", "ADMIN"]), async
 	const response = await getMediaMetadata(uploadPreset);
 
 	res.status(200).send(response);
+});
+
+router.delete("/delete-media", Auth(["EDITOR", "ADMIN"]), async (req, res) => {
+	const {folder, public_id, signature} = req.query;
+	try {
+		const {result} = await cloudinary.uploader.destroy(public_id, signature);
+
+		if (result === "ok") {
+			const result = await deleteMediaMetadata(folder, public_id);
+
+			if (result) {
+				res.status(200).send(result);
+			} else {
+				res.status(500).send("Error deleting file from database");
+			}
+		}
+	} catch (err) {
+		res.status(500).send(err);
+	}
 });
 
 export default router;

@@ -1,5 +1,5 @@
 import api from "./baseApi";
-import {MediaProps, NewAnnouncement, NewEvent, UploadWidgetProps, User, UserWithId} from "../types";
+import {MediaProps, MediaWithUrl, NewAnnouncement, NewEvent, UploadWidgetProps, User, UserWithId} from "../types";
 
 export const postLogin = async (username: string, password: string) => {
     const {status, data} = await api.post("/user", {username, password}, {withCredentials: true});
@@ -129,6 +129,15 @@ export const UploadMedia = async (mediaObj: MediaProps) => {
 
 export const getMediaMetadata = async (uploadPreset: UploadWidgetProps["uploadPreset"], signal?: AbortSignal) => {
     const {status, data} = await api.get("/media/get-media", {withCredentials: true, params: {uploadPreset}, signal});
+
+    return {
+        status,
+        data
+    }
+}
+
+export const deleteMedia = async (media: Partial<MediaWithUrl>) => {
+    const {status, data} = await api.delete("/media/delete-media", {withCredentials: true, params: media});
 
     return {
         status,
