@@ -58,7 +58,7 @@ const Newsletter = () => {
 
                     {files.map((file) => (
                         <TileWrapper key={file.id}>
-                            {isEditor && <DeleteIcon size={isDesktop ? 25 : 20} onClick={(e) => handleDelete(file)}/>}
+                            {isEditor && <DeleteIcon size={isDesktop ? 25 : 20} onClick={() => handleDelete(file)}/>}
 
                             <List href={file.secure_url} target="_parent">
                                 <AiOutlineFilePdf size={isDesktop ? 60 : 40}/>
