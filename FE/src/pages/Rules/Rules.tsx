@@ -23,7 +23,7 @@ const Rules = () => {
 
         const asyncProcess = async () => {
             try {
-                const {status, data} = await getMediaMetadata("club_rules", signal);
+                const {status, data} = await getMediaMetadata("Club_Rules", signal);
                 if (status >= 200 && status < 300) {
                     setData(data)
                 }
@@ -51,7 +51,7 @@ const Rules = () => {
                 )}
 
                 {isEditor && isOpen && (
-                    <UploadModal onClose={() => setIsOpen(false)} uploadPreset="club_rules"/>
+                    <UploadModal onClose={() => setIsOpen(false)} uploadPreset="Club_Rules"/>
                 )}
 
                 {isEditor && <FloatingButton onClick={handleFloatingButton}>Upload</FloatingButton>}

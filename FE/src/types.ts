@@ -57,14 +57,13 @@ export interface CalendarEvent extends NewEvent {
 }
 
 export interface UploadWidgetProps {
-    uploadPreset: "club_rules" | "committee" | "newsletters" | "boiler_guides" | "minutes" | "agendas";
+    uploadPreset: "Club_Rules" | "Committee" | "Newsletters" | "Boiler_guides" | "Minutes" | "Agendas";
     onModalClose?: () => void;
 }
 
-export interface MediaProps {
+export interface MediaProps extends UploadWidgetProps {
     title: string;
     file: string; //base64
-    uploadPreset: "club_rules" | "committee" | "newsletters" | "boiler_guides" | "minutes" | "agendas";
 }
 
 export interface MediaWithUrl {
