@@ -1,58 +1,54 @@
-import React, {useState} from 'react';
-import axios from "axios";
+import React, {ChangeEvent, useState} from 'react';
 import {ToastError, ToastSuccess} from "../../common/Toast";
-import {postMediaMetadata} from "../../api/api";
 import {Input, Label} from 'pages/Admin/Admin.styles';
 import {UploadWidgetProps} from 'types';
 import {UploadWidgetForm} from "./UploadWidget.styles";
 import {P1, Spinner} from 'common/index.styles';
 import {useTheme} from "styled-components";
 import {SecondaryButton} from "../../pages/Login/Login.styles";
+import {UploadMedia} from "../../api/api";
 
-const UploadWidget = ({
-                          uploadPreset, databaseTable, onModalClose = () => {
-    }
-                      }: UploadWidgetProps) => {
+const UploadWidget = ({onModalClose = () => null, uploadPreset}: UploadWidgetProps) => {
     const theme = useTheme();
-    const [files, setFile] = useState<FileList | null>(null);
+    const [file, setFile] = useState<string | null>(null);
     const [title, setTitle] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const uploadImage = async () => {
+    const onSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
+        event.preventDefault();
         setIsLoading(true);
-        const formData = new FormData();
-        if (!files || !title) return;
-        formData.append("file", files[0]);
-        formData.append("upload_preset", uploadPreset);
-
-        //upload to Cloudinary
-        const {status, data} = await axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData);
-
-        if (status >= 200 && status < 300) {
-            const {secure_url} = data;
-
-            //Save url to database
-            const {status: serverStatus} = await postMediaMetadata({
+        if (!file || !title || !uploadPreset) return;
+        
+        try {
+            const {status} = await UploadMedia({
                 title,
-                url: secure_url,
-                databaseTable: databaseTable
+                file,
+                uploadPreset: uploadPreset,
             });
 
-            if (serverStatus === 200) {
+            if (status === 200) {
                 setIsLoading(false);
                 setTitle("");
-                setFile(null);
                 onModalClose();
-                ToastSuccess("File successfully uploaded");
-                return;
+                ToastSuccess("File Uploaded");
             }
+        } catch (err: any) {
             setIsLoading(false);
-            ToastError("Error uploading file. Try again!");
+            ToastError(err?.message);
         }
     }
 
+    const handleFileChange = (file: File) => {
+        let fileReader = new FileReader();
+
+        fileReader.onloadend = (binary: any) => {
+            setFile(binary.target.result);
+        };
+        fileReader.readAsDataURL(file);
+    }
+
     return (
-        <UploadWidgetForm>
+        <UploadWidgetForm onSubmit={onSubmit}>
             <P1 textAlign="center" color={theme.colors.primary} fontWeight={600}>Upload</P1>
             <Label htmlFor="title">
                 Title
@@ -69,11 +65,11 @@ const UploadWidget = ({
                     id="file"
                     type="file"
                     accept={"application/pdf"}
-                    onChange={(event) => setFile(event.target.files)}
+                    onChange={(event) => event.target.files ? handleFileChange(event.target.files[0]) : null}
                 />
             </Label>
 
-            <SecondaryButton type="button" onClick={uploadImage}>{isLoading ? <Spinner size={20}/> : "Upload"} </SecondaryButton>
+            <SecondaryButton>{isLoading ? <Spinner size={20}/> : "Upload"} </SecondaryButton>
         </UploadWidgetForm>
     );
 };

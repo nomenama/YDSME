@@ -1,5 +1,4 @@
 import {Dispatch, SetStateAction} from "react";
-import {strict} from "assert";
 
 export type UserRole = "MEMBER" | "EDITOR" | "ADMIN";
 
@@ -66,4 +65,15 @@ export interface MediaProps {
     title: string;
     file: string; //base64
     uploadPreset: "club_rules" | "committee" | "newsletters" | "boiler_guides" | "minutes" | "agendas";
+}
+
+export interface MediaWithUrl {
+    asset_id: string;
+    created: string;
+    folder: string;
+    id: number,
+    public_id: string;
+    secure_url: string;
+    signature: string;
+    title: string;
 }

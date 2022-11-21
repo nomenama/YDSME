@@ -9,12 +9,12 @@ interface ModalProps extends UploadWidgetProps {
     onClose: () => void;
 }
 
-const UploadModal = ({onClose, uploadPreset, databaseTable}: ModalProps) => {
+const UploadModal = ({onClose, uploadPreset}: ModalProps) => {
     return ReactDOM.createPortal(
         <>
             <Overlay onClick={onClose}/>
             <ModalContainer>
-                <UploadWidget uploadPreset={uploadPreset} databaseTable={databaseTable} onModalClose={onClose}/>
+                <UploadWidget uploadPreset={uploadPreset} onModalClose={onClose}/>
             </ModalContainer>
 
         </>,

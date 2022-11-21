@@ -4,25 +4,26 @@ import useUser from "../../hooks/useUser";
 import {FloatingButton, Icon, PDFContainer, PdfTag, TagContainer} from "./Rules.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
 import {useDevice} from "../../hooks/useDevice";
-import {MediaProps} from "../../types";
+import {MediaWithUrl} from "../../types";
+import {getMediaMetadata} from 'api/api';
 
 const Rules = () => {
     const {isEditor} = useUser();
     const {isDesktop} = useDevice();
-    const [data, setData] = useState<MediaProps[]>([]);
+    const [data, setData] = useState<MediaWithUrl[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleFloatingButton = () => {
         setIsOpen((prevState) => !prevState)
     }
 
-    /*useEffect(() => {
+    useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
 
         const asyncProcess = async () => {
             try {
-                const {status, data} = await getMediaMetadata("rules", signal);
+                const {status, data} = await getMediaMetadata("club_rules", signal);
                 if (status >= 200 && status < 300) {
                     setData(data)
                 }
@@ -33,21 +34,21 @@ const Rules = () => {
         void asyncProcess();
 
         return () => controller.abort();
-    }, [])*/
+    }, [])
 
     return (
         <PageContainer>
             <InnerContainer>
-                {/*                {data?.length ? (
+                {data?.length ? (
                     isDesktop ? (
-                        <PDFContainer src={data[0].url} title={data[0].title} frameBorder={0}/>
+                        <PDFContainer src={data[0].secure_url} title={data[0].title} frameBorder={0}/>
                     ) : <TagContainer>
                         <Icon size={30}/>
-                        <PdfTag href={data[0].url} target="_blank" rel="noreferrer">{data[0].title}</PdfTag>
+                        <PdfTag href={data[0].secure_url} target="_blank" rel="noreferrer">{data[0].title}</PdfTag>
                     </TagContainer>
                 ) : (
                     <H1>No File to display</H1>
-                )}*/}
+                )}
 
                 {isEditor && isOpen && (
                     <UploadModal onClose={() => setIsOpen(false)} uploadPreset="club_rules"/>

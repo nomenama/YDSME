@@ -1,5 +1,5 @@
 import api from "./baseApi";
-import {MediaMetadataObj, NewAnnouncement, NewEvent, User, UserWithId} from "../types";
+import {MediaProps, NewAnnouncement, NewEvent, UploadWidgetProps, User, UserWithId} from "../types";
 
 export const postLogin = async (username: string, password: string) => {
     const {status, data} = await api.post("/user", {username, password}, {withCredentials: true});
@@ -118,8 +118,8 @@ export const getEvents = async (signal: AbortSignal) => {
     }
 };
 
-export const getMediaMetadata = async (databaseTable: string, signal?: AbortSignal) => {
-    const {status, data} = await api.get("/media/get-metadata", {withCredentials: true, params: {databaseTable}, signal});
+export const UploadMedia = async (mediaObj: MediaProps) => {
+    const {status, data} = await api.post("/media/upload", mediaObj, {withCredentials: true});
 
     return {
         status,
@@ -127,11 +127,12 @@ export const getMediaMetadata = async (databaseTable: string, signal?: AbortSign
     }
 }
 
-export const postMediaMetadata = async (mediaObj: MediaMetadataObj) => {
-    const {status, data} = await api.post("/media/post-metadata", mediaObj, {withCredentials: true});
+export const getMediaMetadata = async (uploadPreset: UploadWidgetProps["uploadPreset"], signal?: AbortSignal) => {
+    const {status, data} = await api.get("/media/get-media", {withCredentials: true, params: {uploadPreset}, signal});
 
     return {
         status,
         data
     }
-};
+}
+
