@@ -17,6 +17,7 @@ import Gallery from "./pages/Gallery/Gallery";
 import Rules from "./pages/Rules/Rules";
 import Agenda from "./pages/Agenda/Agenda";
 import BoilerGuides from "./pages/BoilerGuides/BoilerGuides";
+import Minutes from "./pages/Minutes/Minutes";
 
 function App() {
     return (
@@ -37,11 +38,11 @@ function App() {
                 {/*Member only page*/}
                 <Route element={<RequireUser allowedRoles={["MEMBER"]}/>}>
                     <Route path="/dashboard" element={<Dashboard/>}/>
-                    <Route path="/agenda" element={<Agenda/>}/>
-                    <Route path="/minute" element={<Dashboard/>}/>
-                    <Route path="/boiler-guide" element={<BoilerGuides/>}/>
-                    <Route path="/club-rule" element={<Rules/>}/>
-                    <Route path="/newsletter" element={<Dashboard/>}/>
+                    <Route path="/agendas" element={<Agenda/>}/>
+                    <Route path="/minutes" element={<Minutes/>}/>
+                    <Route path="/boiler-guides" element={<BoilerGuides/>}/>
+                    <Route path="/club-rules" element={<Rules/>}/>
+                    <Route path="/newsletters" element={<Dashboard/>}/>
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>

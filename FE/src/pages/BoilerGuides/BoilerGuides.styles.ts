@@ -12,7 +12,7 @@ export const BoilerContainer = styled.main`
 
 
 export const PDFContainer = styled.a`
-  color: ${({theme}) => theme.buttons.primary};
+  color: ${({theme}) => theme.colors.primary_10};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,8 +22,10 @@ export const PDFContainer = styled.a`
   cursor: pointer;
   transition: color 300ms ease;
   text-decoration: none;
+  max-width: 250px;
+  overflow-wrap: break-word;
 
   &:hover {
-    color: ${({theme}) => theme.colors.primary_10};
+    color: ${({theme}) => theme.buttons.primary};
   }
 `
