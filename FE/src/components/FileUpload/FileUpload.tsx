@@ -101,7 +101,7 @@ const FileUpload = ({folderName}: FileUploadProps) => {
             {Boolean(uploadProgress) && <ProgressBar progress={uploadProgress}/>}
 
             <FileArray>
-                {files.map((file, index) => (
+                {files.map((file) => (
                     <FileName key={file.name} onClick={() => onDelete(file)}>
                         <AiOutlineCloseCircle size={isDesktop ? 20 : 15}/>
                         <P1>{file.name}</P1>

@@ -14,7 +14,7 @@ export interface DrawerProps {
 const Drawer = ({onClose, handleLogout}: DrawerProps) => {
     const {isDesktop} = useDevice();
     const theme = useTheme();
-    const {user, isEditor, isAdmin} = useUser();
+    const {user, isAdmin} = useUser();
 
 
     return ReactDOM.createPortal(
@@ -24,7 +24,7 @@ const Drawer = ({onClose, handleLogout}: DrawerProps) => {
                 <DrawerGroup>
                     <P1 color={theme.colors.primary} textAlign="center" fontWeight={500}>Welcome, {user.firstName}</P1>
                     <CloseButton size={isDesktop ? 25 : 20} onClick={onClose}/>
-                    
+
                     <AnchorTag to="/admin">
                         <DrawerButton onClick={onClose} disabled={!isAdmin}>Admin</DrawerButton>
                     </AnchorTag>

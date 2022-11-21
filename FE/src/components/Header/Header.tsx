@@ -26,7 +26,6 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false, includeDrawerButton = false}) => {
     const location = useLocation();
-    const theme = useTheme();
     const navigate = useNavigate();
     const [displayMobileNavBar, setDisplayMobileNavBar] = useState<boolean>(false);
     const [displayDrawer, setDisplayDrawer] = useState(false);
