@@ -26,7 +26,7 @@ app.use("/api/media", mediaRoutes);
 
 
 //error handling and logging
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
 	logger.log("error", err.stack);
 	res.status(500).send({message: "Something broke! Please try again or contact administrator."});
 });
