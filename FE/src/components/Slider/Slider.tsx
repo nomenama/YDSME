@@ -10,7 +10,7 @@ export const Slider = () => {
     return (
         <Carousel
             autoPlay
-            infiniteLoop
+            infiniteLoop={true}
             showThumbs={false}
             showStatus={false}
             dynamicHeight={true}
@@ -19,7 +19,12 @@ export const Slider = () => {
             <div><S.Img src="sliders/1.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
             <div><S.Img src="sliders/2.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
             <div><S.Img src="sliders/3.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
+            <div><S.Img src="sliders/4.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
+            <div><S.Img src="sliders/5.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
             <div><S.Img src="sliders/6.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
+            <div><S.Img src="sliders/7.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
+            <div><S.Img src="sliders/8.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
+            <div><S.Img src="sliders/11.jpg" alt="" width={600} height={isDesktop ? 600 : 400}/></div>
         </Carousel>
     )
 }
