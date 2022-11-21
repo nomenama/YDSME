@@ -1,9 +1,9 @@
 import {db} from "./database.js";
 
-export async function getMediaMetadata (databaseTable) {
+export async function getMediaMetadata (uploadPreset) {
 	const [data] = await db.query(`
 		SELECT *
-		FROM ${databaseTable}
+		FROM ${uploadPreset}
 		ORDER BY created DESC
 	`);
 
@@ -15,31 +15,35 @@ export async function getMediaMetadata (databaseTable) {
 }
 
 
-export async function createMediaMetadata (databaseTable, title, url) {
+export async function createMediaMetadata (folder, title, public_id, asset_id, secure_url, signature) {
 	const [result] = await db.query(`
-		INSERT INTO ${databaseTable} (title, url)
-		VALUES (?, ?)
-	`, [title, url]);
+		INSERT INTO ${folder} (folder, title, public_id, asset_id, secure_url, signature)
+		VALUES (?, ?, ?, ?, ?, ?)
+	`, [folder, title, public_id, asset_id, secure_url, signature]);
 
 	return result.insertId;
 }
 
-export async function updateMediaMetadata (databaseTable, title, url) {
-	const [media] = await getMediaMetadata(databaseTable);
+export async function updateMediaMetadata (folder, title, public_id, asset_id, secure_url, signature) {
+	const [media] = await getMediaMetadata(folder);
+
 
 	if (media?.id) {
+
 		const [result] = await db.query(`
-		UPDATE ${databaseTable}
+		UPDATE ${folder}
 		SET 
+			folder = ?,
 			title = ?,
-			url = ?
+			public_id = ?,
+			asset_id = ?,
+			secure_url = ?,
+			signature = ?
 		WHERE id = ${media.id}
-	`, [title, url]);
+	`, [folder, title, public_id, asset_id, secure_url, signature]);
 
 		return result.affectedRows;
 	} else {
-		return await createMediaMetadata(databaseTable, title, url);
+		return await createMediaMetadata(folder, title, public_id, asset_id, secure_url);
 	}
-
-
 }

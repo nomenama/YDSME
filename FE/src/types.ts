@@ -58,13 +58,12 @@ export interface CalendarEvent extends NewEvent {
 }
 
 export interface UploadWidgetProps {
-    uploadPreset: "club_rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
-    databaseTable: "rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
+    uploadPreset: "club_rules" | "committee" | "newsletters" | "boiler_guides" | "minutes" | "agendas";
     onModalClose?: () => void;
 }
 
-export interface MediaMetadataObj {
+export interface MediaProps {
     title: string;
-    url: string;
-    databaseTable: "rules" | "committee" | "newsletter" | "boiler_guide" | "minute" | "agenda";
+    file: string; //base64
+    uploadPreset: "club_rules" | "committee" | "newsletters" | "boiler_guides" | "minutes" | "agendas";
 }
