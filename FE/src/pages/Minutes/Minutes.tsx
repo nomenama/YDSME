@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {H3, InnerContainer, PageContainer} from "../../common/index.styles";
-import {BoilerContainer, PDFContainer, TileContainer} from "../BoilerGuides/BoilerGuides.styles";
+import {PDFContainer, TileContainer} from "../BoilerGuides/BoilerGuides.styles";
 import {AiOutlineFilePdf} from "react-icons/ai";
 import {UploadButton} from "../Agenda/Agenda.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
