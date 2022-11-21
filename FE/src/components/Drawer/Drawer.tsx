@@ -24,11 +24,7 @@ const Drawer = ({onClose, handleLogout}: DrawerProps) => {
                 <DrawerGroup>
                     <P1 color={theme.colors.primary} textAlign="center" fontWeight={500}>Welcome, {user.firstName}</P1>
                     <CloseButton size={isDesktop ? 25 : 20} onClick={onClose}/>
-
-                    <AnchorTag to="/editor">
-                        <DrawerButton onClick={onClose} disabled={!isEditor}>Editor</DrawerButton>
-                    </AnchorTag>
-
+                    
                     <AnchorTag to="/admin">
                         <DrawerButton onClick={onClose} disabled={!isAdmin}>Admin</DrawerButton>
                     </AnchorTag>

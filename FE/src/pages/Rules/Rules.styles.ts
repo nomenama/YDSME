@@ -16,28 +16,6 @@ export const PDFContainer = styled.iframe`
   }
 `
 
-export const FloatingButton = styled(PrimaryButton)`
-  width: 100%;
-  max-width: 100px;
-  position: absolute;
-  right: 90px;
-  bottom: 20px;
-
-  @media only screen and ${device.laptop} {
-    bottom: 40px;
-    right: 40px;
-  }
-
-  @media only screen and ${device.tablet} {
-    bottom: 20px;
-    right: 40px;
-  }
-
-  @media only screen and ${device.mobileL} {
-    bottom: 20px;
-  }
-`
-
 export const Icon = styled(BsFileEarmarkPdf)`
   color: ${({theme}) => theme.buttons.primary};
 `

@@ -12,7 +12,7 @@ router.post("/upload", Auth(["EDITOR"]), async (req, res) => {
 	try {
 		const {uploadPreset, title, file} = req.body;
 
-		if (uploadPreset === "club_rules") {
+		if (uploadPreset === "Club_Rules") {
 			const {asset_id, public_id, secure_url, folder, signature} = await cloudinary.uploader.upload(file, {
 				upload_preset: uploadPreset
 			});

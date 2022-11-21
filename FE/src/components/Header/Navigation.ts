@@ -12,8 +12,8 @@ export const MemberNavigation = {
     Home: "/",
     Dashboard: "/dashboard",
     Agenda: "/agenda",
-    Minute: "/minute",
-    "Boiler Guide": "/boiler-guide",
-    "Club Rule": "/club-rule",
-    "Newsletter": "/newsletter",
+    Minutes: "/minute",
+    "Boiler Guides": "/boiler-guide",
+    "Club Rules": "/club-rule",
+    "Newsletters": "/newsletter",
 };

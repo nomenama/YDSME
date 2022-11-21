@@ -12,10 +12,10 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
 import Admin from "./pages/Admin/Admin";
 import Unauthorised from "./pages/Unauthorised/Unauthorised";
-import Editor from "./pages/Editor/Editor";
 import Events from "./pages/Events/Events";
 import Gallery from "./pages/Gallery/Gallery";
 import Rules from "./pages/Rules/Rules";
+import Agenda from "./pages/Agenda/Agenda";
 
 function App() {
     return (
@@ -36,15 +36,11 @@ function App() {
                 {/*Member only page*/}
                 <Route element={<RequireUser allowedRoles={["MEMBER"]}/>}>
                     <Route path="/dashboard" element={<Dashboard/>}/>
-                    <Route path="/agenda" element={<Dashboard/>}/>
+                    <Route path="/agenda" element={<Agenda/>}/>
                     <Route path="/minute" element={<Dashboard/>}/>
                     <Route path="/boiler-guide" element={<Dashboard/>}/>
                     <Route path="/club-rule" element={<Rules/>}/>
                     <Route path="/newsletter" element={<Dashboard/>}/>
-                </Route>
-
-                <Route element={<RequireUser allowedRoles={["EDITOR", "ADMIN"]}/>}>
-                    <Route path="/editor" element={<Editor/>}/>
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>

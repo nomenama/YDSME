@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {H1, InnerContainer, PageContainer} from "../../common/index.styles";
-import useUser from "../../hooks/useUser";
-import {Icon, PDFContainer, PdfTag, TagContainer} from "./Rules.styles";
-import UploadModal from "../../components/UploadModal/UploadModal";
-import {useDevice} from "../../hooks/useDevice";
 import {MediaWithUrl} from "../../types";
-import {getMediaMetadata} from 'api/api';
-import {UploadButton} from "../Agenda/Agenda.styles";
+import {UploadButton} from "./Agenda.styles";
+import useUser from "../../hooks/useUser";
+import UploadModal from "../../components/UploadModal/UploadModal";
+import {getMediaMetadata} from "../../api/api";
+import {Icon, PDFContainer, PdfTag, TagContainer} from "../Rules/Rules.styles";
+import {useDevice} from "../../hooks/useDevice";
 
-const Rules = () => {
+const Agenda = () => {
     const {isEditor} = useUser();
     const {isDesktop} = useDevice();
-    const [data, setData] = useState<MediaWithUrl[]>([]);
+    const [files, setFiles] = useState<MediaWithUrl[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -20,9 +20,9 @@ const Rules = () => {
 
         const asyncProcess = async () => {
             try {
-                const {status, data} = await getMediaMetadata("Club_Rules", signal);
+                const {status, data} = await getMediaMetadata("Agendas", signal);
                 if (status >= 200 && status < 300) {
-                    setData(data)
+                    setFiles(data);
                 }
             } catch (err: any) {
                 console.log(err?.message)
@@ -35,23 +35,22 @@ const Rules = () => {
 
     return (
         <PageContainer>
-
-            {!Boolean(data?.length) && (
+            {!Boolean(files?.length) && (
                 <InnerContainer justifyContent="center" alignItems="center">
                     <H1>No File to display</H1>
                 </InnerContainer>
             )}
 
-            {isDesktop && Boolean(data?.length === 1) && (
-                isDesktop && data.map(({id, title, secure_url}) => (
+            {isDesktop && Boolean(files?.length === 1) && (
+                isDesktop && files.map(({id, title, secure_url}) => (
                     <InnerContainer>
                         <PDFContainer key={id} src={secure_url} title={title} frameBorder={0}/>
                     </InnerContainer>
                 ))
             )}
 
-            {(!isDesktop || Boolean(data.length > 1)) && (
-                data.map(({id, title, secure_url}) => (
+            {(!isDesktop || Boolean(files.length > 1)) && (
+                files.map(({id, title, secure_url}) => (
                     <InnerContainer justifyContent="center" alignItems="center">
                         <TagContainer key={id}>
                             <Icon size={30}/>
@@ -72,4 +71,4 @@ const Rules = () => {
     );
 };
 
-export default Rules;
+export default Agenda;
