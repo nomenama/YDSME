@@ -1,7 +1,5 @@
 import {Router} from "express";
 import {Auth} from "../middleware/Auth.js";
-import {logger} from "../logger.js";
-import fs from "fs";
 import {createMediaMetadata, getMediaMetadata, updateMediaMetadata} from "../database/mediaQuery.js";
 import cloudinary from "../utils/cloudinary.js";
 

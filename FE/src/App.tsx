@@ -16,6 +16,7 @@ import Events from "./pages/Events/Events";
 import Gallery from "./pages/Gallery/Gallery";
 import Rules from "./pages/Rules/Rules";
 import Agenda from "./pages/Agenda/Agenda";
+import BoilerGuides from "./pages/BoilerGuides/BoilerGuides";
 
 function App() {
     return (
@@ -38,7 +39,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path="/agenda" element={<Agenda/>}/>
                     <Route path="/minute" element={<Dashboard/>}/>
-                    <Route path="/boiler-guide" element={<Dashboard/>}/>
+                    <Route path="/boiler-guide" element={<BoilerGuides/>}/>
                     <Route path="/club-rule" element={<Rules/>}/>
                     <Route path="/newsletter" element={<Dashboard/>}/>
                 </Route>

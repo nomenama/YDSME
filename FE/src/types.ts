@@ -57,7 +57,7 @@ export interface CalendarEvent extends NewEvent {
 }
 
 export interface UploadWidgetProps {
-    uploadPreset: "Club_Rules" | "Committee" | "Newsletters" | "Boiler_guides" | "Minutes" | "Agendas";
+    uploadPreset: "Club_Rules" | "Committee" | "Newsletters" | "Boiler_Guides" | "Minutes" | "Agendas";
     onModalClose?: () => void;
 }
 
