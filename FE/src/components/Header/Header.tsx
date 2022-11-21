@@ -76,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({navigations, includeLoginButton = false,
                     )}
                 </NavContainer>
 
-                <Hamburger size={30} color={theme.colors.white} onClick={onToggleSideBar}/>
+                <Hamburger size={30} onClick={onToggleSideBar}/>
 
                 {displayMobileNavBar && (
                     <MobileNavigation
