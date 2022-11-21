@@ -59,7 +59,7 @@ const Minutes = () => {
 
                     {files.map((file) => (
                         <TileContainer key={file.id}>
-                            <DeleteIcon size={isDesktop ? 30 : 20} onClick={(e) => handleDelete(file)}/>
+                            {isEditor && <DeleteIcon size={isDesktop ? 30 : 20} onClick={(e) => handleDelete(file)}/>}
 
                             <PDFContainer href={file.secure_url} target="_blank">
                                 <AiOutlineFilePdf size={isDesktop ? 150 : 100}/>
