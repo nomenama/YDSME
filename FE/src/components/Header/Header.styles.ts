@@ -75,7 +75,8 @@ export const Logo = styled.img`
 
 export const DrawerHamburger = styled(GiHamburgerMenu)`
   color: ${({theme}) => theme.colors.white};
-  transition: color 300ms ease-in-out;
+  transition: color 200ms ease-in-out;
+  cursor: pointer;
 
   &:hover {
     color: ${({theme}) => theme.buttons.primary};
@@ -86,7 +87,9 @@ export const CloseNavBar = styled(IoMdClose)<{ onClick: () => void }>``
 
 export const Hamburger = styled(GiHamburgerMenu)<{ onClick: () => void }>`
   display: none;
+  cursor: pointer;
   color: ${({theme}) => theme.colors.white};
+  transition: color 200ms ease-in-out;
 
   &:hover {
     color: ${({theme}) => theme.buttons.primary};

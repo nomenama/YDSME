@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import {device} from "styles/theme";
-import {PrimaryButton} from "../../components/Header/Header.styles";
 import {BsFileEarmarkPdf} from "react-icons/bs";
 
 export const PDFContainer = styled.iframe`
+  width: 100%;
   height: calc(100vh - 234px);
   overflow: auto;
 

@@ -31,42 +31,32 @@ const Agenda = () => {
         void asyncProcess();
 
         return () => controller.abort();
-    }, [])
+    }, [isModalOpen])
 
     return (
         <PageContainer>
-            {!Boolean(files?.length) && (
-                <InnerContainer justifyContent="center" alignItems="center">
-                    <H1>No File to display</H1>
-                </InnerContainer>
-            )}
+            <InnerContainer>
+                {!Boolean(files?.length) && <H1>No File to display</H1>}
 
-            {isDesktop && Boolean(files?.length === 1) && (
-                isDesktop && files.map(({id, title, secure_url}) => (
-                    <InnerContainer>
+                {isDesktop && Boolean(files?.length === 1) && (
+                    isDesktop && files.map(({id, title, secure_url}) => (
                         <PDFContainer key={id} src={secure_url} title={title} frameBorder={0}/>
-                    </InnerContainer>
-                ))
-            )}
+                    ))
+                )}
 
-            {(!isDesktop || Boolean(files.length > 1)) && (
-                files.map(({id, title, secure_url}) => (
-                    <InnerContainer justifyContent="center" alignItems="center">
+                {(!isDesktop || Boolean(files.length > 1)) && (
+                    files.map(({id, title, secure_url}) => (
                         <TagContainer key={id}>
                             <Icon size={30}/>
                             <PdfTag href={secure_url} target="_blank" rel="noreferrer">{title}</PdfTag>
                         </TagContainer>
-                    </InnerContainer>
-                ))
-            )}
+                    ))
+                )}
 
-            {isEditor && <UploadButton onClick={() => setIsModalOpen((prevState) => !prevState)}>Upload</UploadButton>}
+                {isEditor && <UploadButton onClick={() => setIsModalOpen((prevState) => !prevState)}>Upload</UploadButton>}
 
-            {isEditor && isModalOpen && (
-                <InnerContainer>
-                    <UploadModal onClose={() => setIsModalOpen(false)} uploadPreset="Agendas"/>
-                </InnerContainer>
-            )}
+                {isEditor && isModalOpen && <UploadModal onClose={() => setIsModalOpen(false)} uploadPreset="Agendas"/>}
+            </InnerContainer>
         </PageContainer>
     );
 };
