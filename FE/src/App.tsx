@@ -18,6 +18,7 @@ import Rules from "./pages/Rules/Rules";
 import Agenda from "./pages/Agenda/Agenda";
 import BoilerGuides from "./pages/BoilerGuides/BoilerGuides";
 import Minutes from "./pages/Minutes/Minutes";
+import Newsletter from "./pages/Newsletters/Newsletter";
 
 function App() {
     return (
@@ -42,7 +43,7 @@ function App() {
                     <Route path="/minutes" element={<Minutes/>}/>
                     <Route path="/boiler-guides" element={<BoilerGuides/>}/>
                     <Route path="/club-rules" element={<Rules/>}/>
-                    <Route path="/newsletters" element={<Dashboard/>}/>
+                    <Route path="/newsletters" element={<Newsletter/>}/>
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>

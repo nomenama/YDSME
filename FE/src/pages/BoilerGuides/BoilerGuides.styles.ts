@@ -10,7 +10,6 @@ export const BoilerContainer = styled.main`
   flex-wrap: wrap;
 `
 
-
 export const PDFContainer = styled.a`
   color: ${({theme}) => theme.colors.primary_10};
   display: flex;

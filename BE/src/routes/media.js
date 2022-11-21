@@ -10,12 +10,11 @@ router.post("/upload", Auth(["EDITOR"]), async (req, res) => {
 	try {
 		const {uploadPreset, title, file} = req.body;
 
-		if (uploadPreset === "Club_Rules") {
+		if (uploadPreset === "Club_Rules" || uploadPreset === "Agendas") {
 			const {asset_id, public_id, secure_url, folder, signature} = await cloudinary.uploader.upload(file, {
 				upload_preset: uploadPreset
 			});
-
-
+			
 			const response = await updateMediaMetadata(folder, title, public_id, asset_id, secure_url, signature);
 			if (response) {
 				res.status(200).send({message: "File Updated"});
