@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
-  width: 100%;
+  width: 90%;
   max-width: 600px;
   display: flex;
   justify-content: center;

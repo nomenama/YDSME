@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {device} from "../../styles/theme";
 
 export const UploadWidgetForm = styled.form`
   width: 100%;
@@ -14,4 +15,8 @@ export const UploadWidgetForm = styled.form`
 
 export const UploadInput = styled.input`
   width: 80%;
+
+  @media only screen and ${device.mobileM} {
+    width: 70%;
+  }
 `
