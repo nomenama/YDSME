@@ -11,6 +11,7 @@ const SearchBar = ({handleOnSearch}: { handleOnSearch: any }) => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={"search user by first name"}
+                onKeyDown={(event) => event.key === "Enter" && handleOnSearch(search)}
             />
             <SecondaryButton onClick={() => {
                 handleOnSearch(search);

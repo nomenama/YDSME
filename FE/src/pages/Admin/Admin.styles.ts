@@ -48,9 +48,10 @@ export const CheckboxLabel = styled(Label_)`
   gap: 30px;
 `
 
-export const ButtonGroup = styled.div`
+export const ButtonGroup = styled.div<{ direction?: "row" | "column" }>`
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: ${({direction}) => direction ? direction : "row"};
   gap: 20px;
 `
