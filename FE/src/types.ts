@@ -76,3 +76,29 @@ export interface MediaWithUrl {
     signature: string;
     title: string;
 }
+
+export interface ChatInterface {
+    socket: any;
+    name: string;
+    room: string;
+}
+
+export interface MessageObj {
+    room: string;
+    author: string;
+    message: string;
+    time: string;
+}
+
+export interface ChatInterface {
+    socket: any;
+    name: string;
+    room: string;
+}
+
+export interface MessageObj {
+    room: string;
+    author: string;
+    message: string;
+    time: string;
+}

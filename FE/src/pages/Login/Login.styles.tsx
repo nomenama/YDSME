@@ -40,6 +40,11 @@ export const Input = styled.input`
   @media only screen and ${device.laptop} {
     font-size: 16px;
   }
+
+  &::placeholder {
+    font-size: 14px;
+    color: lightgrey;
+  }
 `
 
 export const SecondaryButton = styled.button`

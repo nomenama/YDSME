@@ -3,6 +3,7 @@ import {InnerContainer, P1, PageContainer} from "../../common/index.styles";
 import {Greeting} from "./Dashboard.styles";
 import useUser from "../../hooks/useUser";
 import {useTheme} from "styled-components";
+import ChatRoom from "components/ChatRoom/ChatRoom";
 
 const Dashboard = () => {
     const {user} = useUser();
@@ -14,6 +15,7 @@ const Dashboard = () => {
                 <Greeting>
                     <P1 color={theme.colors.primary}>Welcome, {user.firstName}</P1>
                 </Greeting>
+                <ChatRoom/>
             </InnerContainer>
         </PageContainer>
     )
