@@ -5,7 +5,7 @@ import {io} from "socket.io-client";
 
 const uri = process.env.NODE_ENV === "production" ? "https://api.yorkmodelengineers.co.uk" : "";
 
-const socket = io("http://localhost:8800");
+const socket = io("https://api.yorkmodelengineers.co.uk");
 
 const Dashboard = () => {
 
