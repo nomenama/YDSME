@@ -1,16 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {ChatRoomContainer} from "./ChatRoom.styles";
-import io from "socket.io-client";
 import SidePanel from './SidePanel/SidePanel';
 import ChatPanel from './ChatPanel/ChatPanel';
 import useUser from 'hooks/useUser';
 import {MessageObj, UserObj} from "../../types";
+import {Socket} from 'socket.io-client/build/esm/socket';
 
-const socket = io("http://localhost:8800", {
-    transports: ["websocket", "polling"]
-});
-
-const ChatRoom = () => {
+const ChatRoom = ({socket}: { socket: Socket }) => {
     const {user} = useUser();
     const [onlineUsers, setOnlineUsers] = useState<UserObj[]>([]);
     const [chatMessages, setChatMessages] = useState<MessageObj[]>([]);
@@ -25,17 +21,27 @@ const ChatRoom = () => {
             setOnlineUsers(users)
         });
 
+        socket.on("message_history", (messageHistory: MessageObj[]) => {
+            setChatMessages((currentMessages) => [...messageHistory, ...currentMessages])
+        })
+
         socket.on("message", (data: MessageObj) => {
             setChatMessages((currentMessages) => [...currentMessages, data])
         });
 
-        socket.on("disconnected", (id: string) => {
+        socket.on("disconnected", ({id, name}: UserObj) => {
+            setChatMessages((currentMessages) => [...currentMessages, {
+                author: "BOT",
+                message: `${name} has left the chat.`,
+                time: String(new Date(Date.now())),
+                file: ""
+            }])
             setOnlineUsers((users) => {
                 return users.filter((user) => user.id !== id)
-            })
+            });
         });
 
-    }, [])
+    }, []);
 
     return (
         <ChatRoomContainer>

@@ -13,6 +13,7 @@ import publicRoutes from "./src/routes/public.js";
 import mediaRoutes from "./src/routes/media.js";
 import {allowedCors} from "./src/allowedCors/index.js";
 import {Server} from "socket.io";
+import {createMessage, getMessages} from "./src/database/chatQuery.js";
 
 dotenv.config();
 const app = express();
@@ -27,12 +28,12 @@ const io = new Server(server, {
 	cors: {
 		origin: process.env.NODE_ENV === "development"
 			? "http://localhost:3000"
-			: process.env.REQUEST_ORIGIN,
-		transports: ["websocket", "polling"]
+			: process.env.REQUEST_ORIGIN
 	}
 });
 
 const users = {};
+let messageHistory = [];
 
 io.on("connection", (socket) => {
 
@@ -51,21 +52,17 @@ io.on("connection", (socket) => {
 		});
 	});
 
+	socket.emit("message_history", messageHistory);
+
 	socket.on("send", (msgObj) => {
+		messageHistory.push(msgObj);
 		io.emit("message", msgObj);
 	});
 
 	socket.on("disconnect", () => {
 		const user = users[socket.id];
 		delete users[socket.id];
-		/*		socket.broadcast.emit("message", {
-					author: "BOT",
-					message: `${user.name} has left the chat.`,
-					time: String(new Date(Date.now())),
-					file: ""
-				});*/
-
-		io.emit("disconnected", socket.id);
+		io.emit("disconnected", user);
 	});
 });
 

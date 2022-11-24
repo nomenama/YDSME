@@ -18,7 +18,8 @@ const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMe
         const messageData = {
             author: username,
             message: currentMessage,
-            time: new Date(Date.now()).getHours() + ":" + String(new Date(Date.now()).getMinutes()).padStart(2, "0")
+            time: new Date(Date.now()).getHours() + ":" + String(new Date(Date.now()).getMinutes()).padStart(2, "0"),
+            file: ""
         };
         socket.emit("send", messageData);
         setCurrentMessage("");

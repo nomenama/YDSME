@@ -8,7 +8,7 @@ import ClubHistory from "./pages/ClubHistory/ClubHistory";
 import HireUs from "./pages/HireUs/HireUs";
 import Committee from "./pages/Committee/Committee";
 import Login from "./pages/Login/Login";
-import Dashboard from "./pages/Dashboard/Dashboard";
+/*import Dashboard from "./pages/Dashboard/Dashboard";*/
 import NotFound from "./pages/NotFound/NotFound";
 import Admin from "./pages/Admin/Admin";
 import Unauthorised from "./pages/Unauthorised/Unauthorised";
@@ -20,7 +20,10 @@ import BoilerGuides from "./pages/BoilerGuides/BoilerGuides";
 import Minutes from "./pages/Minutes/Minutes";
 import Newsletter from "./pages/Newsletters/Newsletter";
 
+const LazyDashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
+
 function App() {
+
     return (
         <Routes>
             <Route path="/" element={<DefaultLayout/>}>
@@ -38,7 +41,11 @@ function App() {
             <Route path="/" element={<MemberLayout/>}>
                 {/*Member only page*/}
                 <Route element={<RequireUser allowedRoles={["MEMBER"]}/>}>
-                    <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path="/dashboard" element={
+                        <React.Suspense fallback="Loading...">
+                            <LazyDashboard/>
+                        </React.Suspense>}
+                    />
                     <Route path="/agendas" element={<Agenda/>}/>
                     <Route path="/minutes" element={<Minutes/>}/>
                     <Route path="/boiler-guides" element={<BoilerGuides/>}/>
