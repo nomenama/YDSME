@@ -24,11 +24,21 @@ app.use(cookieParser());
 app.use(fileUpload({}));
 
 const server = http.createServer(app);
+
+app.use("/api/public", publicRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/media", mediaRoutes);
+
+
+//error handling and logging
+app.use((err, req, res) => {
+	logger.log("error", err.stack);
+	res.status(500).send({message: "Something broke! Please try again or contact administrator."});
+});
+
 const io = new Server(server, {
 	cors: {
-		origin: process.env.NODE_ENV === "development"
-			? "http://localhost:3000"
-			: process.env.REQUEST_ORIGIN
+		origin: "http://localhost:3000"
 	}
 });
 
@@ -64,18 +74,6 @@ io.on("connection", (socket) => {
 		delete users[socket.id];
 		io.emit("disconnected", user);
 	});
-});
-
-
-app.use("/api/public", publicRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/media", mediaRoutes);
-
-
-//error handling and logging
-app.use((err, req, res) => {
-	logger.log("error", err.stack);
-	res.status(500).send({message: "Something broke! Please try again or contact administrator."});
 });
 
 server.listen(process.env.PORT, () => {
