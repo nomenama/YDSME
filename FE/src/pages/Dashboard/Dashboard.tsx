@@ -3,7 +3,9 @@ import {InnerContainer, PageContainer} from "../../common/index.styles";
 import ChatRoom from "components/ChatRoom/ChatRoom";
 import {io} from "socket.io-client";
 
-const socket = io("http://localhost:8800");
+const uri = process.env.NODE_ENV === "production" ? "https://api.yorkmodelengineers.co.uk" : "http://localhost:8800";
+
+const socket = io(uri);
 
 const Dashboard = () => {
 
