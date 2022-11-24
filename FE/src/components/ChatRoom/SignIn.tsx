@@ -18,6 +18,7 @@ const SignIn = ({name, setName}: SignInProps) => {
     const handleSignIn = () => {
         if (!name) {
             setError(true);
+            return;
         }
         localStorage.setItem("name", JSON.stringify(name));
         setName("");
