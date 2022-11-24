@@ -20,11 +20,9 @@ export const DefaultLayout = () => {
 };
 
 export const MemberLayout = () => {
-    const {isDesktop} = useDevice();
     return (
         <>
             <Header navigations={MemberNavigation} includeDrawerButton={true}/>
-            {!isDesktop && <Announcement/>}
             <Outlet/>
             <Footer/>
         </>

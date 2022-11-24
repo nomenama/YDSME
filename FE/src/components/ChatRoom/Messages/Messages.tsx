@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {MessageObj} from 'types';
 import {BotChat, ChatBody, ChatSpan, Message, MessageContent} from './Messages.styles';
 

@@ -61,7 +61,7 @@ io.on("connection", (socket) => {
 		socket.broadcast.emit("message", {
 			author: "BOT",
 			message: `${name} has joined the chat.`,
-			time: String(new Date(Date.now())),
+			time: new Date(Date.now()).toLocaleDateString("en-GB"),
 			file: ""
 		});
 	});

@@ -33,7 +33,7 @@ const ChatRoom = ({socket}: { socket: Socket }) => {
             setChatMessages((currentMessages) => [...currentMessages, {
                 author: "BOT",
                 message: `${name} has left the chat.`,
-                time: String(new Date(Date.now())),
+                time: new Date(Date.now()).toLocaleDateString("en-GB"),
                 file: ""
             }])
             setOnlineUsers((users) => {
