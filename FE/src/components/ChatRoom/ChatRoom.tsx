@@ -1,37 +1,52 @@
 import React, {useEffect, useState} from 'react';
 import {ChatRoomContainer} from "./ChatRoom.styles";
-import SignIn from './SignIn';
-import * as io from "socket.io-client";
+import io from "socket.io-client";
 import SidePanel from './SidePanel/SidePanel';
 import ChatPanel from './ChatPanel/ChatPanel';
+import useUser from 'hooks/useUser';
+import {MessageObj, UserObj} from "../../types";
 
-let socket = io.connect("http://localhost:8800");
+const socket = io("http://localhost:8800", {
+    transports: ["websocket", "polling"]
+});
 
 const ChatRoom = () => {
-    let nameFromLocalStorage = localStorage.getItem("name");
-    const [name, setName] = useState<string>("");
-    const room = "public_room";
+    const {user} = useUser();
+    const [onlineUsers, setOnlineUsers] = useState<UserObj[]>([]);
+    const [chatMessages, setChatMessages] = useState<MessageObj[]>([]);
+    const [currentMessage, setCurrentMessage] = useState("");
 
     useEffect(() => {
-        if (nameFromLocalStorage) {
-            const tempName = JSON.parse(nameFromLocalStorage);
-            setName(tempName);
-        }
-    }, [name, nameFromLocalStorage])
+        socket.on("connect", () => {
+            socket.emit("joining", {name: user.firstName});
+        });
 
-    useEffect(() => {
-        if (nameFromLocalStorage) {
-            socket.emit("join_room", {room, name});
-        }
+        socket.on("users", (users: any) => {
+            setOnlineUsers(users)
+        });
 
-    }, [name, nameFromLocalStorage]);
+        socket.on("message", (data: MessageObj) => {
+            setChatMessages((currentMessages) => [...currentMessages, data])
+        });
+
+        socket.on("disconnected", (id: string) => {
+            setOnlineUsers((users) => {
+                return users.filter((user) => user.id !== id)
+            })
+        });
+
+    }, [])
 
     return (
         <ChatRoomContainer>
-            {!nameFromLocalStorage && <SignIn name={name} setName={setName}/>}
-
-            <SidePanel socket={socket} name={name} room={room}/>
-            <ChatPanel socket={socket} name={name} room={room}/>
+            <SidePanel username={user.firstName} onlineUsers={onlineUsers}/>
+            <ChatPanel
+                socket={socket}
+                username={user.firstName}
+                chatMessages={chatMessages}
+                currentMessage={currentMessage}
+                setCurrentMessage={setCurrentMessage}
+            />
         </ChatRoomContainer>
     );
 };

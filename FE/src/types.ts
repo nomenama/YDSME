@@ -77,28 +77,14 @@ export interface MediaWithUrl {
     title: string;
 }
 
-export interface ChatInterface {
-    socket: any;
+export interface UserObj {
+    id: string;
     name: string;
-    room: string;
 }
 
 export interface MessageObj {
-    room: string;
     author: string;
     message: string;
     time: string;
-}
-
-export interface ChatInterface {
-    socket: any;
-    name: string;
-    room: string;
-}
-
-export interface MessageObj {
-    room: string;
-    author: string;
-    message: string;
-    time: string;
+    file?: string;
 }

@@ -2,13 +2,15 @@ import styled, {css} from "styled-components";
 
 export const ChatBody = styled.div`
   width: 100%;
+  height: 100%;
   flex: 1;
-  padding: 20px;
+  padding: 5px 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  overflow: auto;
-  justify-content: flex-end;
+  gap: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -65,5 +67,9 @@ export const ChatSpan = styled.span<{ fontWeight?: number, sender: "self" | "oth
   ${({sender}) => sender === "self" && css`
     flex-direction: row-reverse;
   `};
+`
 
+export const BotChat = styled.p`
+  font-size: 14px;
+  color: ${({theme}) => theme.colors.primary};
 `

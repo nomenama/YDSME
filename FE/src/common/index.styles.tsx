@@ -23,6 +23,7 @@ export const PageContainer = styled.div`
   margin: 0 auto;
   height: 100%;
   overflow: hidden;
+  display: flex;
 `
 
 export const InnerContainer = styled.div<InnerContainerProps>`
@@ -146,6 +147,21 @@ export const P1 = styled.p<{ color?: string, fontWeight?: 400 | 500 | 600, textA
 
   @media only screen and ${device.laptop} {
     font-size: 18px;
+    line-height: 24px;
+  }
+
+  @media only screen and ${device.tablet} {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media only screen and ${device.mobileL} {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  @media only screen and ${device.mobileM} {
+    font-size: 12px;
     line-height: 24px;
   }
 `

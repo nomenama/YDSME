@@ -1,48 +1,48 @@
-import React, {useEffect, useState} from 'react';
-import {ChatEnterButton, ChatFooter, ChatHeader, ChatInput, ChatPanelContent} from "./ChatPanel.styles";
-import {ChatInterface, MessageObj} from "../../../types";
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import {AttachmentIcon, ChatEnterButton, ChatFooter, ChatHeader, ChatInput, ChatPanelContent, ImageIcon} from "./ChatPanel.styles";
+import {MessageObj} from "../../../types";
 import Messages from '../Messages/Messages';
 
-const ChatPanel = ({socket, name, room}: ChatInterface) => {
-    const [currentMessage, setCurrentMessage] = useState("");
-    const [chatArray, setChatArray] = useState<MessageObj[]>([]);
+interface ChatPanelInterface {
+    username: string;
+    socket: any;
+    chatMessages: MessageObj[];
+    currentMessage: string;
+    setCurrentMessage: Dispatch<SetStateAction<string>>;
+}
 
-    const sendMessage = async () => {
+const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMessage}: ChatPanelInterface) => {
+
+    const sendMessage = () => {
         if (!currentMessage) return;
         const messageData = {
-            room,
-            author: name,
+            author: username,
             message: currentMessage,
-            time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
+            time: new Date(Date.now()).getHours() + ":" + String(new Date(Date.now()).getMinutes()).padStart(2, "0")
         };
-        await socket.emit("send_message", messageData);
-        setChatArray((prevState) => [...prevState, messageData]);
+        socket.emit("send", messageData);
         setCurrentMessage("");
     };
-
-    useEffect(() => {
-        socket.on("receive_message", (receivedMessage: MessageObj) => {
-            console.log(receivedMessage)
-            setChatArray((prevState) => [...prevState, receivedMessage]);
-        })
-    }, [socket])
 
     return (
         <ChatPanelContent>
             <ChatHeader>Live Chat</ChatHeader>
 
-            <Messages chatArray={chatArray} name={name}/>
+            <Messages chatMessages={chatMessages} username={username}/>
 
             <ChatFooter>
                 <ChatInput
                     type="text"
                     placeholder="Type something..."
+                    autoFocus={true}
                     onChange={(event) => setCurrentMessage(event.target.value)}
                     value={currentMessage}
                     onKeyDown={(event) => {
                         event.key === "Enter" && sendMessage();
                     }}
                 />
+                <AttachmentIcon size={25}/>
+                <ImageIcon size={25}/>
                 <ChatEnterButton onClick={sendMessage}>Send</ChatEnterButton>
             </ChatFooter>
         </ChatPanelContent>

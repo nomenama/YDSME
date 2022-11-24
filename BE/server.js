@@ -28,27 +28,47 @@ const io = new Server(server, {
 		origin: process.env.NODE_ENV === "development"
 			? "http://localhost:3000"
 			: process.env.REQUEST_ORIGIN,
-		methods: ["GET", "POST"]
+		transports: ["websocket", "polling"]
 	}
 });
 
-io.on("connection", (socket) => {
-	console.log(`${socket.id} connected.`);
+const users = {};
 
-	socket.on("join_room", (data) => {
-		socket.join(data);
-		console.log(`${data.name} joined the chat.`);
+io.on("connection", (socket) => {
+
+	socket.on("joining", ({name}) => {
+		users[socket.id] = {
+			name,
+			id: socket.id
+		};
+		io.emit("users", Object.values(users));
+
+		socket.broadcast.emit("message", {
+			author: "BOT",
+			message: `${name} has joined the chat.`,
+			time: String(new Date(Date.now())),
+			file: ""
+		});
 	});
 
-	socket.on("send_message", (data) => {
-		socket.to(data.room).emit("receive_message", data);
-		console.log(data);
+	socket.on("send", (msgObj) => {
+		io.emit("message", msgObj);
 	});
 
 	socket.on("disconnect", () => {
-		console.log(`A user has left the chat.`);
+		const user = users[socket.id];
+		delete users[socket.id];
+		/*		socket.broadcast.emit("message", {
+					author: "BOT",
+					message: `${user.name} has left the chat.`,
+					time: String(new Date(Date.now())),
+					file: ""
+				});*/
+
+		io.emit("disconnected", socket.id);
 	});
 });
+
 
 app.use("/api/public", publicRoutes);
 app.use("/api/user", userRoutes);

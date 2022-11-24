@@ -1,24 +1,45 @@
-import React from 'react';
+import React, {Fragment, useEffect, useRef} from 'react';
 import {MessageObj} from 'types';
-import {ChatBody, ChatSpan, Message, MessageContent} from './Messages.styles';
+import {BotChat, ChatBody, ChatSpan, Message, MessageContent} from './Messages.styles';
 
 interface MessagesProps {
-    chatArray: MessageObj[];
-    name: string;
+    chatMessages: MessageObj[];
+    username: string;
 }
 
-const Messages = ({chatArray, name}: MessagesProps) => {
+const Messages = ({chatMessages, username}: MessagesProps) => {
+    const messageEndRef = useRef<HTMLDivElement | null>(null);
+
+    const scrollToBottom = () => {
+        if (messageEndRef.current !== null) {
+            messageEndRef.current.scrollIntoView({behavior: "smooth"});
+        }
+    }
+
+    useEffect(scrollToBottom, [chatMessages])
+
     return (
         <ChatBody>
-            {chatArray.map((chat, index) => (
-                <MessageContent key={chat.time + index} sender={chat.author === name ? "self" : "other"}>
-                    <Message sender={chat.author === name ? "self" : "other"}>{chat.message}</Message>
-                    <ChatSpan sender={chat.author === name ? "self" : "other"} fontWeight={600}>
-                        Nomen
-                        <ChatSpan sender={chat.author === name ? "self" : "other"}>12:00</ChatSpan>
-                    </ChatSpan>
-                </MessageContent>
-            ))}
+            {chatMessages.map(({message, author, time}, index) => {
+                return (
+                    <MessageContent key={time + index} sender={author === username ? "self" : "other"}>
+                        {author !== "BOT" ? (
+                            <>
+                                <Message sender={author === username ? "self" : "other"}>{message}</Message>
+                                <ChatSpan sender={author === username ? "self" : "other"} fontWeight={600}>
+                                    {author}
+                                    <ChatSpan sender={author === username ? "self" : "other"}>{time}</ChatSpan>
+                                </ChatSpan>
+                            </>
+                        ) : (
+                            <BotChat>{message}</BotChat>
+                        )}
+
+                    </MessageContent>
+                )
+            })}
+            {/*Needed for auto-scrolling*/}
+            <div ref={messageEndRef}/>
         </ChatBody>
     );
 };

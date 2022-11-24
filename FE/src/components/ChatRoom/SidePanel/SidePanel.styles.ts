@@ -1,11 +1,21 @@
 import styled from "styled-components";
-import {FaUserSecret} from "react-icons/fa";
+import {device} from "styles/theme";
 
 export const ChatSidePanel = styled.section`
   flex: 1;
+  max-width: 400px;
   background-color: #3e3c61;
   display: flex;
   flex-direction: column;
+
+  @media only screen and ${device.tablet} {
+    flex: 0.5;
+    font-size: 14px;
+  }
+
+  @media only screen and ${device.mobileL} {
+    display: none;
+  }
 `
 
 export const SideBarHeader = styled.div`
