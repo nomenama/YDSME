@@ -38,7 +38,11 @@ app.use((err, req, res) => {
 
 const io = new Server(server, {
 	cors: {
-		origin: "https://yorkmodelengineers.co.uk"
+		origin: [
+			"https://yorkmodelengineers.co.uk",
+			"https://www.yorkmodelengineers.co.uk",
+			"http://localhost:3000"
+		]
 	}
 });
 
