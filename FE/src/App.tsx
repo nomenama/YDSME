@@ -21,6 +21,7 @@ import Minutes from "./pages/Minutes/Minutes";
 import Newsletter from "./pages/Newsletters/Newsletter";
 
 const LazyDashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
+const LazyAdmin = React.lazy(() => import("./pages/Admin/Admin"));
 
 function App() {
 
@@ -44,8 +45,8 @@ function App() {
                     <Route path="/dashboard" element={
                         <React.Suspense fallback="Loading...">
                             <LazyDashboard/>
-                        </React.Suspense>}
-                    />
+                        </React.Suspense>
+                    }/>
                     <Route path="/agendas" element={<Agenda/>}/>
                     <Route path="/minutes" element={<Minutes/>}/>
                     <Route path="/boiler-guides" element={<BoilerGuides/>}/>
@@ -54,7 +55,11 @@ function App() {
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>
-                    <Route path="/admin" element={<Admin/>}/>
+                    <Route path="/admin" element={
+                        <React.Suspense fallback="Loading...">
+                            <LazyAdmin/>
+                        </React.Suspense>
+                    }/>
                 </Route>
             </Route>
 
