@@ -11,9 +11,10 @@ import fileUpload from "express-fileupload";
 import userRoutes from "./src/routes/users.js";
 import publicRoutes from "./src/routes/public.js";
 import mediaRoutes from "./src/routes/media.js";
+import chatRoutes from "./src/routes/chat.js";
 import {allowedCors} from "./src/allowedCors/index.js";
 import {Server} from "socket.io";
-import {createMessage, getMessages} from "./src/database/chatQuery.js";
+import {createMessage} from "./src/database/chatQuery.js";
 
 dotenv.config();
 const app = express();
@@ -28,6 +29,7 @@ const server = http.createServer(app);
 app.use("/api/public", publicRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/media", mediaRoutes);
+app.use("/api/chat", chatRoutes);
 
 
 //error handling and logging
@@ -47,15 +49,14 @@ const io = new Server(server, {
 });
 
 const users = {};
-let messageHistory = [];
 
 io.on("connection", (socket) => {
-
 	socket.on("joining", ({name}) => {
 		users[socket.id] = {
 			name,
 			id: socket.id
 		};
+
 		io.emit("users", Object.values(users));
 
 		socket.broadcast.emit("message", {
@@ -66,10 +67,8 @@ io.on("connection", (socket) => {
 		});
 	});
 
-	socket.emit("message_history", messageHistory);
-
-	socket.on("send", (msgObj) => {
-		messageHistory.push(msgObj);
+	socket.on("send", async (msgObj) => {
+		await createMessage(msgObj.author, msgObj.message, msgObj.time, msgObj.file);
 		io.emit("message", msgObj);
 	});
 

@@ -14,7 +14,7 @@ export async function getMessages () {
 		SELECT *
 		FROM Chats
 		ORDER BY created DESC
-		LIMIT 100
+		LIMIT 50
 	`);
 
 	if (data.length) {

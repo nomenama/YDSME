@@ -1,5 +1,5 @@
-import {H4, P1} from 'common/index.styles';
-import React, {useEffect, useState} from 'react';
+import {P1} from 'common/index.styles';
+import React from 'react';
 import {Avatar, AvatarContainer, ChangeNameButton, ChatSidePanel, SideBarContent, SideBarHeader, UserAvatar} from "./SidePanel.styles";
 import {useTheme} from "styled-components";
 import {FaUserSecret} from "react-icons/fa";

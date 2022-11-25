@@ -152,3 +152,13 @@ export const deleteMedia = async (media: Partial<MediaWithUrl>) => {
     }
 }
 
+export const getMessages = async (signal: AbortSignal) => {
+    const rawResponse = await api.get(`/chat/get-messages`, {withCredentials: true, signal});
+    const {data, status} = rawResponse;
+
+    return {
+        data,
+        status
+    }
+};
+

@@ -5,14 +5,20 @@ import ChatPanel from './ChatPanel/ChatPanel';
 import useUser from 'hooks/useUser';
 import {MessageObj, UserObj} from "../../types";
 import {Socket} from 'socket.io-client/build/esm/socket';
+import {getMessages} from "../../api/api";
 
 const ChatRoom = ({socket}: { socket: Socket }) => {
     const {user} = useUser();
     const [onlineUsers, setOnlineUsers] = useState<UserObj[]>([]);
     const [chatMessages, setChatMessages] = useState<MessageObj[]>([]);
-    const [currentMessage, setCurrentMessage] = useState("");
+    const [currentMessage, setCurrentMessage] = useState<string>("");
 
     useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        socket.connect();
+
         socket.on("connect", () => {
             socket.emit("joining", {name: user.firstName});
         });
@@ -20,10 +26,6 @@ const ChatRoom = ({socket}: { socket: Socket }) => {
         socket.on("users", (users: any) => {
             setOnlineUsers(users)
         });
-
-        socket.on("message_history", (messageHistory: MessageObj[]) => {
-            setChatMessages((currentMessages) => [...messageHistory, ...currentMessages])
-        })
 
         socket.on("message", (data: MessageObj) => {
             setChatMessages((currentMessages) => [...currentMessages, data])
@@ -41,7 +43,25 @@ const ChatRoom = ({socket}: { socket: Socket }) => {
             });
         });
 
-    }, []);
+        const getMessageHistory = async () => {
+            try {
+                const {status, data} = await getMessages(signal);
+
+                if (status === 200 && data.length) {
+                    return setChatMessages((currentMessages) => [...data, ...currentMessages])
+                }
+            } catch (err: any) {
+                console.log("Error loading messages")
+            }
+        };
+
+        void getMessageHistory();
+
+        return () => {
+            socket.disconnect();
+        }
+
+    }, [socket, user.firstName]);
 
     return (
         <ChatRoomContainer>

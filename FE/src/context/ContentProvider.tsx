@@ -28,7 +28,10 @@ export const ContentProvider = ({children}: any) => {
     }, []);
 
     return (
-        <ContentContext.Provider value={{announcements, setAnnouncements}}>
+        <ContentContext.Provider value={{
+            announcements,
+            setAnnouncements
+        }}>
             {children}
         </ContentContext.Provider>
     )
