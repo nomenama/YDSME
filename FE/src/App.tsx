@@ -8,20 +8,19 @@ import ClubHistory from "./pages/ClubHistory/ClubHistory";
 import HireUs from "./pages/HireUs/HireUs";
 import Committee from "./pages/Committee/Committee";
 import Login from "./pages/Login/Login";
-/*import Dashboard from "./pages/Dashboard/Dashboard";*/
 import NotFound from "./pages/NotFound/NotFound";
-import Admin from "./pages/Admin/Admin";
 import Unauthorised from "./pages/Unauthorised/Unauthorised";
 import Events from "./pages/Events/Events";
 import Gallery from "./pages/Gallery/Gallery";
-import Rules from "./pages/Rules/Rules";
-import Agenda from "./pages/Agenda/Agenda";
-import BoilerGuides from "./pages/BoilerGuides/BoilerGuides";
-import Minutes from "./pages/Minutes/Minutes";
-import Newsletter from "./pages/Newsletters/Newsletter";
+import {P1} from "./common/index.styles";
 
 const LazyDashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 const LazyAdmin = React.lazy(() => import("./pages/Admin/Admin"));
+const LazyAgenda = React.lazy(() => import("./pages/Agenda/Agenda"));
+const LazyMinutes = React.lazy(() => import("./pages/Minutes/Minutes"));
+const LazyBoilerGuides = React.lazy(() => import("./pages/BoilerGuides/BoilerGuides"));
+const LazyRules = React.lazy(() => import("./pages/Rules/Rules"));
+const LazyNewsletter = React.lazy(() => import("./pages/Newsletters/Newsletter"));
 
 function App() {
 
@@ -43,15 +42,37 @@ function App() {
                 {/*Member only page*/}
                 <Route element={<RequireUser allowedRoles={["MEMBER"]}/>}>
                     <Route path="/dashboard" element={
-                        <React.Suspense fallback="Loading...">
+                        <React.Suspense fallback={<P1>Loading...</P1>}>
                             <LazyDashboard/>
                         </React.Suspense>
                     }/>
-                    <Route path="/agendas" element={<Agenda/>}/>
-                    <Route path="/minutes" element={<Minutes/>}/>
-                    <Route path="/boiler-guides" element={<BoilerGuides/>}/>
-                    <Route path="/club-rules" element={<Rules/>}/>
-                    <Route path="/newsletters" element={<Newsletter/>}/>
+
+                    <Route path="/agendas" element={
+                        <React.Suspense fallback={<P1>Loading...</P1>}>
+                            <LazyAgenda/>
+                        </React.Suspense>
+                    }/>
+
+                    <Route path="/minutes" element={
+                        <React.Suspense fallback={<P1>Loading...</P1>}>
+                            <LazyMinutes/>
+                        </React.Suspense>
+                    }/>
+                    <Route path="/boiler-guides" element={
+                        <React.Suspense fallback={<P1>Loading...</P1>}>
+                            <LazyBoilerGuides/>
+                        </React.Suspense>
+                    }/>
+                    <Route path="/club-rules" element={
+                        <React.Suspense fallback={<P1>Loading...</P1>}>
+                            <LazyRules/>
+                        </React.Suspense>
+                    }/>
+                    <Route path="/newsletters" element={
+                        <React.Suspense fallback={<P1>Loading...</P1>}>
+                            <LazyNewsletter/>
+                        </React.Suspense>
+                    }/>
                 </Route>
 
                 <Route element={<RequireUser allowedRoles={["ADMIN"]}/>}>

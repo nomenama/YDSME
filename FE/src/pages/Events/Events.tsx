@@ -61,7 +61,7 @@ const Events = () => {
             ToastError(err?.message);
         }
     }
-
+    
     return (
         <PageContainer>
             {isLoading && (
