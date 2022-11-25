@@ -45,7 +45,6 @@ const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMe
                 <ChatInput
                     type="text"
                     placeholder="Type something..."
-                    autoFocus={true}
                     onChange={(event) => setCurrentMessage(event.target.value)}
                     value={currentMessage}
                     onKeyDown={(event) => {
