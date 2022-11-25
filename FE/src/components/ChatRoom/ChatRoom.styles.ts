@@ -1,16 +1,26 @@
 import styled from "styled-components";
+import {device} from "styles/theme";
 
 export const ChatRoomContainer = styled.section`
   width: 100%;
   height: 100%;
-  max-height: 60vh;
   min-height: 60vh;
+  max-height: calc(100vh - 220px);
   border: 1px solid white;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.3);
   overflow: hidden;
   position: relative;
   display: flex;
+
+  @media only screen and ${device.laptop} {
+    max-height: calc(100vh - 188px);
+  }
+
+  @media only screen and ${device.mobileL} {
+    max-height: calc(100vh - 168px);
+  }
+
 `
 
 export const SignInContainer = styled.div`

@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {InnerContainer, PageContainer} from "../../common/index.styles";
+import React from "react";
 import ChatRoom from "components/ChatRoom/ChatRoom";
 import {io} from "socket.io-client";
+import {MainContainer, PageContainer} from "./Dashboard.styles";
 
 const uri = process.env.REACT_APP_SOCKET_URL || "http://localhost:8800";
 
@@ -15,9 +15,9 @@ const socket = io(uri, {
 const Dashboard = () => {
     return (
         <PageContainer>
-            <InnerContainer direction="row" justifyContent="space-between" alignItems="center">
+            <MainContainer>
                 <ChatRoom socket={socket}/>
-            </InnerContainer>
+            </MainContainer>
         </PageContainer>
     )
 }
