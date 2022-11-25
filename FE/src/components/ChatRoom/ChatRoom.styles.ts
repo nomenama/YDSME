@@ -4,7 +4,7 @@ import {device} from "styles/theme";
 export const ChatRoomContainer = styled.section`
   width: 100%;
   height: 100%;
-  min-height: 60vh;
+  min-height: calc(100vh - 220px);
   max-height: calc(100vh - 220px);
   border: 1px solid white;
   border-radius: 4px;
@@ -14,10 +14,12 @@ export const ChatRoomContainer = styled.section`
   display: flex;
 
   @media only screen and ${device.laptop} {
+    min-height: calc(100vh - 188px);
     max-height: calc(100vh - 188px);
   }
 
   @media only screen and ${device.mobileL} {
+    min-height: calc(100vh - 168px);
     max-height: calc(100vh - 168px);
   }
 
