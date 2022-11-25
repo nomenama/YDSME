@@ -15,7 +15,7 @@ export const ChatHeader = styled.div`
   width: 100%;
   height: 100%;
   max-height: 60px;
-  background-color: #6b85f5;
+  background-color: #514ba8;
   padding: 20px;
   font-size: 20px;
   color: ${({theme}) => theme.colors.white};
@@ -43,7 +43,7 @@ export const ChatInput = styled.input`
 
   &::placeholder {
     font-size: 16px;
-    color: darkgray;
+    color: #3f3d3d;
 
     @media only screen and ${device.tablet} {
       font-size: 14px;
