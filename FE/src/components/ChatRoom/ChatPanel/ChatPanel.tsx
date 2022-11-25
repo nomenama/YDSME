@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from 'react';
 import {AttachmentIcon, ChatEnterButton, ChatFooter, ChatHeader, ChatInput, ChatPanelContent, ImageIcon} from "./ChatPanel.styles";
 import {MessageObj} from "../../../types";
 import Messages from '../Messages/Messages';
@@ -12,6 +12,16 @@ interface ChatPanelInterface {
 }
 
 const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMessage}: ChatPanelInterface) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (inputRef.current !== null) {
+            inputRef.current.onfocus = () => {
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+            }
+        }
+    }, [])
 
     const sendMessage = () => {
         if (!currentMessage) return;
@@ -41,10 +51,7 @@ const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMe
                     onKeyDown={(event) => {
                         event.key === "Enter" && sendMessage();
                     }}
-                    onFocus={() => {
-                        window.scrollTo(0, 0);
-                        document.body.scrollTop = 0;
-                    }}
+                    ref={inputRef}
                 />
                 <AttachmentIcon size={25}/>
                 <ImageIcon size={25}/>
