@@ -5,8 +5,7 @@ import {MainContainer, MemberPage} from "./Dashboard.styles";
 import NoticeBoard from "components/NoticeBoard/NoticeBoard";
 import {useDevice} from "../../hooks/useDevice";
 import {FloatButton} from "antd";
-import {MessageFilled} from "@ant-design/icons";
-import {moveDownOut} from "antd/es/style/motion";
+import {MessageFilled, SwitcherFilled,} from "@ant-design/icons";
 
 const uri = process.env.REACT_APP_SOCKET_URL || "http://localhost:8800";
 
@@ -42,7 +41,7 @@ const Dashboard = () => {
             {deviceWidth <= 1200 && (
                 <FloatButton
                     onClick={toggleDisplay}
-                    icon={<MessageFilled/>}
+                    icon={displayNoticeBoard ? <MessageFilled/> : <SwitcherFilled/>}
 
                     type="primary"
                     tooltip={displayNoticeBoard ? "Chat Room" : "Notice Board"}
