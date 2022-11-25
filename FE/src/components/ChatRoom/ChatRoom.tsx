@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {ChatRoomContainer} from "./ChatRoom.styles";
 import SidePanel from './SidePanel/SidePanel';
 import ChatPanel from './ChatPanel/ChatPanel';
-import useUser from 'hooks/useUser';
 import {MessageObj, UserObj} from "../../types";
 import {Socket} from 'socket.io-client/build/esm/socket';
 import {getMessages} from "../../api/api";
+import SignIn from "./SignIn";
+import useUser from "../../hooks/useUser";
 
 const ChatRoom = ({socket}: { socket: Socket }) => {
     const {user} = useUser();
+    const username = JSON.parse(localStorage.getItem("username") as string) || user.firstName;
     const [onlineUsers, setOnlineUsers] = useState<UserObj[]>([]);
     const [chatMessages, setChatMessages] = useState<MessageObj[]>([]);
     const [currentMessage, setCurrentMessage] = useState<string>("");
@@ -18,9 +20,8 @@ const ChatRoom = ({socket}: { socket: Socket }) => {
         const signal = controller.signal;
 
         socket.connect();
-
         socket.on("connect", () => {
-            socket.emit("joining", {name: user.firstName});
+            socket.emit("joining", {name: username});
         });
 
         socket.on("users", (users: any) => {
@@ -61,18 +62,23 @@ const ChatRoom = ({socket}: { socket: Socket }) => {
             socket.disconnect();
         }
 
-    }, [socket, user.firstName]);
+    }, []);
 
     return (
         <ChatRoomContainer>
-            <SidePanel username={user.firstName} onlineUsers={onlineUsers}/>
-            <ChatPanel
-                socket={socket}
-                username={user.firstName}
-                chatMessages={chatMessages}
-                currentMessage={currentMessage}
-                setCurrentMessage={setCurrentMessage}
-            />
+            {!Boolean(username === "Member" || username === "Engineer") ? (
+                <>
+                    <SidePanel username={username} onlineUsers={onlineUsers}/>
+                    <ChatPanel
+                        socket={socket}
+                        username={username}
+                        chatMessages={chatMessages}
+                        currentMessage={currentMessage}
+                        setCurrentMessage={setCurrentMessage}
+                    />
+                </>
+            ) : <SignIn/>}
+
         </ChatRoomContainer>
     );
 };

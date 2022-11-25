@@ -7,7 +7,7 @@ export const ChatRoomContainer = styled.section`
   min-height: 60vh;
   border: 1px solid white;
   border-radius: 4px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.3);
   overflow: hidden;
   position: relative;
   display: flex;
@@ -33,5 +33,5 @@ export const EnterNameContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 2px;
-  background-color: ${({theme}) => theme.colors.primary_10};
+  background-color: darkgray;
 `

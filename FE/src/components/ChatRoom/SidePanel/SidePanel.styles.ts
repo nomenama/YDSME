@@ -87,3 +87,14 @@ export const UserAvatar = styled.div`
     transform: scale(1.04);
   }
 `
+
+export const SideBarFooter = styled.div`
+  width: 100%;
+  height: 100%;
+  max-height: 60px;
+  background-color: #2f2d52;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+`
