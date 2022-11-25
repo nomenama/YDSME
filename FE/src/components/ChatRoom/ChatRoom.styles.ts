@@ -22,7 +22,6 @@ export const ChatRoomContainer = styled.section`
     min-height: calc(100vh - 168px);
     max-height: calc(100vh - 168px);
   }
-
 `
 
 export const SignInContainer = styled.div`
