@@ -60,7 +60,7 @@ const MainPage = () => {
                         </S.H2>
                         <S.H2 color="grey">N.S.W. Australia</S.H2>
                     </Content>
-                    {isDesktop && (
+                    {deviceWidth >= 1200 && (
                         <Content width="20%">
                             <SideBar/>
                         </Content>
