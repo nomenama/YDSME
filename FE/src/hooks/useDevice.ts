@@ -6,6 +6,11 @@ export const useDevice = () => {
     const [isMobileL, setIsMobileL] = useState<boolean>(false);
     const [isMobileM, setIsMobileM] = useState<boolean>(false);
     const [isMobileS, setIsMobileS] = useState<boolean>(false);
+    const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
+
+    useEffect(() => {
+        setDeviceWidth(window.innerWidth)
+    })
 
     useEffect(() => {
         const checkDeviceWidth = () => {
@@ -48,6 +53,7 @@ export const useDevice = () => {
     ])
 
     return {
+        deviceWidth,
         isMobileS,
         isMobileM,
         isMobileL,

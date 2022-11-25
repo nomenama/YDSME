@@ -4,15 +4,15 @@ import {BsFileEarmarkPdf} from "react-icons/bs";
 
 export const PDFContainer = styled.iframe`
   width: 100%;
-  height: calc(100vh - 234px);
+  min-height: calc(100vh - 220px);
   overflow: auto;
 
   @media only screen and ${device.laptop} {
-    height: calc(100vh - 202px);
+    min-height: calc(100vh - 202px);
   }
 
   @media only screen and ${device.mobileL} {
-    height: calc(100vh - 212px);
+    min-height: calc(100vh - 212px);
   }
 `
 

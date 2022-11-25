@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {H1, InnerContainer, PageContainer} from "../../common/index.styles";
+import {H3} from "../../common/index.styles";
 import useUser from "../../hooks/useUser";
 import {Icon, PDFContainer, PdfTag, TagContainer} from "./Rules.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
@@ -7,10 +7,11 @@ import {useDevice} from "../../hooks/useDevice";
 import {MediaWithUrl} from "../../types";
 import {getMediaMetadata} from 'api/api';
 import {UploadButton} from "../Agenda/Agenda.styles";
+import {MainContainer, MemberPage} from 'pages/Dashboard/Dashboard.styles';
 
 const Rules = () => {
     const {isEditor} = useUser();
-    const {isDesktop} = useDevice();
+    const {deviceWidth} = useDevice();
     const [data, setData] = useState<MediaWithUrl[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,17 +35,17 @@ const Rules = () => {
     }, [isModalOpen])
 
     return (
-        <PageContainer>
-            <InnerContainer justifyContent="center" alignItems="center">
-                {!Boolean(data?.length) && <H1>No File to display</H1>}
+        <MemberPage>
+            <MainContainer>
+                {!Boolean(data?.length) && <H3>No File to display</H3>}
 
-                {isDesktop && Boolean(data?.length === 1) && (
-                    isDesktop && data.map(({id, title, secure_url}) => (
+                {(deviceWidth >= 768 && Boolean(data.length)) && (
+                    data.map(({id, title, secure_url}) => (
                         <PDFContainer key={id} src={secure_url} title={title} frameBorder={0}/>
                     ))
                 )}
 
-                {(!isDesktop || Boolean(data.length > 1)) && (
+                {deviceWidth < 768 && (
                     data.map(({id, title, secure_url}) => (
                         <TagContainer key={id}>
                             <Icon size={30}/>
@@ -54,10 +55,9 @@ const Rules = () => {
                 )}
 
                 {isEditor && <UploadButton onClick={() => setIsModalOpen((prevState) => !prevState)}>Upload</UploadButton>}
-
                 {isEditor && isModalOpen && <UploadModal onClose={() => setIsModalOpen(false)} uploadPreset="Club_Rules"/>}
-            </InnerContainer>
-        </PageContainer>
+            </MainContainer>
+        </MemberPage>
     );
 };
 

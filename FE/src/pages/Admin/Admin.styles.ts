@@ -2,6 +2,15 @@ import styled from "styled-components";
 import {device} from "styles/theme";
 import {Label as Label_, Input as Input_} from "../Login/Login.styles";
 
+export const FormContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+`
+
 export const Form = styled.form`
   width: 100%;
   border: 1px solid ${({theme}) => theme.colors.primary};

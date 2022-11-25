@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import {InnerContainer, P1, PageContainer} from "../../common/index.styles";
+import {P1} from "../../common/index.styles";
 import {FORM_TYPE} from "../../types";
 import {SecondaryButton} from "../Login/Login.styles";
 import NewUser from './Form/NewUser';
-import {Greeting} from "../Dashboard/Dashboard.styles";
+import {Greeting, MainContainer, MemberPage} from "../Dashboard/Dashboard.styles";
 import {useTheme} from "styled-components";
 import useUser from "../../hooks/useUser";
 import ManageUser from "./Form/ManageUser";
+import {FormContainer} from "./Admin.styles";
 
 const Admin = () => {
     const theme = useTheme();
@@ -19,21 +20,21 @@ const Admin = () => {
     }
 
     return (
-        <PageContainer>
-            <InnerContainer>
-                <Greeting>
-                    <P1 color={theme.colors.primary}>Welcome, {user.firstName}</P1>
-                </Greeting>
+        <MemberPage>
+            <MainContainer justify="flex-start">
+                <FormContainer>
+                    <Greeting>
+                        <P1 color={theme.colors.primary}>Welcome, {user.firstName}</P1>
+                    </Greeting>
 
-                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.NEW_USER)}>Create New User</SecondaryButton>
-                {whichForm === FORM_TYPE.NEW_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
+                    <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.NEW_USER)}>Create New User</SecondaryButton>
+                    {whichForm === FORM_TYPE.NEW_USER && <NewUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
 
-                <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.MANAGE_USER)}>Manage User</SecondaryButton>
-                {whichForm === FORM_TYPE.MANAGE_USER && <ManageUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
-
-
-            </InnerContainer>
-        </PageContainer>
+                    <SecondaryButton onClick={() => handleWhichFormToRender(FORM_TYPE.MANAGE_USER)}>Manage User</SecondaryButton>
+                    {whichForm === FORM_TYPE.MANAGE_USER && <ManageUser isLoading={isLoading} setIsLoading={setIsLoading} setWhichForm={setWhichForm}/>}
+                </FormContainer>
+            </MainContainer>
+        </MemberPage>
     );
 };
 

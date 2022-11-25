@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {H3, InnerContainer, PageContainer} from "../../common/index.styles";
+import {H3} from "../../common/index.styles";
 import {BoilerContainer, PDFContainer, TileContainer} from "./BoilerGuides.styles";
 import {useDevice} from "../../hooks/useDevice";
 import {AiOutlineFilePdf} from "react-icons/ai";
@@ -10,6 +10,7 @@ import {UploadButton} from "../Agenda/Agenda.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
 import {DeleteIcon} from 'components/SideBar/SideBar.styles';
 import {ToastInfo, ToastSuccess} from "../../common/Toast";
+import {MainContainer, MemberPage} from 'pages/Dashboard/Dashboard.styles';
 
 const BoilerGuides = () => {
     const {isEditor} = useUser();
@@ -51,8 +52,8 @@ const BoilerGuides = () => {
     }
 
     return (
-        <PageContainer>
-            <InnerContainer justifyContent="center" alignItems="center" gap={50}>
+        <MemberPage>
+            <MainContainer>
                 <BoilerContainer>
                     {!Boolean(files?.length) && <H3>No files available</H3>}
 
@@ -70,8 +71,8 @@ const BoilerGuides = () => {
 
                 {isEditor && <UploadButton onClick={() => setIsModalOpen((prevState) => !prevState)}>Upload</UploadButton>}
                 {isEditor && isModalOpen && <UploadModal onClose={() => setIsModalOpen(false)} uploadPreset="Boiler_Guides"/>}
-            </InnerContainer>
-        </PageContainer>
+            </MainContainer>
+        </MemberPage>
     );
 };
 
