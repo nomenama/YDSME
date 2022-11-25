@@ -1,10 +1,15 @@
 import React from "react";
 import {PageContainer, H1, H2, InnerContainer, P1, Link, Flex} from "../../common/index.styles";
+import {useDevice} from "../../hooks/useDevice";
+import Announcement from "../../components/Announcement/Announcement";
 
 export const ClubHistory = () => {
+    const {deviceWidth} = useDevice();
+
     return (
         <PageContainer>
             <InnerContainer>
+                {deviceWidth <= 1200 && <Announcement/>}
                 <H1>YCDSME - A Brief History</H1>
                 <H2>1929 to Present Day</H2>
                 <Flex justify="center">

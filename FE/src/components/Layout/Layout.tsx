@@ -4,15 +4,11 @@ import Header from 'components/Header/Header';
 import {MainNavigation, MemberNavigation} from 'components/Header/Navigation';
 import React from 'react';
 import {Outlet} from "react-router-dom";
-import {useDevice} from "../../hooks/useDevice";
 
 export const DefaultLayout = () => {
-    const {isDesktop} = useDevice();
-
     return (
         <>
             <Header navigations={MainNavigation} includeLoginButton={true}/>
-            {!isDesktop && <Announcement/>}
             <Outlet/>
             <Footer/>
         </>

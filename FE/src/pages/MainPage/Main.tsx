@@ -4,13 +4,15 @@ import * as S from "../../common/index.styles";
 import {Content, Divider} from './Main.styles';
 import {useDevice} from "../../hooks/useDevice";
 import {SideBar} from "../../components/SideBar/SideBar";
+import Announcement from "../../components/Announcement/Announcement";
 
 const MainPage = () => {
-    const {isDesktop} = useDevice();
+    const {isDesktop, deviceWidth} = useDevice();
 
     return (
         <S.PageContainer>
             <S.InnerContainer>
+                {deviceWidth <= 1200 && <Announcement/>}
                 <Divider>
                     <Content width={isDesktop ? "80%" : "100%"}>
                         <S.H1>York City & District Society of Model Engineers</S.H1>

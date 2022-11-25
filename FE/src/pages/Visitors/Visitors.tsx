@@ -2,13 +2,15 @@ import React from 'react'
 import {PageContainer, InnerContainer, P1, H4, UL, LI} from "../../common/index.styles";
 import * as S from "../../common/index.styles";
 import {useDevice} from "../../hooks/useDevice";
+import Announcement from "../../components/Announcement/Announcement";
 
 const Visitors = () => {
-    const {isDesktop} = useDevice();
+    const {isDesktop, deviceWidth} = useDevice();
 
     return (
         <PageContainer>
             <InnerContainer>
+                {deviceWidth <= 1200 && <Announcement/>}
                 <S.H1>Visitor Guide</S.H1>
                 <img src="entrance.jpg" alt="entrance to the club" height={isDesktop ? 600 : 400} loading={"lazy"}/>
                 <S.H2>Planning your visit - Check the Events page</S.H2>

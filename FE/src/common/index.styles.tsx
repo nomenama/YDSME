@@ -29,16 +29,16 @@ export const PageContainer = styled.div`
 export const InnerContainer = styled.div<InnerContainerProps>`
   width: 90%;
   height: 100%;
-  min-height: calc(100vh - 194px);
+  min-height: calc(100vh - 180px);
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 40px 0;
   display: flex;
   gap: ${({gap}) => gap ? `${gap}px` : "20px"};
   flex-direction: ${({direction}) => direction ? direction : "column"};
   justify-content: ${({justifyContent}) => justifyContent ? justifyContent : undefined};
   align-items: ${({alignItems}) => alignItems ? alignItems : undefined};
   overflow-x: auto;
-  position: ${({position}) => position ? position : null};
+  position: ${({position}) => position ? position : "relative"};
 
   @media only screen and ${device.desktopL} {
     max-width: 1920px;
@@ -46,11 +46,11 @@ export const InnerContainer = styled.div<InnerContainerProps>`
   }
 
   @media only screen and ${device.laptop} {
-    min-height: calc(100vh - 192px);
+    min-height: calc(100vh - 148px);
   }
 
   @media only screen and ${device.mobileL} {
-    min-height: calc(100vh - 172px);
+    min-height: calc(100vh - 128px);
   }
 `
 
@@ -62,6 +62,12 @@ export const Flex = styled.div<FlexContainer>`
   justify-content: ${({justify}) => justify ? justify : "space-between"};
   gap: ${({gap}) => gap ? `${gap}px` : null};
   padding: ${({padding}) => padding ? `${padding}px` : null};
+`
+
+export const Image = styled.img`
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: cover;
 `
 
 export const H1 = styled.h1`

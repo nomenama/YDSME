@@ -1,17 +1,19 @@
 import React from "react";
-import {Flex, H1, H2, InnerContainer, Link, P1, PageContainer} from "../../common/index.styles";
+import {Flex, H1, H2, Image, InnerContainer, Link, P1, PageContainer} from "../../common/index.styles";
 import {useDevice} from "../../hooks/useDevice";
+import Announcement from "../../components/Announcement/Announcement";
 
 export const HireUs = () => {
-    const {isDesktop} = useDevice();
+    const {deviceWidth} = useDevice();
 
     return (
         <PageContainer>
-            <InnerContainer >
+            <InnerContainer>
+                {deviceWidth <= 1200 && <Announcement/>}
                 <H1>York City & District Society of Model Engineers</H1>
                 <H2>Hire Us</H2>
                 <Flex>
-                <img src="hired1.jpg" alt="york model engineers" width={isDesktop ? 1000 : "100%"} height={isDesktop ? 600 : "100%"} loading="lazy"/>
+                    <Image src="hired1.jpg" alt="york model engineers" height={500} loading="lazy"/>
                 </Flex>
                 <P1 textAlign="center">Please contact our <Link href="mailto: secretary.yorkmodelengineers.co.uk">Secretary</Link> if you would like to book our event team for your next event or discuss requirements and costs.</P1>
             </InnerContainer>

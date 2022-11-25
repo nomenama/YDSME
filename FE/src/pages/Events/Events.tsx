@@ -9,9 +9,10 @@ import {ToastError, ToastSuccess} from "../../common/Toast";
 import {PrimaryButton} from 'components/Header/Header.styles';
 import useUser from "../../hooks/useUser";
 import FormModal from "../../components/FormModal/FormModal";
+import Announcement from "../../components/Announcement/Announcement";
 
 const Events = () => {
-    const {isDesktop} = useDevice();
+    const {isDesktop, deviceWidth} = useDevice();
     const {isEditor, isAdmin} = useUser();
     const getYear = new Date().getFullYear();
     const [events, setEvents] = useState<CalendarEvent[]>([]);
@@ -61,7 +62,7 @@ const Events = () => {
             ToastError(err?.message);
         }
     }
-    
+
     return (
         <PageContainer>
             {isLoading && (
@@ -72,6 +73,7 @@ const Events = () => {
 
             {!isLoading && Boolean(events?.length) && (
                 <InnerContainer>
+                    {deviceWidth <= 1200 && <Announcement/>}
                     <H1>Upcoming events {getYear}</H1>
                     {(isEditor || isAdmin) && <PrimaryButton onClick={() => setNewEvent((prevState) => !prevState)}>Create New Event</PrimaryButton>}
 
@@ -119,6 +121,7 @@ const Events = () => {
 
             {!isLoading && !Boolean(events?.length) && (
                 <InnerContainer justifyContent="center" alignItems="center">
+                    {deviceWidth <= 1200 && <Announcement/>}
                     <H1>No events</H1>
                     {(isEditor || isAdmin) && <PrimaryButton onClick={() => setNewEvent((prevState) => !prevState)}>Create New Event</PrimaryButton>}
                 </InnerContainer>
