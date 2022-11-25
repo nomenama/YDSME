@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import {device} from "styles/theme";
 
-export const EventContainer = styled.main`
+export const EventContainer = styled.main<{ column?: boolean }>`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: ${({column}) => column === true ? "1fr 1fr" : "1fr"};
   gap: 20px;
 
   @media only screen and ${device.tablet} {

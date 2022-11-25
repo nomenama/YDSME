@@ -75,41 +75,44 @@ const Events = () => {
                     <H1>Upcoming events {getYear}</H1>
                     {(isEditor || isAdmin) && <PrimaryButton onClick={() => setNewEvent((prevState) => !prevState)}>Create New Event</PrimaryButton>}
 
-                    <EventContainer>
+                    <EventContainer column={Boolean(publicEvents.length) && Boolean(memberEvents.length)}>
+                        {Boolean(publicEvents.length) && (
+                            <Column>
+                                <H3>Public Events</H3>
+                                {publicEvents.map(({id, title, content, startDate, endDate, time}) => (
+                                    <EventTile
+                                        key={id}
+                                        id={id}
+                                        title={title}
+                                        content={content}
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        time={time}
+                                        handleOnDelete={handleOnDelete}
+                                    />
+                                ))}
+                            </Column>
+                        )}
 
-                        <Column>
-                            <H3>Public Events</H3>
-                            {publicEvents.map(({id, title, content, startDate, endDate, time}) => (
-                                <EventTile
-                                    key={id}
-                                    id={id}
-                                    title={title}
-                                    content={content}
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    time={time}
-                                    handleOnDelete={handleOnDelete}
-                                />
-                            ))}
-                        </Column>
+                        {Boolean(memberEvents.length) && (
+                            <Column>
+                                <H3>Member only Events</H3>
+                                {memberEvents.map(({id, title, content, startDate, endDate, time}) => (
+                                    <EventTile
+                                        key={id}
+                                        id={id}
+                                        title={title}
+                                        content={content}
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        time={time}
+                                        handleOnDelete={handleOnDelete}
+                                    />
+                                ))}
+                            </Column>
+                        )}
 
-                        <Column>
-                            <H3>Member only Events</H3>
 
-                            {memberEvents.map(({id, title, content, startDate, endDate, time}) => (
-                                <EventTile
-                                    key={id}
-                                    id={id}
-                                    title={title}
-                                    content={content}
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    time={time}
-                                    handleOnDelete={handleOnDelete}
-                                />
-                            ))}
-
-                        </Column>
                     </EventContainer>
                 </InnerContainer>
             )}
