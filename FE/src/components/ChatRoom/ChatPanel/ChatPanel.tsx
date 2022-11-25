@@ -41,6 +41,10 @@ const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMe
                     onKeyDown={(event) => {
                         event.key === "Enter" && sendMessage();
                     }}
+                    onFocus={() => {
+                        window.scrollTo(0, 0);
+                        document.body.scrollTop = 0;
+                    }}
                 />
                 <AttachmentIcon size={25}/>
                 <ImageIcon size={25}/>
