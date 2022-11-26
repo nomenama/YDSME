@@ -5,6 +5,7 @@ import {useTheme} from "styled-components";
 import {FaUserSecret} from "react-icons/fa";
 import {FcBusinessman} from "react-icons/fc";
 import {UserObj} from "../../../types";
+import useUser from "../../../hooks/useUser";
 
 export interface SidePanelInterface {
     username: string;
@@ -13,6 +14,7 @@ export interface SidePanelInterface {
 
 const SidePanel = ({onlineUsers, username}: SidePanelInterface) => {
     const theme = useTheme();
+    const {user} = useUser();
 
     const handleChangeName = () => {
         localStorage.removeItem("username");
@@ -44,7 +46,9 @@ const SidePanel = ({onlineUsers, username}: SidePanelInterface) => {
                     <P1 color={theme.colors.white}>{username}</P1>
                 </AvatarContainer>
 
-                <ChangeNameButton onClick={handleChangeName}>Change Name</ChangeNameButton>
+                {(user.firstName === "Member" || user.firstName === "Engineer") && (
+                    <ChangeNameButton onClick={handleChangeName}>Change Name</ChangeNameButton>
+                )}
             </SideBarFooter>
         </ChatSidePanel>
     );
