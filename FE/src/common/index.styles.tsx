@@ -179,6 +179,10 @@ export const UL = styled.ul`
   @media only screen and ${device.laptop} {
     font-size: 18px;
   }
+
+  @media only screen and ${device.tablet} {
+    font-size: 16px;
+  }
 `
 
 export const LI = styled.li`

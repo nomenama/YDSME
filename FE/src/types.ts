@@ -88,3 +88,11 @@ export interface MessageObj {
     time: string;
     file?: string;
 }
+
+//Committee members
+export interface Members {
+    name: string;
+    imageUrl: string;
+    title: string;
+    email: string
+}
