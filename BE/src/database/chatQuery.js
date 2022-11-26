@@ -18,7 +18,7 @@ export async function getMessages () {
 	`);
 
 	if (data.length) {
-		return data;
+		return data.reverse();
 	}
 	return [];
 }
