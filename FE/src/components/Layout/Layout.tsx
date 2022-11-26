@@ -1,4 +1,3 @@
-import Announcement from 'components/Announcement/Announcement';
 import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
 import {MainNavigation, MemberNavigation} from 'components/Header/Navigation';

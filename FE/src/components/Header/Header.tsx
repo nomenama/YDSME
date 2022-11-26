@@ -10,7 +10,6 @@ import {
 } from "./Header.styles";
 import {MainNavigation, MemberNavigation} from "./Navigation";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import {useTheme} from "styled-components";
 import {Link as ExternalLink} from "../../common/index.styles";
 import Drawer from "../Drawer/Drawer";
 import MobileNavigation from "./MobileNavigation/MobileNavigation";

@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useRef} from 'react';
 import {AttachmentIcon, ChatEnterButton, ChatFooter, ChatHeader, ChatInput, ChatPanelContent, ImageIcon} from "./ChatPanel.styles";
 import {MessageObj} from "../../../types";
 import Messages from '../Messages/Messages';

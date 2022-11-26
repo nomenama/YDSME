@@ -160,16 +160,6 @@ export const P1 = styled.p<{ color?: string, fontWeight?: 400 | 500 | 600, textA
     font-size: 16px;
     line-height: 24px;
   }
-
-  @media only screen and ${device.mobileL} {
-    font-size: 14px;
-    line-height: 24px;
-  }
-
-  @media only screen and ${device.mobileM} {
-    font-size: 12px;
-    line-height: 24px;
-  }
 `
 
 export const Link = styled.a`
