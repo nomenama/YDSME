@@ -71,6 +71,7 @@ export const Committee = () => {
                                     src={imageUrl}
                                     width={300}
                                     height={300}
+                                    loading="lazy"
                                 />
                             }
                         >
