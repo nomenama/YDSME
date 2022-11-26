@@ -41,8 +41,8 @@ export const Committee = () => {
         },
 
         {
-            name: "Mr Keith Walton",
-            imageUrl: "/committee/old-man.png",
+            name: "Mr Richard Gibon",
+            imageUrl: "/committee/richard-gibon.jpg",
             title: "Boiler Inspector",
             email: "boilerinspector@yorkmodelengineers.co.uk"
         },
@@ -71,7 +71,6 @@ export const Committee = () => {
                                     src={imageUrl}
                                     width={300}
                                     height={300}
-                                    loading="lazy"
                                 />
                             }
                         >
