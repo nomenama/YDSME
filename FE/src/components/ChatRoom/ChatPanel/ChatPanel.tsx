@@ -45,6 +45,7 @@ const ChatPanel = ({socket, username, onlineUsers, chatMessages, currentMessage,
                     maxCount={1}
                     maxPopoverTrigger="hover"
                     maxPopoverPlacement="top"
+                    size={"small"}
                     maxStyle={{backgroundColor: "darkgray", color: "#312f2f", cursor: "pointer"}}
                 >
                     {onlineUsers.filter((user) => user.name !== username).map(({name}, index) => {
