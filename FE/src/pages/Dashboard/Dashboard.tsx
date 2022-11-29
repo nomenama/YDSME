@@ -24,7 +24,11 @@ const Dashboard = () => {
 
     return (
         <MemberPage>
-            {deviceWidth > 1200 && (
+            <MainContainer>
+                <ChatRoom socket={socket}/>
+            </MainContainer>
+
+            {/*            {deviceWidth > 1200 && (
                 <MainContainer direction={"row"}>
                     <NoticeBoard/>
                     <ChatRoom socket={socket}/>
@@ -46,7 +50,7 @@ const Dashboard = () => {
                     type="primary"
                     tooltip={displayNoticeBoard ? "Chat Room" : "Notice Board"}
                 />
-            )}
+            )}*/}
         </MemberPage>
     )
 }
