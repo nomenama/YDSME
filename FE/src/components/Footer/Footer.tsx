@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <S.Container className="footer-dark bg-dark text-white text-center">
             <P1>
-                <S.SafetyLink href="docs/Visitor-Safety-Guide.pdf"
+                <S.SafetyLink href="docs/visitor-safety-guide.pdf"
                               target="_blank">
                     Health and Safety Information
                 </S.SafetyLink>
