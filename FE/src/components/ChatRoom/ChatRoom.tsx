@@ -72,6 +72,7 @@ const ChatRoom = ({socket}: { socket: Socket }) => {
                     <ChatPanel
                         socket={socket}
                         username={username}
+                        onlineUsers={onlineUsers}
                         chatMessages={chatMessages}
                         currentMessage={currentMessage}
                         setCurrentMessage={setCurrentMessage}

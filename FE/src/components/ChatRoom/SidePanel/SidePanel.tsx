@@ -1,11 +1,11 @@
 import {P1} from 'common/index.styles';
 import React from 'react';
-import {Avatar, AvatarContainer, ChangeNameButton, ChatSidePanel, SideBarContent, SideBarFooter, SideBarHeader, UserAvatar} from "./SidePanel.styles";
+import {AvatarContainer, ChangeNameButton, ChatSidePanel, SideBarContent, SideBarFooter, SideBarHeader, UserAvatar} from "./SidePanel.styles";
 import {useTheme} from "styled-components";
-import {FaUserSecret} from "react-icons/fa";
-import {FcBusinessman} from "react-icons/fc";
 import {UserObj} from "../../../types";
 import useUser from "../../../hooks/useUser";
+import {UserOutlined} from '@ant-design/icons';
+import {Avatar, Tooltip} from 'antd';
 
 export interface SidePanelInterface {
     username: string;
@@ -28,21 +28,27 @@ const SidePanel = ({onlineUsers, username}: SidePanelInterface) => {
             </SideBarHeader>
 
             <SideBarContent>
-                {onlineUsers.map(({name}, index) => (
-                    <UserAvatar key={index}>
-                        <Avatar size={40}>
-                            <FcBusinessman size={30} color={theme.colors.white}/>
-                        </Avatar>
-                        <P1 color={theme.colors.white}>{name}</P1>
-                    </UserAvatar>
-                ))}
+                {onlineUsers.filter(user => user.name !== username).map(({name}, index) => {
+                    return (
+                        <UserAvatar key={name + index}>
+                            <Tooltip title={name}>
+                                <Avatar icon={<UserOutlined/>} style={{backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`, color: "#ffffff"}}>
+                                    {name}
+                                </Avatar>
+                            </Tooltip>
+                            <P1 color={theme.colors.white}>{name}</P1>
+                        </UserAvatar>
+                    )
+                })}
             </SideBarContent>
 
             <SideBarFooter>
                 <AvatarContainer>
-                    <Avatar>
-                        <FaUserSecret size={20} color={theme.colors.white}/>
-                    </Avatar>
+                    <Tooltip title={`Signed in as ${username}`}>
+                        <Avatar icon={<UserOutlined/>} style={{backgroundColor: "green", color: "#ffffff"}}>
+                            {username}
+                        </Avatar>
+                    </Tooltip>
                     <P1 color={theme.colors.white}>{username}</P1>
                 </AvatarContainer>
 

@@ -1,17 +1,19 @@
 import React, {Dispatch, SetStateAction, useEffect, useRef} from 'react';
-import {AttachmentIcon, ChatEnterButton, ChatFooter, ChatHeader, ChatInput, ChatPanelContent, ImageIcon} from "./ChatPanel.styles";
-import {MessageObj} from "../../../types";
+import {AttachmentIcon, AvatarGroup, ChatEnterButton, ChatFooter, ChatHeader, ChatInput, ChatPanelContent, ImageIcon} from "./ChatPanel.styles";
+import {MessageObj, UserObj} from "../../../types";
 import Messages from '../Messages/Messages';
+import {Avatar, Tooltip} from 'antd';
 
 interface ChatPanelInterface {
     username: string;
+    onlineUsers: UserObj[];
     socket: any;
     chatMessages: MessageObj[];
     currentMessage: string;
     setCurrentMessage: Dispatch<SetStateAction<string>>;
 }
 
-const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMessage}: ChatPanelInterface) => {
+const ChatPanel = ({socket, username, onlineUsers, chatMessages, currentMessage, setCurrentMessage}: ChatPanelInterface) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -37,7 +39,24 @@ const ChatPanel = ({socket, username, chatMessages, currentMessage, setCurrentMe
 
     return (
         <ChatPanelContent>
-            <ChatHeader>Live Chat</ChatHeader>
+            <ChatHeader>
+                Live Chat
+                <AvatarGroup
+                    maxCount={1}
+                    maxPopoverTrigger="hover"
+                    maxPopoverPlacement="top"
+                    maxStyle={{backgroundColor: "darkgray", color: "#312f2f", cursor: "pointer"}}
+                >
+                    {onlineUsers.filter((user) => user.name !== username).map(({name}, index) => {
+                        const initial = name.split("")[0].toUpperCase();
+                        return (
+                            <Tooltip key={name + index} title={name}>
+                                <Avatar style={{backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`, color: "#ffffff", cursor: "pointer"}}>{initial}</Avatar>
+                            </Tooltip>
+                        )
+                    })}
+                </AvatarGroup>
+            </ChatHeader>
 
             <Messages chatMessages={chatMessages} username={username}/>
 

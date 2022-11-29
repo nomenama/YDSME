@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {IoMdImages} from "react-icons/io";
 import {CgAttachment} from "react-icons/cg";
 import {device} from "styles/theme";
+import {Avatar, Tooltip} from 'antd';
 
 export const ChatPanelContent = styled.section`
   flex: 2;
@@ -20,6 +21,17 @@ export const ChatHeader = styled.div`
   font-size: 20px;
   color: ${({theme}) => theme.colors.white};
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const AvatarGroup = styled(Avatar.Group)`
+  display: none;
+
+  @media only screen and ${device.mobileL} {
+    display: block;
+  }
 `
 
 export const ChatFooter = styled.div`

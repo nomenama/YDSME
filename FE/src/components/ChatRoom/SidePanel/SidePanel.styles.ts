@@ -34,15 +34,6 @@ export const AvatarContainer = styled.div`
   gap: 10px;
 `
 
-export const Avatar = styled.div<{ size?: number }>`
-  width: ${({size}) => size ? `${size}px` : "30px"};
-  height: ${({size}) => size ? `${size}px` : "30px"};
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
 export const ChangeNameButton = styled.button`
   color: ${({theme}) => theme.colors.white};
   background-color: #5d5b8d;
@@ -82,10 +73,6 @@ export const UserAvatar = styled.div`
   gap: 20px;
   cursor: pointer;
   transition: scale 300ms ease-in-out;
-
-  &:hover {
-    transform: scale(1.04);
-  }
 `
 
 export const SideBarFooter = styled.div`
