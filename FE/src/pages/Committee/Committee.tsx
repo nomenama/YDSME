@@ -42,7 +42,7 @@ export const Committee = () => {
 
         {
             name: "Mr Richard Gibon",
-            imageUrl: "/committee/richard-gibon.jpg",
+            imageUrl: "/committee/richard-g.jpeg",
             title: "Boiler Inspector",
             email: "boilerinspector@yorkmodelengineers.co.uk"
         },
