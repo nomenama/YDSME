@@ -27,3 +27,7 @@ React App for York Model Engineers
 In the project directory, you can run:
 
 ### `npm start`
+
+### Notes
+
+* Agenda changed to Calendar in the Member section
