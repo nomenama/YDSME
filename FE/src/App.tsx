@@ -16,7 +16,7 @@ import {P1} from "./common/index.styles";
 
 const LazyDashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 const LazyAdmin = React.lazy(() => import("./pages/Admin/Admin"));
-const LazyAgenda = React.lazy(() => import("./pages/Agenda/Agenda"));
+const LazyCalendar = React.lazy(() => import("./pages/Calendar/Calendar"));
 const LazyMinutes = React.lazy(() => import("./pages/Minutes/Minutes"));
 const LazyBoilerGuides = React.lazy(() => import("./pages/BoilerGuides/BoilerGuides"));
 const LazyRules = React.lazy(() => import("./pages/Rules/Rules"));
@@ -47,9 +47,9 @@ function App() {
                         </React.Suspense>
                     }/>
 
-                    <Route path="/agendas" element={
+                    <Route path="/calendar" element={
                         <React.Suspense fallback={<P1>Loading...</P1>}>
-                            <LazyAgenda/>
+                            <LazyCalendar/>
                         </React.Suspense>
                     }/>
 

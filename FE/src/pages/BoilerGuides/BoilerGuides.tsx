@@ -6,7 +6,7 @@ import {AiOutlineFilePdf} from "react-icons/ai";
 import useUser from "../../hooks/useUser";
 import {MediaWithUrl} from "../../types";
 import {deleteMedia, getMediaMetadata} from "../../api/api";
-import {UploadButton} from "../Agenda/Agenda.styles";
+import {UploadButton} from "../Calendar/Calendar.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
 import {DeleteIcon} from 'components/SideBar/SideBar.styles';
 import {ToastInfo, ToastSuccess} from "../../common/Toast";

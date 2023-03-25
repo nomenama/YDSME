@@ -5,7 +5,7 @@ import {useDevice} from "../../hooks/useDevice";
 import {MediaWithUrl} from "../../types";
 import {deleteMedia, getMediaMetadata} from "../../api/api";
 import {AiOutlineFilePdf} from "react-icons/ai";
-import {UploadButton} from "../Agenda/Agenda.styles";
+import {UploadButton} from "../Calendar/Calendar.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
 import {List, NewsLetterContainer, TileWrapper} from "./Newsletter.styles";
 import {ToastInfo, ToastSuccess} from "../../common/Toast";

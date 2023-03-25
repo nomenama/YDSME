@@ -6,7 +6,7 @@ import UploadModal from "../../components/UploadModal/UploadModal";
 import {useDevice} from "../../hooks/useDevice";
 import {MediaWithUrl} from "../../types";
 import {getMediaMetadata} from 'api/api';
-import {UploadButton} from "../Agenda/Agenda.styles";
+import {UploadButton} from "../Calendar/Calendar.styles";
 import {MainContainer, MemberPage} from 'pages/Dashboard/Dashboard.styles';
 
 const Rules = () => {

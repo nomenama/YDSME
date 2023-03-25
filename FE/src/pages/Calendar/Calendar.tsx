@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {H3} from "../../common/index.styles";
 import {MediaWithUrl} from "../../types";
-import {UploadButton} from "./Agenda.styles";
+import {UploadButton} from "./Calendar.styles";
 import useUser from "../../hooks/useUser";
 import UploadModal from "../../components/UploadModal/UploadModal";
 import {getMediaMetadata} from "../../api/api";
@@ -9,7 +9,7 @@ import {Icon, PDFContainer, PdfTag, TagContainer} from "../Rules/Rules.styles";
 import {useDevice} from "../../hooks/useDevice";
 import {MainContainer, MemberPage} from 'pages/Dashboard/Dashboard.styles';
 
-const Agenda = () => {
+const Calendar = () => {
     const {isEditor} = useUser();
     const {deviceWidth} = useDevice();
     const [files, setFiles] = useState<MediaWithUrl[]>([]);
@@ -21,7 +21,7 @@ const Agenda = () => {
 
         const asyncProcess = async () => {
             try {
-                const {status, data} = await getMediaMetadata("Agendas", signal);
+                const {status, data} = await getMediaMetadata("Calendars", signal);
                 if (status >= 200 && status < 300) {
                     setFiles(data);
                 }
@@ -55,10 +55,10 @@ const Agenda = () => {
                 )}
 
                 {isEditor && <UploadButton onClick={() => setIsModalOpen((prevState) => !prevState)}>Upload</UploadButton>}
-                {isEditor && isModalOpen && <UploadModal onClose={() => setIsModalOpen(false)} uploadPreset="Agendas"/>}
+                {isEditor && isModalOpen && <UploadModal onClose={() => setIsModalOpen(false)} uploadPreset="Calendars"/>}
             </MainContainer>
         </MemberPage>
     );
 };
 
-export default Agenda;
+export default Calendar;

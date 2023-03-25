@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {H3} from "../../common/index.styles";
 import {PDFContainer, TileContainer} from "../BoilerGuides/BoilerGuides.styles";
 import {AiOutlineFilePdf} from "react-icons/ai";
-import {UploadButton} from "../Agenda/Agenda.styles";
+import {UploadButton} from "../Calendar/Calendar.styles";
 import UploadModal from "../../components/UploadModal/UploadModal";
 import useUser from "../../hooks/useUser";
 import {useDevice} from "../../hooks/useDevice";

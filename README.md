@@ -30,4 +30,4 @@ In the project directory, you can run:
 
 ### Notes
 
-* Agenda changed to Calendar in the Member section
+* Calendar changed to Calendar in the Member section
