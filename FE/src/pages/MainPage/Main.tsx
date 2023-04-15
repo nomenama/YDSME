@@ -26,7 +26,8 @@ const MainPage = () => {
                         </S.P1>
 
                         <S.P1>
-                            Our membership comprises model engineers from many disciplines and with many interests, including:
+                            Our membership comprises model engineers from many disciplines and with many interests,
+                            including:
                         </S.P1>
                         <S.UL>
                             <S.LI>Locomotives - from 2.5" to 7.25" gauge</S.LI>
@@ -36,6 +37,7 @@ const MainPage = () => {
                             <S.LI>Decorative Woodworking</S.LI>
                             <S.LI>Clocks and Mechanisms</S.LI>
                             <S.LI>Kit Building and 3D Printed Parts</S.LI>
+                            <S.LI>RC Crawler Track</S.LI>
                         </S.UL>
 
                         <S.P1>
@@ -43,13 +45,17 @@ const MainPage = () => {
                             for more details.
                         </S.P1>
 
+                        <S.P1>Proceed to the end of North Lane right up to the Network Rail fence, look left, thats the
+                            entrance road.</S.P1>
+
                         <S.H2>Our Location</S.H2>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.50520774197!2d-1.1069556883342238!3d53.940533814485654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487930e745d88c4d%3A0x9c9fca719171c174!2sYork%20City%20and%20District%20Society%20of%20Model%20Engineers%20Ltd!5e0!3m2!1sen!2suk!4v1633955435800!5m2!1sen!2suk"
-                                width="100%"
-                                height="600"
-                                allowFullScreen={true}
-                                loading="lazy"
-                                title="google map"
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.50520774197!2d-1.1069556883342238!3d53.940533814485654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487930e745d88c4d%3A0x9c9fca719171c174!2sYork%20City%20and%20District%20Society%20of%20Model%20Engineers%20Ltd!5e0!3m2!1sen!2suk!4v1633955435800!5m2!1sen!2suk"
+                            width="100%"
+                            height="600"
+                            allowFullScreen={true}
+                            loading="lazy"
+                            title="google map"
                         />
 
                         <S.H2 color="grey">Twinned With</S.H2>
