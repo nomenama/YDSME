@@ -19,8 +19,8 @@ import {createMessage} from "./src/database/chatQuery.js";
 dotenv.config();
 const app = express();
 app.use(cors(allowedCors));
-app.use(bodyParser.urlencoded({extended: true, limit: "10mb"}));
-app.use(bodyParser.json({limit: "10mb"}));
+app.use(bodyParser.urlencoded({extended: true, limit: "25mb"}));
+app.use(bodyParser.json({limit: "25mb"}));
 app.use(cookieParser());
 app.use(fileUpload({}));
 
@@ -34,51 +34,51 @@ app.use("/api/chat", chatRoutes);
 
 //error handling and logging
 app.use((err, req, res) => {
-	logger.log("error", err.stack);
-	res.status(500).send({message: "Something broke! Please try again or contact administrator."});
+    logger.log("error", err.stack);
+    res.status(500).send({message: "Something broke! Please try again or contact administrator."});
 });
 
 const io = new Server(server, {
-	cors: {
-		origin: [
-			"https://yorkmodelengineers.co.uk",
-			"https://www.yorkmodelengineers.co.uk",
-			"http://localhost:3000"
-		]
-	}
+    cors: {
+        origin: [
+            "https://yorkmodelengineers.co.uk",
+            "https://www.yorkmodelengineers.co.uk",
+            "http://localhost:3000"
+        ]
+    }
 });
 
 const users = {};
 
 io.on("connection", (socket) => {
-	socket.on("joining", ({name}) => {
-		users[socket.id] = {
-			name,
-			id: socket.id
-		};
+    socket.on("joining", ({name}) => {
+        users[socket.id] = {
+            name,
+            id: socket.id
+        };
 
-		io.emit("users", Object.values(users));
+        io.emit("users", Object.values(users));
 
-		socket.broadcast.emit("message", {
-			author: "BOT",
-			message: `${name} has joined the chat.`,
-			time: new Date(Date.now()).toLocaleDateString("en-GB"),
-			file: ""
-		});
-	});
+        socket.broadcast.emit("message", {
+            author: "BOT",
+            message: `${name} has joined the chat.`,
+            time: new Date(Date.now()).toLocaleDateString("en-GB"),
+            file: ""
+        });
+    });
 
-	socket.on("send", async (msgObj) => {
-		await createMessage(msgObj.author, msgObj.message, msgObj.time, msgObj.file);
-		io.emit("message", msgObj);
-	});
+    socket.on("send", async (msgObj) => {
+        await createMessage(msgObj.author, msgObj.message, msgObj.time, msgObj.file);
+        io.emit("message", msgObj);
+    });
 
-	socket.on("disconnect", () => {
-		const user = users[socket.id];
-		delete users[socket.id];
-		io.emit("disconnected", user);
-	});
+    socket.on("disconnect", () => {
+        const user = users[socket.id];
+        delete users[socket.id];
+        io.emit("disconnected", user);
+    });
 });
 
 server.listen(process.env.PORT, () => {
-	logger.log("info", `Server listening on port ${process.env.PORT}`);
+    logger.log("info", `Server listening on port ${process.env.PORT}`);
 });
