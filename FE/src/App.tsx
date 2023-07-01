@@ -68,7 +68,7 @@ function App() {
                             <LazyRules/>
                         </React.Suspense>
                     }/>
-                    <Route path="/newsletters" element={
+                    <Route path="/publications" element={
                         <React.Suspense fallback={<P1>Loading...</P1>}>
                             <LazyNewsletter/>
                         </React.Suspense>

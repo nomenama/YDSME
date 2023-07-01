@@ -15,5 +15,5 @@ export const MemberNavigation = {
     Minutes: "/minutes",
     "Boiler Guides": "/boiler-guides",
     "Club Rules": "/club-rules",
-    "Newsletters": "/newsletters",
+    "Publications": "/publications", //previously newsletters
 };
