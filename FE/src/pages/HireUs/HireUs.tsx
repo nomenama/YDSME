@@ -15,7 +15,9 @@ export const HireUs = () => {
                 <Flex>
                     <Image src="hired1.jpg" alt="york model engineers" height={500} loading="lazy"/>
                 </Flex>
-                <P1 textAlign="center">Please contact our <Link href="mailto: secretary.yorkmodelengineers.co.uk">Secretary</Link> if you would like to book our event team for your next event or discuss requirements and costs.</P1>
+                <P1 textAlign="center">Please contact our <Link
+                    href="mailto:secretary@yorkmodelengineers.co.uk">Secretary</Link> if you would like to book our
+                    event team for your next event or discuss requirements and costs.</P1>
             </InnerContainer>
         </PageContainer>
     )
