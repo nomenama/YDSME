@@ -19,10 +19,10 @@ import {createMessage} from "./src/database/chatQuery.js";
 dotenv.config();
 const app = express();
 app.use(cors(allowedCors));
-app.use(bodyParser.urlencoded({extended: true, limit: "30mb"}));
-app.use(bodyParser.json({limit: "30mb"}));
+app.use(bodyParser.urlencoded({extended: true, limit: "50mb"}));
+app.use(bodyParser.json({limit: "50mb"}));
 app.use(cookieParser());
-app.use(fileUpload({}));
+app.use(fileUpload({limits: {fileSize: 50 * 1024 * 1024}}));
 
 const server = http.createServer(app);
 
