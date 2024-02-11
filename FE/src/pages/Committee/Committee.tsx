@@ -27,8 +27,8 @@ export const Committee = () => {
         },
 
         {
-            name: "Mr Bob Lovett",
-            imageUrl: "/committee/bob-lovett.jpg",
+            name: "Mr David Woods",
+            imageUrl: "/committee/david-woods.jpg",
             title: "Secretary",
             email: "secretary@yorkmodelengineers.co.uk"
         },
@@ -48,8 +48,8 @@ export const Committee = () => {
         },
 
         {
-            name: "Mr Roger Backhouse",
-            imageUrl: "/committee/roger-b.jpg",
+            name: "Vacant",
+            imageUrl: "",
             title: "Newsletter Editor",
             email: "editor@yorkmodelengineers.co.uk"
         },
