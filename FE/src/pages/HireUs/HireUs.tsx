@@ -10,7 +10,7 @@ export const HireUs = () => {
         <PageContainer>
             <InnerContainer>
                 {deviceWidth <= 1200 && <Announcement/>}
-                <H1>York City & District Society of Model Engineers</H1>
+                <H1>York City & District Society of Model Engineers Ltd</H1>
                 <H2>Hire Us</H2>
                 <Flex>
                     <Image src="hired1.jpg" alt="york model engineers" height={500} loading="lazy"/>
