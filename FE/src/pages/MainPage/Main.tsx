@@ -15,7 +15,7 @@ const MainPage = () => {
                 {deviceWidth <= 1200 && <Announcement/>}
                 <Divider>
                     <Content width={isDesktop ? "80%" : "100%"}>
-                        <S.H1>York City & District Society of Model Engineers Ltd</S.H1>
+                        <S.H1>York City & District Society of Model Engineers Limited</S.H1>
                         <Slider/>
                         <S.H2>About Us</S.H2>
                         <S.P1>Situated on the outskirts of York, at Dringhouses,
